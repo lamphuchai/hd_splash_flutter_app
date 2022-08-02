@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/views/components/components.dart';
 import 'package:hd_splash_flutter/views/topics/topics.dart';
 
 class TopicsPage extends StatelessWidget {
@@ -7,9 +8,10 @@ class TopicsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: BlocBuilder<TopicsCubit, TopicsState>(
+    return CustomNestedScrollHead(
+      title: "Chủ để",
+      subtitle: "Những chủ để trên unspalsh",
+      body: BlocBuilder<TopicsCubit, TopicsState>(
         buildWhen: (previous, current) => previous.status != current.status,
         builder: (context, state) {
           switch (state.status) {

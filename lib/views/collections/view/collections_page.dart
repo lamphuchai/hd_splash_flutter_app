@@ -36,9 +36,10 @@ class ListViewCollections extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8),
-      child: BlocBuilder<CollectionsCubit, CollectionsState>(
+    return CustomNestedScrollHead(
+      title: "Bộ sưa tập",
+      subtitle: "Những Bộ sưa tập nổi bật trên unspalsh",
+      body: BlocBuilder<CollectionsCubit, CollectionsState>(
         buildWhen: (previous, current) =>
             previous.collections != current.collections,
         builder: (context, state) {

@@ -10,12 +10,14 @@ class CustomMasonryGirdView extends StatelessWidget {
       required this.photos,
       this.onNotification,
       required this.onRefresh,
-      this.crossAxisCount = 2})
+      this.crossAxisCount = 2,
+      this.shrinkWrap})
       : super(key: key);
   final List<Photo> photos;
   final bool Function(ScrollEndNotification)? onNotification;
   final Future<void> Function() onRefresh;
   final int crossAxisCount;
+  final bool? shrinkWrap;
   @override
   Widget build(BuildContext context) {
     return NotificationListener<ScrollEndNotification>(
@@ -28,6 +30,7 @@ class CustomMasonryGirdView extends StatelessWidget {
             mainAxisSpacing: 8,
             crossAxisSpacing: 8,
             crossAxisCount: 2,
+            shrinkWrap: shrinkWrap ?? false,
             itemBuilder: ((context, index) {
               final photo = photos[index];
               return GestureDetector(
