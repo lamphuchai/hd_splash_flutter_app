@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:hd_splash_flutter/app/extensions/extensions.dart';
+import 'package:hd_splash_flutter/app/router/route_name.dart';
 import 'package:hd_splash_flutter/views/components/components.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
 
@@ -34,7 +35,8 @@ class CustomMasonryGirdView extends StatelessWidget {
             itemBuilder: ((context, index) {
               final photo = photos[index];
               return GestureDetector(
-                  onTap: () {},
+                  onTap: () =>
+                      Navigator.pushNamed(context, RouteName.detailPhoto),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Container(

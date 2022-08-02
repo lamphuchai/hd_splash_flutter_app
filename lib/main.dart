@@ -11,8 +11,8 @@ void main() {
   //       // systemOverlayStyle: SystemUiOverlayStyle.dark
   //       ),
   // );
-  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-  //   statusBarColor: Colors.transparent, // optional
-  // ));
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+    statusBarColor: Colors.transparent, // optional
+  ));
   runApp(const App());
 }
