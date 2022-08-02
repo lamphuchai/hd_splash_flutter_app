@@ -22,6 +22,7 @@ class PhotosPage extends StatelessWidget {
                   color: Colors.red,
                 );
               case PhotosStatus.loaded:
+            
                 return const CustomPhotosGridView();
               default:
                 return const SizedBox();

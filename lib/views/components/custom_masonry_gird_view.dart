@@ -35,8 +35,9 @@ class CustomMasonryGirdView extends StatelessWidget {
             itemBuilder: ((context, index) {
               final photo = photos[index];
               return GestureDetector(
-                  onTap: () =>
-                      Navigator.pushNamed(context, RouteName.detailPhoto),
+                  onTap: () => Navigator.pushNamed(
+                      context, RouteName.detailPhoto,
+                      arguments: photo),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Container(

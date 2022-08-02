@@ -5,14 +5,10 @@ import 'views/app.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  // SystemChrome.setSystemUIOverlayStyle(
-  //   const SystemUiOverlayStyle(
-  //       statusBarColor: Colors.transparent, statusBarBrightness: Brightness.dark
-  //       // systemOverlayStyle: SystemUiOverlayStyle.dark
-  //       ),
-  // );
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-    statusBarColor: Colors.transparent, // optional
-  ));
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.light),
+  );
   runApp(const App());
 }

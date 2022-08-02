@@ -37,9 +37,7 @@ class Exif {
           : null,
       focalLength:
           map['focal_length'] != null ? map['focal_length'] as String : null,
-      isoSpeedEatings: map['iso_speed_ratings'] != null
-          ? map['iso_speed_ratings'] as String
-          : null,
+      isoSpeedEatings: map['iso'].toString(),
     );
   }
 
@@ -52,5 +50,4 @@ class Exif {
   String toString() {
     return 'Exif(make: $make, model: $model, exposureTime: $exposureTime, apertureValue: $apertureValue, focalLength: $focalLength, isoSpeedEatings: $isoSpeedEatings)';
   }
-
 }

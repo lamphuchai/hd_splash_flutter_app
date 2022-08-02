@@ -16,83 +16,88 @@ class Photo {
   final String? altDescription;
   final Urls urls;
   final Links links;
+  final int views;
   final List<String> categories;
   final int likes;
   final bool likedByUser;
-  final List<String> currentUserCollections;
+  final List<dynamic> currentUserCollections;
   final Sponsorship? sponsorship;
   final Map? topicSubmissions;
   final User user;
   final Exif? exif;
-  Photo({
-    required this.id,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.downloads,
-    this.promotedAt,
-    required this.width,
-    required this.height,
-    required this.color,
-    this.blurHash,
-    this.description,
-    this.altDescription,
-    this.exif,
-    required this.urls,
-    required this.links,
-    required this.categories,
-    required this.likes,
-    required this.likedByUser,
-    required this.currentUserCollections,
-    this.sponsorship,
-    this.topicSubmissions,
-    required this.user,
-  });
+  final List<Tag> tags;
+  Photo(
+      {required this.id,
+      required this.createdAt,
+      required this.updatedAt,
+      required this.downloads,
+      required this.views,
+      this.promotedAt,
+      required this.width,
+      required this.height,
+      required this.color,
+      this.blurHash,
+      this.description,
+      this.altDescription,
+      this.exif,
+      required this.urls,
+      required this.links,
+      required this.categories,
+      required this.likes,
+      required this.likedByUser,
+      required this.currentUserCollections,
+      this.sponsorship,
+      this.topicSubmissions,
+      required this.user,
+      required this.tags});
 
-  Photo copyWith({
-    String? id,
-    String? createdAt,
-    String? updatedAt,
-    String? promotedAt,
-    int? width,
-    int? height,
-    String? color,
-    String? blurHash,
-    String? description,
-    String? altDescription,
-    Urls? urls,
-    Links? links,
-    List<String>? categories,
-    int? likes,
-    bool? likedByUser,
-    List<String>? currentUserCollections,
-    Sponsorship? sponsorship,
-    Map? topicSubmissions,
-    User? user,
-    int? downloads,
-  }) {
+  Photo copyWith(
+      {String? id,
+      String? createdAt,
+      String? updatedAt,
+      String? promotedAt,
+      int? width,
+      int? height,
+      String? color,
+      String? blurHash,
+      String? description,
+      String? altDescription,
+      Urls? urls,
+      Links? links,
+      List<String>? categories,
+      int? likes,
+      bool? likedByUser,
+      List<String>? currentUserCollections,
+      Sponsorship? sponsorship,
+      Map? topicSubmissions,
+      User? user,
+      int? downloads,
+      int? views,
+      List<Tag>? tags}) {
     return Photo(
-      id: id ?? this.id,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
-      promotedAt: promotedAt ?? this.promotedAt,
-      width: width ?? this.width,
-      downloads: downloads ?? this.downloads,
-      height: height ?? this.height,
-      color: color ?? this.color,
-      blurHash: blurHash ?? this.blurHash,
-      description: description ?? this.description,
-      altDescription: altDescription ?? this.altDescription,
-      urls: urls ?? this.urls,
-      links: links ?? this.links,
-      categories: categories ?? this.categories,
-      likes: likes ?? this.likes,
-      likedByUser: likedByUser ?? this.likedByUser,
-      currentUserCollections:
-          currentUserCollections ?? this.currentUserCollections,
-      sponsorship: sponsorship ?? this.sponsorship,
-      topicSubmissions: topicSubmissions ?? this.topicSubmissions,
-      user: user ?? this.user,
-    );
+        id: id ?? this.id,
+        views: views ?? this.views,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt,
+        promotedAt: promotedAt ?? this.promotedAt,
+        width: width ?? this.width,
+        downloads: downloads ?? this.downloads,
+        height: height ?? this.height,
+        color: color ?? this.color,
+        blurHash: blurHash ?? this.blurHash,
+        description: description ?? this.description,
+        altDescription: altDescription ?? this.altDescription,
+        urls: urls ?? this.urls,
+        links: links ?? this.links,
+        categories: categories ?? this.categories,
+        likes: likes ?? this.likes,
+        likedByUser: likedByUser ?? this.likedByUser,
+        currentUserCollections:
+            currentUserCollections ?? this.currentUserCollections,
+        sponsorship: sponsorship ?? this.sponsorship,
+        topicSubmissions: topicSubmissions ?? this.topicSubmissions,
+        user: user ?? this.user,
+        tags: tags ?? this.tags);
   }
 
   Map<String, dynamic> toMap() {
@@ -121,36 +126,39 @@ class Photo {
 
   factory Photo.fromMap(Map<String, dynamic> map) {
     return Photo(
-      id: map['id'] as String,
-      createdAt: map['created_at'] as String,
-      updatedAt: map['updated_at'] as String,
-      promotedAt:
-          map['promoted_at'] != null ? map['promoted_at'] as String : null,
-      width: map['width'] as int,
-      height: map['height'] as int,
-      color: map['color'] as String,
-      blurHash: map['blur_hash'],
-      downloads: map['downloads'] ?? 0,
-      description:
-          map['description'] != null ? map['description'] as String : null,
-      altDescription: map['alt_description'] != null
-          ? map['alt_description'] as String
-          : null,
-      urls: Urls.fromMap(map['urls']),
-      links: Links.fromMap(map['links']),
-      categories: List<String>.from(map['categories']),
-      exif: map['exif'] != null ? Exif.fromMap(map['exif']) : null,
-      likes: map['likes'] as int,
-      likedByUser: map['liked_by_user'] as bool,
-      currentUserCollections: map['current_user_contributions'] != null
-          ? List<String>.from(map['current_user_contributions'])
-          : [],
-      sponsorship: map['sponsorship'] != null
-          ? Sponsorship.fromMap(map['sponsorship'])
-          : null,
-      topicSubmissions: map['topic_submissions'],
-      user: User.fromMap(map['user'] as Map<String, dynamic>),
-    );
+        id: map['id'] as String,
+        views: map["views"]?.toInt() ?? 0,
+        createdAt: map['created_at'] as String,
+        updatedAt: map['updated_at'] as String,
+        promotedAt:
+            map['promoted_at'] != null ? map['promoted_at'] as String : null,
+        width: map['width'] as int,
+        height: map['height'] as int,
+        color: map['color'] as String,
+        blurHash: map['blur_hash'],
+        downloads: map['downloads']?.toInt() ?? 0,
+        description:
+            map['description'] != null ? map['description'] as String : null,
+        altDescription: map['alt_description'] != null
+            ? map['alt_description'] as String
+            : null,
+        urls: Urls.fromMap(map['urls']),
+        links: Links.fromMap(map['links']),
+        categories: List<String>.from(map['categories']),
+        exif: map['exif'] != null ? Exif.fromMap(map['exif']) : null,
+        likes: map['likes'] as int,
+        likedByUser: map['liked_by_user'] as bool,
+        currentUserCollections: map['current_user_contributions'] != null
+            ? List.from(map['current_user_contributions'])
+            : [],
+        sponsorship: map['sponsorship'] != null
+            ? Sponsorship.fromMap(map['sponsorship'])
+            : null,
+        topicSubmissions: map['topic_submissions'],
+        user: User.fromMap(map['user'] as Map<String, dynamic>),
+        tags: map["tags"] != null
+            ? (map["tags"] as List).map((tag) => Tag.fromMap(tag)).toList()
+            : []);
   }
 
   String toJson() => json.encode(toMap());

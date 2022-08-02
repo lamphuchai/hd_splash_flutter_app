@@ -15,8 +15,7 @@ class PhotosCubit extends Cubit<PhotosState> {
   Future<void> loadingPhotos() async {
     try {
       emit(state.copyWith(status: PhotosStatus.loading));
-      final photos = await _photosApi.getPhotos(
-          orderBy: PhotosOrderBy.latest, perPage: 20);
+      final photos = await _photosApi.getPhotos(perPage: 20);
       emit(state.copyWith(
           photos: photos, status: PhotosStatus.loaded, currentPagePhotos: 1));
     } catch (error) {

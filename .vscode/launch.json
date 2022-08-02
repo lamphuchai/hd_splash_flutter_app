@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "hd_splash_flutter",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "hd_splash_flutter (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "hd_splash_flutter (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "unsplash_dart",
+            "cwd": "packages/unsplash_dart",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "unsplash_dart (profile mode)",
+            "cwd": "packages/unsplash_dart",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "unsplash_dart (release mode)",
+            "cwd": "packages/unsplash_dart",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
