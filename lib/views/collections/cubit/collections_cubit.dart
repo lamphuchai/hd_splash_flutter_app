@@ -12,15 +12,14 @@ class CollectionsCubit extends Cubit<CollectionsState> {
         super(const CollectionsState());
 
   final Collections _collectionsApi;
+  int _pageCollections = 1;
 
   Future<void> loadingCollections() async {
     try {
       emit(state.copyWith(status: CollectionsStatus.loading));
       final collections = await _collectionsApi.getCollections(perPage: 20);
       emit(state.copyWith(
-          collections: collections,
-          status: CollectionsStatus.loaded,
-          currentPageCollection: 1));
+          collections: collections, status: CollectionsStatus.loaded));
     } catch (error) {
       log(error.toString());
       emit(state.copyWith(status: CollectionsStatus.error));
@@ -29,12 +28,12 @@ class CollectionsCubit extends Cubit<CollectionsState> {
 
   Future<void> nextPageCollections() async {
     try {
-      final pageNext = state.currentPageCollection + 1;
-      final collections =
-          await _collectionsApi.getCollections(page: pageNext, perPage: 20);
+      _pageCollections += 1;
+      final collections = await _collectionsApi.getCollections(
+          page: _pageCollections, perPage: 20);
       emit(state.copyWith(
-          collections: [...state.collections, ...collections],
-          currentPageCollection: pageNext));
+        collections: [...state.collections, ...collections],
+      ));
     } catch (error) {
       log(error.toString());
       emit(state.copyWith(status: CollectionsStatus.error));

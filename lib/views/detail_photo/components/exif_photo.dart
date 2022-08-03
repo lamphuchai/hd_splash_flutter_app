@@ -12,10 +12,10 @@ class ExifPhoto extends StatelessWidget {
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return AnimatedContainer(
-          height: state.status == PhotoStatus.loaded ? 160 : 0,
+          height: state.status == StatusType.loaded ? 160 : 0,
           duration: const Duration(milliseconds: 200),
           child: Builder(builder: (context) {
-            if (state.status == PhotoStatus.loaded) {
+            if (state.status == StatusType.loaded) {
               Exif exif = state.dataPhoto["exif"];
               return SingleChildScrollView(
                 physics: const NeverScrollableScrollPhysics(),

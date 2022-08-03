@@ -11,13 +11,13 @@ class PhotosCubit extends Cubit<PhotosState> {
       : _photosApi = photosApi,
         super(const PhotosState());
   final Photos _photosApi;
+  int _pagePhotos = 1;
 
   Future<void> loadingPhotos() async {
     try {
       emit(state.copyWith(status: PhotosStatus.loading));
-      final photos = await _photosApi.getPhotos(perPage: 20);
-      emit(state.copyWith(
-          photos: photos, status: PhotosStatus.loaded, currentPagePhotos: 1));
+      final photos = await _photosApi.getPhotos( perPage: 20);
+      emit(state.copyWith(photos: photos, status: PhotosStatus.loaded));
     } catch (error) {
       log(error.toString());
       emit(state.copyWith(status: PhotosStatus.error));
@@ -26,13 +26,13 @@ class PhotosCubit extends Cubit<PhotosState> {
 
   Future<void> nextPagePhotos() async {
     try {
-      final pageNext = state.currentPagePhotos + 1;
+      _pagePhotos += 1;
       final photos = await _photosApi.getPhotos(
-          orderBy: PhotosOrderBy.latest, page: pageNext, perPage: 20);
+          orderBy: PhotosOrderBy.latest, page: _pagePhotos, perPage: 20);
       emit(state.copyWith(photos: [
         ...state.photos,
         ...photos,
-      ], currentPagePhotos: pageNext));
+      ]));
     } catch (error) {
       log(error.toString());
       emit(state.copyWith(status: PhotosStatus.error));

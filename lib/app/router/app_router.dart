@@ -4,6 +4,7 @@ import 'package:hd_splash_flutter/views/detail_collection/detail_collection.dart
 import 'package:hd_splash_flutter/views/detail_photo/detail_photo.dart';
 import 'package:hd_splash_flutter/views/detail_topic/view/detail_topic_view.dart';
 import 'package:hd_splash_flutter/views/full_photo/full_photo.dart';
+import 'package:hd_splash_flutter/views/user/user.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
 
@@ -41,6 +42,15 @@ class AppRouter {
           return PageTransition(
               child: DetailTopicView(
                 topic: args,
+              ),
+              type: PageTransitionType.rightToLeft);
+        }
+        return _errRoute();
+      case RouteName.user:
+        if (args != null && args is User) {
+          return PageTransition(
+              child: UserView(
+                user: args,
               ),
               type: PageTransitionType.rightToLeft);
         }

@@ -4,26 +4,23 @@ part of 'photos_cubit.dart';
 enum PhotosStatus { init, loading, loaded, error }
 
 class PhotosState extends Equatable {
-  const PhotosState(
-      {this.photos = const [],
-      this.status = PhotosStatus.init,
-      this.currentPagePhotos = 1});
+  const PhotosState({
+    this.photos = const [],
+    this.status = PhotosStatus.init,
+  });
 
   final List<Photo> photos;
   final PhotosStatus status;
-  final int currentPagePhotos;
   @override
-  List<Object> get props => [photos, status,currentPagePhotos];
+  List<Object> get props => [photos, status];
 
   PhotosState copyWith({
     List<Photo>? photos,
     PhotosStatus? status,
-    int? currentPagePhotos
   }) {
     return PhotosState(
       photos: photos ?? this.photos,
       status: status ?? this.status,
-      currentPagePhotos: currentPagePhotos ?? this.currentPagePhotos
     );
   }
 }

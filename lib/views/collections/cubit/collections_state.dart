@@ -4,27 +4,23 @@ part of 'collections_cubit.dart';
 enum CollectionsStatus { init, loading, loaded, error }
 
 class CollectionsState extends Equatable {
-  const CollectionsState(
-      {this.collections = const [],
-      this.status = CollectionsStatus.init,
-      this.currentPageCollection = 1});
+  const CollectionsState({
+    this.collections = const [],
+    this.status = CollectionsStatus.init,
+  });
   final List<Collection> collections;
   final CollectionsStatus status;
-  final int currentPageCollection;
 
   @override
-  List<Object> get props => [collections, status, currentPageCollection];
+  List<Object> get props => [collections, status];
 
   CollectionsState copyWith({
     List<Collection>? collections,
     CollectionsStatus? status,
-    int? currentPageCollection,
   }) {
     return CollectionsState(
       collections: collections ?? this.collections,
       status: status ?? this.status,
-      currentPageCollection:
-          currentPageCollection ?? this.currentPageCollection,
     );
   }
 }

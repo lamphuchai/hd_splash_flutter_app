@@ -12,9 +12,9 @@ class DetailPhotoCubit extends Cubit<DetailPhotoState> {
   final Photos _photos;
   Future<void> loadingExifPhoto() async {
     try {
-      emit(state.copyWith(status: PhotoStatus.loading));
+      emit(state.copyWith(status: StatusType.loading));
       final photo = await _photos.photoById(id: state.photo.id);
-      emit(state.copyWith(status: PhotoStatus.loaded, dataPhoto: {
+      emit(state.copyWith(status: StatusType.loaded, dataPhoto: {
         "tags": photo.tags,
         "exif": photo.exif,
         "views": photo.views,
@@ -22,7 +22,7 @@ class DetailPhotoCubit extends Cubit<DetailPhotoState> {
       }));
     } catch (error) {
       print(error);
-      emit(state.copyWith(status: PhotoStatus.err));
+      emit(state.copyWith(status: StatusType.err));
     }
   }
 }

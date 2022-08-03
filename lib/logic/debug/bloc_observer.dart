@@ -6,13 +6,13 @@ class AppBlocObserver extends BlocObserver {
   @override
   void onCreate(BlocBase bloc) {
     super.onCreate(bloc);
-    log(bloc.toString());
+    log('onCreate : $bloc');
   }
 
   @override
   void onClose(BlocBase bloc) {
     super.onClose(bloc);
-    log(bloc.toString());
+    log('onClose : $bloc');
   }
 
   @override
@@ -37,6 +37,5 @@ class AppBlocObserver extends BlocObserver {
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
     log(transition.toString());
-    
   }
 }

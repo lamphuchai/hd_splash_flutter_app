@@ -73,6 +73,9 @@ class DetailPhotoPage extends StatelessWidget {
                                   Icons.download,
                                   color: Colors.black,
                                 )),
+                            onTap: () => Navigator.pushNamed(
+                                context, RouteName.user,
+                                arguments: state.photo.user),
                           );
                         },
                       ),
@@ -90,86 +93,88 @@ class DetailPhotoPage extends StatelessWidget {
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         final tags = state.dataPhoto["tags"];
-        final isLoaded = state.status == PhotoStatus.loaded;
-        return Column(
-          children: [
-            if (state.status == PhotoStatus.loading) ...[
-              const Expanded(
-                child: Center(
-                    child: SpinKitCircle(
-                  color: Colors.teal,
-                  size: 50.0,
-                )),
-              )
-            ],
-            if (isLoaded) ...[
-              Column(
-                children: [
-                  const SizedBox(
-                    height: 20,
+        switch (state.status) {
+          case StatusType.loading:
+            return const Expanded(
+              child: Center(
+                  child: SpinKitCircle(
+                color: Colors.teal,
+                size: 50.0,
+              )),
+            );
+          case StatusType.loaded:
+            return Column(
+              children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: 60,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          Text("Views"),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(state.dataPhoto["views"].toString())
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Column(
+                        children: [
+                          Text("Likes"),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(state.photo.likes.toString())
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Column(
+                        children: [
+                          Text("Downloads"),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(state.dataPhoto["downloads"].toString())
+                        ],
+                      )
+                    ],
                   ),
-                  SizedBox(
-                    height: 60,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            Text("Views"),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Text(state.dataPhoto["views"].toString())
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Column(
-                          children: [
-                            Text("Likes"),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Text(state.photo.likes.toString())
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        Column(
-                          children: [
-                            Text("Downloads"),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Text(state.dataPhoto["downloads"].toString())
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 50,
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: tags.length,
-                        itemBuilder: ((context, index) => Container(
-                              margin: EdgeInsets.only(
-                                  left: index == 0 ? 16 : 5, right: 5),
-                              child: Chip(
-                                  label: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 5),
-                                child: Text(tags[index].title),
-                              )),
-                            ))),
-                  ),
-                ],
-              ),
-            ]
-          ],
-        );
+                ),
+                SizedBox(
+                  height: 50,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: tags.length,
+                      itemBuilder: ((context, index) => Container(
+                            margin: EdgeInsets.only(
+                                left: index == 0 ? 16 : 5, right: 5),
+                            child: Chip(
+                                label: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 5),
+                              child: Text(tags[index].title),
+                            )),
+                          ))),
+                ),
+              ],
+            );
+          case StatusType.err:
+            return const Icon(
+              Icons.error_outline_rounded,
+              color: Colors.red,
+            );
+          default:
+            return const SizedBox();
+        }
       },
     );
   }
