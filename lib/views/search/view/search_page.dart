@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hd_splash_flutter/views/components/components.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/app/router/route_name.dart';
+import 'package:hd_splash_flutter/views/search/cubit/search_cubit.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -34,53 +36,73 @@ class SearchPage extends StatelessWidget {
               ),
               TextField(
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8))),
+                  hintText: "Nhập để tìm kiếm ",
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8)),
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.search),
+                    onPressed: () {
+                      Navigator.pushNamed(context, RouteName.resultSearch,
+                          arguments: context.read<SearchCubit>().state.query);
+                    },
+                  ),
+                ),
+                onChanged: (query) =>
+                    context.read<SearchCubit>().onChangeQuery(query),
+                // onEditingComplete: () {
+                //   Navigator.pushNamed(context, RouteName.resultSearch,
+                //       arguments: context.read<SearchCubit>().state.query);
+                // },
+                onSubmitted: (value) => Navigator.pushNamed(
+                    context, RouteName.resultSearch,
+                    arguments: value),
               ),
             ],
           ),
         ),
-        const ListTile(
-          title: Text("Lịch sử"),
+        ListTile(
+          title: const Text("Lịch sử"),
+          trailing: GestureDetector(
+            onTap: () => context.read<SearchCubit>().deleteAllHistory(),
+            child: const Text(
+              "Xoá",
+              style: TextStyle(color: Colors.red),
+            ),
+          ),
         ),
         Expanded(
             child: SingleChildScrollView(
           child: SizedBox(
               width: double.infinity,
-              child: Wrap(children: const [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 2),
-                  child: Chip(
-                      label: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 3),
-                    child: Text("viet nam"),
-                  )),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 2),
-                  child: Chip(
-                      label: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 3),
-                    child: Text("viet nam"),
-                  )),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 2),
-                  child: Chip(
-                      label: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 3),
-                    child: Text("viet nam"),
-                  )),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 2),
-                  child: Chip(
-                      label: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 3),
-                    child: Text("viet nam"),
-                  )),
-                )
-              ])),
+              child: BlocBuilder<SearchCubit, SearchState>(
+                buildWhen: (previous, current) =>
+                    previous.listHistory != current.listHistory,
+                builder: (context, state) {
+                  return Wrap(
+                      children: state.listHistory
+                          .map(
+                            (history) => Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 2),
+                              child: GestureDetector(
+                                onTap: () => Navigator.pushNamed(
+                                    context, RouteName.resultSearch,
+                                    arguments: history),
+                                child: Chip(
+                                  label: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 3),
+                                    child: Text(history),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                          .toList());
+                },
+              )),
         ))
       ],
     );

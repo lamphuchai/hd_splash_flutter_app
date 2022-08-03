@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hd_splash_flutter/core/type/enum.dart';
+import 'package:hd_splash_flutter/views/components/components.dart';
 import 'package:hd_splash_flutter/views/user/user.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
 
@@ -21,18 +22,16 @@ class UserPage extends StatelessWidget {
       tabs.add({"tab": const TabCollectionsView(), "title": "collections"});
     }
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(user.name),
+          actions: [ButtonOpenUrlHtml(uri: user.links.html)],
+        ),
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
-              SliverToBoxAdapter(
-                child: Container(
-                  color: Colors.orange,
-                  height: 100,
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text('Sliver Grid Header',
-                      style: TextStyle(fontSize: 28)),
-                ),
+              const SliverToBoxAdapter(
+                child: UserWidget(),
               ),
             ];
           },
@@ -40,19 +39,15 @@ class UserPage extends StatelessWidget {
             length: tabs.length,
             child: Column(
               children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 10),
-                  height: 40,
-                  width: double.infinity,
-                  child: TabBar(
-                    indicatorColor: Colors.teal,
-                    labelColor: Colors.black,
-                    tabs: tabs
-                        .map((tab) => Tab(
-                              text: tab["title"],
-                            ))
-                        .toList(),
-                  ),
+                TabBar(
+                  indicatorColor: Colors.teal,
+                  labelColor: Colors.black,
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  tabs: tabs
+                      .map((tab) => Tab(
+                            text: tab["title"],
+                          ))
+                      .toList(),
                 ),
                 Expanded(
                   child: BlocBuilder<UserCubit, UserState>(
@@ -91,24 +86,3 @@ class UserPage extends StatelessWidget {
         ));
   }
 }
-
-
-//  BlocBuilder<UserCubit, UserState>(
-//             builder: (context, state) {
-//               switch (state.status) {
-//                 case StatusType.loading:
-//                   return const Center(
-//                     child: CircularProgressIndicator(),
-//                   );
-//                 case StatusType.error:
-//                   return const Icon(
-//                     Icons.error_outline_rounded,
-//                     color: Colors.red,
-//                   );
-//                 case StatusType.loaded:
-//                   return const SizedBox();
-//                 default:
-//                   return const SizedBox();
-//               }
-//             },
-//           ),

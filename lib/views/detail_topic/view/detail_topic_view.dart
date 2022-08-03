@@ -12,7 +12,7 @@ class DetailTopicView extends StatelessWidget {
       create: (context) => DetailTopicCubit(
           topic: topic, topicsApi: context.read<Unsplash>().topics)
         ..loadingPhotos(),
-      child: const DetailTopicPage(),
+      child:  DetailTopicPage(topic: topic,),
     );
   }
 }

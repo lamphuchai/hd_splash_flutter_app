@@ -19,7 +19,18 @@ class DetailPhotoPage extends StatelessWidget {
           elevation: 0.0,
           backgroundColor: Colors.transparent,
           iconTheme: const IconThemeData(color: Colors.white),
-          actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.add))],
+          actions: [
+            BlocSelector<DetailPhotoCubit, DetailPhotoState, String>(
+              selector: (state) {
+                return state.photo.links.html;
+              },
+              builder: (context, uri) {
+                return ButtonOpenUrlHtml(
+                  uri: uri,
+                );
+              },
+            )
+          ],
         ),
         body: SafeArea(
           top: false,
@@ -95,13 +106,11 @@ class DetailPhotoPage extends StatelessWidget {
         final tags = state.dataPhoto["tags"];
         switch (state.status) {
           case StatusType.loading:
-            return const Expanded(
-              child: Center(
-                  child: SpinKitCircle(
-                color: Colors.teal,
-                size: 50.0,
-              )),
-            );
+            return const Center(
+                child: SpinKitCircle(
+              color: Colors.teal,
+              size: 50.0,
+            ));
           case StatusType.loaded:
             return Column(
               children: [
@@ -157,12 +166,17 @@ class DetailPhotoPage extends StatelessWidget {
                       itemBuilder: ((context, index) => Container(
                             margin: EdgeInsets.only(
                                 left: index == 0 ? 16 : 5, right: 5),
-                            child: Chip(
-                                label: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 5),
-                              child: Text(tags[index].title),
-                            )),
+                            child: GestureDetector(
+                              onTap: () => Navigator.pushNamed(
+                                  context, RouteName.resultSearch,
+                                  arguments: tags[index].title),
+                              child: Chip(
+                                  label: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 5),
+                                child: Text(tags[index].title),
+                              )),
+                            ),
                           ))),
                 ),
               ],
