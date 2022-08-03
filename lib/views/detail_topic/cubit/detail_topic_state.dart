@@ -1,30 +1,28 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-part of 'detail_collection_cubit.dart';
+part of 'detail_topic_cubit.dart';
 
-
-class DetailCollectionState extends Equatable {
-  const DetailCollectionState(
-      {required this.collection,
+class DetailTopicState extends Equatable {
+  const DetailTopicState(
+      {required this.topic,
       this.statusType = StatusType.init,
       this.photos = const [],
       this.currentIndex = 1});
   final StatusType statusType;
   final List<Photo> photos;
-  final Collection collection;
+  final Topic topic;
   final int currentIndex;
 
   @override
   List<Object> get props => [statusType, photos, currentIndex];
 
-  DetailCollectionState copyWith(
+  DetailTopicState copyWith(
       {StatusType? statusType,
       List<Photo>? photos,
-      Collection? collection,
+      Topic? topic,
       int? currentIndex}) {
-    return DetailCollectionState(
+    return DetailTopicState(
         statusType: statusType ?? this.statusType,
         photos: photos ?? this.photos,
-        collection: collection ?? this.collection,
+        topic: topic ?? this.topic,
         currentIndex: currentIndex ?? this.currentIndex);
   }
 }

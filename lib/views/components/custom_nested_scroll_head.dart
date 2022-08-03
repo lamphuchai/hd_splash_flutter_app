@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 
 class CustomNestedScrollHead extends StatelessWidget {
   const CustomNestedScrollHead(
-      {Key? key, required this.body, required this.title, this.subtitle})
+      {Key? key,
+      required this.body,
+      required this.title,
+      this.subtitle,
+      this.child})
       : super(key: key);
   final Widget body;
   final String title;
   final String? subtitle;
+  final Widget? child;
   @override
   Widget build(BuildContext context) {
     return NestedScrollView(
@@ -35,6 +40,7 @@ class CustomNestedScrollHead extends StatelessWidget {
                             style: Theme.of(context).textTheme.bodyLarge,
                           )
                         ],
+                        if (child != null) ...[child!]
                       ],
                     ),
                   )
