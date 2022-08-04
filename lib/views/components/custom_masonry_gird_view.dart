@@ -30,7 +30,7 @@ class CustomMasonryGirdView extends StatelessWidget {
             itemCount: photos.length,
             mainAxisSpacing: 8,
             crossAxisSpacing: 8,
-            crossAxisCount: 2,
+            crossAxisCount: crossAxisCount,
             shrinkWrap: shrinkWrap ?? false,
             itemBuilder: ((context, index) {
               final photo = photos[index];

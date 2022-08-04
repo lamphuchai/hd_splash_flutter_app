@@ -16,9 +16,6 @@ class DetailPhotoPage extends StatelessWidget {
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: Colors.transparent,
-          iconTheme: const IconThemeData(color: Colors.white),
           actions: [
             BlocSelector<DetailPhotoCubit, DetailPhotoState, String>(
               selector: (state) {
@@ -115,47 +112,29 @@ class DetailPhotoPage extends StatelessWidget {
             return Column(
               children: [
                 const SizedBox(
-                  height: 20,
+                  height: 30,
                 ),
                 SizedBox(
                   height: 60,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Column(
-                        children: [
-                          Text("Views"),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Text(state.dataPhoto["views"].toString())
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Column(
-                        children: [
-                          Text("Likes"),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Text(state.photo.likes.toString())
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 15,
-                      ),
-                      Column(
-                        children: [
-                          Text("Downloads"),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Text(state.dataPhoto["downloads"].toString())
-                        ],
-                      )
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ItemTotal(
+                          title: "Views",
+                          total: state.dataPhoto["views"].toString(),
+                        ),
+                        ItemTotal(
+                          title: "Likes",
+                          total: state.photo.likes.toString(),
+                        ),
+                        ItemTotal(
+                          title: "Downloads",
+                          total: state.dataPhoto["downloads"].toString(),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(

@@ -21,9 +21,6 @@ class ButtonOpenUrlHtml extends StatelessWidget {
             debugPrint(e.toString());
           }
         },
-        icon: Image.asset(
-          AppAssets.noteIcon,
-          color: Colors.white,
-        ));
+        icon: const Icon(Icons.language));
   }
 }

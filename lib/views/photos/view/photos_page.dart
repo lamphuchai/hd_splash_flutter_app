@@ -17,12 +17,13 @@ class PhotosPage extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 );
               case PhotosStatus.error:
-                return const Icon(
-                  Icons.error_outline_rounded,
-                  color: Colors.red,
+                return const Center(
+                  child: Icon(
+                    Icons.error_outline_rounded,
+                    color: Colors.red,
+                  ),
                 );
               case PhotosStatus.loaded:
-            
                 return const CustomPhotosGridView();
               default:
                 return const SizedBox();

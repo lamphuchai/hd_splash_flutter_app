@@ -20,7 +20,7 @@ class _TabCollectionsState extends State<TabCollections>
       buildWhen: (previous, current) =>
           previous.collections != current.collections,
       builder: (context, state) {
-        return CustomSliverCollections(
+        return CustomMasonryGirdCollections(
           collections: state.collections,
           onRefresh: () async {},
           onNotification: (scrollEnd) {

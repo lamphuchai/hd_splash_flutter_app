@@ -1,6 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/views/components/components.dart';
 import 'package:hd_splash_flutter/views/user/user.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -16,45 +17,56 @@ class UserWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(
-            height: 10,
+          Center(
+            child: Column(
+              children: [
+                SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: CustomCacheNetworkImage(
+                          imageUrl: user.profileImage.large)),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  user.name,
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                )
+              ],
+            ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Expanded(
-                  flex: 1,
-                  child: CircleAvatar(
-                    maxRadius: 35,
-                    backgroundImage:
-                        CachedNetworkImageProvider(user.profileImage.large),
-                  )),
-              Expanded(
-                  flex: 3,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ItemTotalUser(
-                        title: "Photos",
-                        total: user.totalPhotos.toString(),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      ItemTotalUser(
-                        title: "Likes",
-                        total: user.totalLikes.toString(),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      ItemTotalUser(
-                        title: "Collections",
-                        total: user.totalCollections.toString(),
-                      ),
-                    ],
-                  ))
-            ],
+          const SizedBox(
+            height: 15,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ItemTotal(
+                  title: "Photos",
+                  total: user.totalPhotos.toString(),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                ItemTotal(
+                  title: "Likes",
+                  total: user.totalLikes.toString(),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                ItemTotal(
+                  title: "Collections",
+                  total: user.totalCollections.toString(),
+                ),
+              ],
+            ),
           ),
           const SizedBox(
             height: 8,
@@ -130,25 +142,6 @@ class UserWidget extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class ItemTotalUser extends StatelessWidget {
-  const ItemTotalUser({Key? key, required this.title, required this.total})
-      : super(key: key);
-  final String title;
-  final String total;
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(title),
-        const SizedBox(
-          height: 5,
-        ),
-        Text(total),
-      ],
     );
   }
 }

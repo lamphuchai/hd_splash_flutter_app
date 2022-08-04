@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hd_splash_flutter/views/collections/collections.dart';
 import 'package:hd_splash_flutter/views/components/components.dart';
+import 'package:hd_splash_flutter/views/components/custom_masonry_gird_collections.dart';
 
 class CollectionsPage extends StatelessWidget {
   const CollectionsPage({Key? key}) : super(key: key);
@@ -43,7 +44,7 @@ class ListViewCollections extends StatelessWidget {
         buildWhen: (previous, current) =>
             previous.collections != current.collections,
         builder: (context, state) {
-          return CustomSliverCollections(
+          return CustomMasonryGirdCollections(
             collections: state.collections,
             onRefresh: () async =>
                 context.read<CollectionsCubit>().loadingCollections(),

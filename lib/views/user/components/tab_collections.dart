@@ -19,8 +19,9 @@ class _TabCollectionsViewState extends State<TabCollectionsView>
     return BlocBuilder<UserCubit, UserState>(
       buildWhen: (previous, current) => previous.photos != current.photos,
       builder: (context, state) {
-        return CustomSliverCollections(
+        return CustomMasonryGirdCollections(
           collections: state.collections,
+          crossAxisCount: 2,
           onRefresh: () async => context.read<UserCubit>().loadingCollections(),
           onNotification: (scrollEnd) {
             final metrics = scrollEnd.metrics;

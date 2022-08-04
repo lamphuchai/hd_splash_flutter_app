@@ -23,8 +23,9 @@ class UserPage extends StatelessWidget {
     }
     return Scaffold(
         appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.black),
           centerTitle: true,
-          title: Text(user.name),
+          title: Text(user.username),
           actions: [ButtonOpenUrlHtml(uri: user.links.html)],
         ),
         body: NestedScrollView(

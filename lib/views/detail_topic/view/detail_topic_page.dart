@@ -5,7 +5,7 @@ import 'package:hd_splash_flutter/views/components/components.dart';
 import 'package:hd_splash_flutter/views/detail_topic/detail_topic.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
 
-import '../../components/custom_masonry_gird_view.dart';
+
 
 class DetailTopicPage extends StatelessWidget {
   const DetailTopicPage({Key? key, required this.topic}) : super(key: key);
@@ -49,7 +49,7 @@ class DetailTopicPage extends StatelessWidget {
                         }
                       }
                       return true;
-                    },
+                    }, 
                     onRefresh: () async =>
                         context.read<DetailTopicCubit>().loadingPhotos(),
                     photos: state.photos,
