@@ -15,15 +15,10 @@ class CustomPhotosGridView extends StatelessWidget {
           buildWhen: (previous, current) => previous.photos != current.photos,
           builder: (context, state) {
             return CustomMasonryGirdPhotos(
-              onNotification: (scrollEnd) {
-                final metrics = scrollEnd.metrics;
-                if (metrics.atEdge) {
-                  bool isBottom = metrics.pixels == 0;
-                  if (!isBottom) {
-                    context.read<PhotosCubit>().nextPagePhotos();
-                  }
+              loadMoreData: (isLoadMore) {
+                if (isLoadMore) {
+                  context.read<PhotosCubit>().nextPagePhotos();
                 }
-                return true;
               },
               onRefresh: () async =>
                   context.read<PhotosCubit>().loadingPhotos(),

@@ -8,6 +8,7 @@ class MyThemes {
       primaryColor: Colors.black12,
       backgroundColor: Colors.white,
       scaffoldBackgroundColor: Colors.white,
+      splashColor: Colors.transparent,
       dialogTheme: DialogTheme(
           backgroundColor: Colors.white,
           shape:

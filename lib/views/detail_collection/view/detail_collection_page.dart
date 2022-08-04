@@ -95,18 +95,12 @@ class DetailCollectionPage extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: CustomMasonryGirdPhotos(
-                      
-                      onNotification: (scrollEnd) {
-                        final metrics = scrollEnd.metrics;
-                        if (metrics.atEdge) {
-                          bool isBottom = metrics.pixels == 0;
-                          if (!isBottom) {
-                            context
-                                .read<DetailCollectionCubit>()
-                                .nextPagePhotos();
-                          }
+                      loadMoreData: (isLoadMore) {
+                        if (isLoadMore) {
+                          context
+                              .read<DetailCollectionCubit>()
+                              .nextPagePhotos();
                         }
-                        return true;
                       },
                       onRefresh: () async =>
                           context.read<DetailCollectionCubit>().loadingPhotos(),

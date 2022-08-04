@@ -48,15 +48,10 @@ class ListViewCollections extends StatelessWidget {
             collections: state.collections,
             onRefresh: () async =>
                 context.read<CollectionsCubit>().loadingCollections(),
-            onNotification: (scrollEnd) {
-              final metrics = scrollEnd.metrics;
-              if (metrics.atEdge) {
-                bool isBottom = metrics.pixels == 0;
-                if (!isBottom) {
-                  context.read<CollectionsCubit>().nextPageCollections();
-                }
+            loadMoreData: (isLoadMore) {
+              if (isLoadMore) {
+                context.read<CollectionsCubit>().nextPageCollections();
               }
-              return true;
             },
           );
         },

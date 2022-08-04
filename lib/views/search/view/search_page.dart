@@ -71,12 +71,9 @@ class SearchPage extends StatelessWidget {
         ),
         ListTile(
           title: const Text("Lịch sử"),
-          trailing: GestureDetector(
-            onTap: () => context.read<SearchCubit>().deleteAllHistory(),
-            child: const Text(
-              "Xoá",
-              style: TextStyle(color: Colors.red),
-            ),
+          trailing: IconButton(
+            icon: const Icon(Icons.clear_all),
+            onPressed: () => context.read<SearchCubit>().deleteAllHistory(),
           ),
         ),
         Expanded(
@@ -87,6 +84,17 @@ class SearchPage extends StatelessWidget {
                 buildWhen: (previous, current) =>
                     previous.listHistory != current.listHistory,
                 builder: (context, state) {
+                  if (state.listHistory.isEmpty) {
+                    return SizedBox(
+                      height: 200,
+                      child: Center(
+                        child: Text(
+                          "Hãy tìm kiếm gì đó !",
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                      ),
+                    );
+                  }
                   return Wrap(
                       children: state.listHistory
                           .map(

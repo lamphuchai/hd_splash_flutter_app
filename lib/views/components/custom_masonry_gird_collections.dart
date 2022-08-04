@@ -11,18 +11,27 @@ class CustomMasonryGirdCollections extends StatelessWidget {
   const CustomMasonryGirdCollections(
       {Key? key,
       required this.collections,
-      this.onNotification,
       required this.onRefresh,
-      this.shrinkWrap})
+      this.shrinkWrap,
+      required this.loadMoreData})
       : super(key: key);
   final List<Collection> collections;
-  final bool Function(ScrollEndNotification)? onNotification;
+  final Function(bool) loadMoreData;
   final Future<void> Function() onRefresh;
   final bool? shrinkWrap;
   @override
   Widget build(BuildContext context) {
     return NotificationListener<ScrollEndNotification>(
-      onNotification: onNotification,
+      onNotification: (scrollEnd) {
+        final metrics = scrollEnd.metrics;
+        if (metrics.atEdge) {
+          bool isBottom = metrics.pixels == 0;
+          if (!isBottom) {
+            loadMoreData(true);
+          }
+        }
+        return true;
+      },
       child: RefreshIndicator(
         onRefresh: onRefresh,
         child: BlocBuilder<AppSettingCubit, AppSettingState>(

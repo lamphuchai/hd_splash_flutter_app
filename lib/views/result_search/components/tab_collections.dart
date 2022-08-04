@@ -23,15 +23,10 @@ class _TabCollectionsState extends State<TabCollections>
         return CustomMasonryGirdCollections(
           collections: state.collections,
           onRefresh: () async {},
-          onNotification: (scrollEnd) {
-            final metrics = scrollEnd.metrics;
-            if (metrics.atEdge) {
-              bool isBottom = metrics.pixels == 0;
-              if (!isBottom) {
-                context.read<ResultSearchCubit>().nextPageCollections();
-              }
+          loadMoreData: (isLoadMore) {
+            if (isLoadMore) {
+              context.read<ResultSearchCubit>().nextPageCollections();
             }
-            return true;
           },
         );
       },

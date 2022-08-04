@@ -20,15 +20,10 @@ class _TabPhotosViewState extends State<TabPhotosView>
       buildWhen: (previous, current) => previous.photos != current.photos,
       builder: (context, state) {
         return CustomMasonryGirdPhotos(
-          onNotification: (scrollEnd) {
-            final metrics = scrollEnd.metrics;
-            if (metrics.atEdge) {
-              bool isBottom = metrics.pixels == 0;
-              if (!isBottom) {
-                context.read<UserCubit>().nextPagePhotos();
-              }
+          loadMoreData: (isLoadMore) {
+            if (isLoadMore) {
+              context.read<UserCubit>().nextPagePhotos();
             }
-            return true;
           },
           onRefresh: () async => context.read<UserCubit>().loadingPhotos(),
           photos: state.photos,

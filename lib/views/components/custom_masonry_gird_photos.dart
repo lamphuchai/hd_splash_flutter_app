@@ -11,13 +11,11 @@ class CustomMasonryGirdPhotos extends StatelessWidget {
   const CustomMasonryGirdPhotos({
     Key? key,
     required this.photos,
-    this.onNotification,
     required this.onRefresh,
     this.shrinkWrap,
     required this.loadMoreData,
   }) : super(key: key);
   final List<Photo> photos;
-  final bool Function(ScrollEndNotification)? onNotification;
   final Future<void> Function() onRefresh;
   final bool? shrinkWrap;
 
@@ -26,7 +24,6 @@ class CustomMasonryGirdPhotos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NotificationListener<ScrollEndNotification>(
-      // onNotification: onNotification,
       onNotification: (scrollEnd) {
         final metrics = scrollEnd.metrics;
         if (metrics.atEdge) {
