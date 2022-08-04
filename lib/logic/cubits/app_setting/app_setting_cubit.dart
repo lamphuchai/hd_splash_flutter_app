@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:hd_splash_flutter/app/locale/locale_config.dart';
@@ -11,10 +10,15 @@ class AppSettingCubit extends Cubit<AppSettingState> with HydratedMixin {
       : super(AppSettingState(
             themeMode: ThemeMode.system,
             locale: LocaleConfig.localeDefault,
-            layout: 1));
+            crossAxisCountGird: 2));
 
+  void changeLayout(int crossAxisCountGird) =>
+      emit(state.copyWith(crossAxisCountGird: crossAxisCountGird));
 
-  
+  void changeThemeMode(ThemeMode themeMode) =>
+      emit(state.copyWith(themeMode: themeMode));
+
+  void changeLocale(Locale locale) => emit(state.copyWith(locale: locale));
 
   @override
   AppSettingState? fromJson(Map<String, dynamic> json) {

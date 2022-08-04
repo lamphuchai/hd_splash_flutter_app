@@ -16,6 +16,7 @@ class DetailCollectionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Theme.of(context).backgroundColor,
           centerTitle: false,
           title: Text(
             collection.title,
@@ -41,7 +42,7 @@ class DetailCollectionPage extends StatelessWidget {
                                 context, RouteName.user,
                                 arguments: collection.user),
                             child: CircleAvatar(
-                                radius: 30,
+                                maxRadius: 30,
                                 backgroundImage: CachedNetworkImageProvider(
                                     collection.user.profileImage.large)),
                           )),
@@ -93,7 +94,8 @@ class DetailCollectionPage extends StatelessWidget {
                 case StatusType.loaded:
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: CustomMasonryGirdView(
+                    child: CustomMasonryGirdPhotos(
+                      
                       onNotification: (scrollEnd) {
                         final metrics = scrollEnd.metrics;
                         if (metrics.atEdge) {

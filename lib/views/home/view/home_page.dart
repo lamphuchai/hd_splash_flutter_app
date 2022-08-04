@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
           bottomNavigationBar: NavigationBar(
-            labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+            labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
             selectedIndex: homeState.currentIndex,
             destinations: const [
               NavigationDestination(icon: Icon(Icons.photo), label: "Photos"),

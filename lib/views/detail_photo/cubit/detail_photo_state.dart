@@ -1,6 +1,6 @@
 part of 'detail_photo_cubit.dart';
 
-enum StatusType { init, loading, loaded, err }
+
 
 class DetailPhotoState extends Equatable {
   const DetailPhotoState(

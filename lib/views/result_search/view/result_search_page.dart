@@ -13,6 +13,7 @@ class ResultSearchPage extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Theme.of(context).backgroundColor,
           title: Text(query),
           bottom: const TabBar(tabs: [
             Tab(

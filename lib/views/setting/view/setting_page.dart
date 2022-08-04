@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hd_splash_flutter/views/components/components.dart';
+import 'package:hd_splash_flutter/views/setting/setting.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -8,31 +9,16 @@ class SettingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomNestedScrollHead(
       title: "Cài đặt",
-      body: Column(
-        children: const [
-          ListTile(
-            title: Text("General"),
-          ),
-          ListTile(
-            title: Text("Ngôn ngữ"),
-            subtitle: Text("Tiếng việt"),
-          ),
-          ListTile(
-            title: Text("Chủ đề"),
-            subtitle: Text("Sáng"),
-          ),
-          ListTile(
-            title: Text("Layout"),
-            subtitle: Text("List"),
-          ),
-          ListTile(
-            title: Text("Quality"),
-          ),
-          ListTile(
-            title: Text("Load Quality"),
-            subtitle: Text("Regular"),
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            GeneralWidget(),
+            QualityWidget(),
+          ],
+        ),
       ),
     );
   }

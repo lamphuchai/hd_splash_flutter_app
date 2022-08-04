@@ -14,6 +14,7 @@ class CustomNestedScrollHead extends StatelessWidget {
   final Widget? child;
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
               SliverToBoxAdapter(
@@ -26,7 +27,7 @@ class CustomNestedScrollHead extends StatelessWidget {
                         width: double.infinity,
                         child: Text(
                           title,
-                          style: Theme.of(context).textTheme.headlineSmall,
+                          style: textTheme.headlineLarge,
                         ),
                       ),
                       const SizedBox(
@@ -36,7 +37,7 @@ class CustomNestedScrollHead extends StatelessWidget {
                       if (subtitle != null) ...[
                         Text(
                           subtitle!,
-                          style: Theme.of(context).textTheme.bodyLarge,
+                          style: textTheme.labelMedium,
                         )
                       ],
                       if (child != null) ...[child!]

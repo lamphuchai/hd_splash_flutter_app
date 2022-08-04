@@ -19,6 +19,10 @@ class SearchCubit extends Cubit<SearchState> with HydratedMixin {
     emit(state.copyWith(query: query));
   }
 
+  void onSaveHistory() {
+    emit(state.copyWith(listHistory: [...state.listHistory, state.query]));
+  }
+
   void deleteAllHistory() {
     emit(state.copyWith(listHistory: []));
   }

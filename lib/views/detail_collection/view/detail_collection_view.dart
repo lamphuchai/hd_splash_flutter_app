@@ -15,7 +15,9 @@ class DetailCollectionView extends StatelessWidget {
           collection: collection,
           collections: context.read<Unsplash>().collections)
         ..loadingPhotos(),
-      child:  DetailCollectionPage(collection: collection,),
+      child: DetailCollectionPage(
+        collection: collection,
+      ),
     );
   }
 }

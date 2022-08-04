@@ -21,7 +21,6 @@ class _TabCollectionsViewState extends State<TabCollectionsView>
       builder: (context, state) {
         return CustomMasonryGirdCollections(
           collections: state.collections,
-          crossAxisCount: 2,
           onRefresh: () async => context.read<UserCubit>().loadingCollections(),
           onNotification: (scrollEnd) {
             final metrics = scrollEnd.metrics;

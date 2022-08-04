@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/core/type/enum.dart';
 import 'package:hd_splash_flutter/views/detail_photo/detail_photo.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
 

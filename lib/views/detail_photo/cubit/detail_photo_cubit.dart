@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/core/type/enum.dart';
 
 import 'package:unsplash_dart/unsplash_dart.dart';
 
@@ -22,7 +23,7 @@ class DetailPhotoCubit extends Cubit<DetailPhotoState> {
       }));
     } catch (error) {
       print(error);
-      emit(state.copyWith(status: StatusType.err));
+      emit(state.copyWith(status: StatusType.error));
     }
   }
 }

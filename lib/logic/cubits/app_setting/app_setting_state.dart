@@ -2,17 +2,17 @@ part of 'app_setting_cubit.dart';
 
 class AppSettingState extends Equatable {
   const AppSettingState(
-      {required this.themeMode, required this.locale, required this.layout});
+      {required this.themeMode, required this.locale, required this.crossAxisCountGird});
 
   final ThemeMode themeMode;
   final Locale locale;
-  final int layout;
+  final int crossAxisCountGird;
 
   Map<String, dynamic> toMap() {
     return {
       "themeMode": themeMode.index,
       "locale": locale.languageCode,
-      "layout": layout
+      "layout": crossAxisCountGird
     };
   }
 
@@ -21,21 +21,21 @@ class AppSettingState extends Equatable {
         themeMode: ThemeMode.values[map["themeMode"] as int],
         locale: LocaleConfig.supportedLanguages[map["locale"]] ??
             LocaleConfig.localeDefault,
-        layout: map["layout"]);
+        crossAxisCountGird: map["layout"]);
   }
 
   @override
-  List<Object> get props => [themeMode, locale, layout];
+  List<Object> get props => [themeMode, locale, crossAxisCountGird];
 
   AppSettingState copyWith({
     ThemeMode? themeMode,
     Locale? locale,
-    int? layout,
+    int? crossAxisCountGird,
   }) {
     return AppSettingState(
       themeMode: themeMode ?? this.themeMode,
       locale: locale ?? this.locale,
-      layout: layout ?? this.layout,
+      crossAxisCountGird: crossAxisCountGird ?? this.crossAxisCountGird,
     );
   }
 }

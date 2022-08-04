@@ -20,7 +20,7 @@ class _TabLikesViewState extends State<TabLikesView>
       buildWhen: (previous, current) =>
           previous.likePhotos != current.likePhotos,
       builder: (context, state) {
-        return CustomMasonryGirdView(
+        return CustomMasonryGirdPhotos(
           onNotification: (scrollEnd) {
             final metrics = scrollEnd.metrics;
             if (metrics.atEdge) {

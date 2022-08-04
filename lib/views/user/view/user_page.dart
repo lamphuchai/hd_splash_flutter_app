@@ -23,7 +23,8 @@ class UserPage extends StatelessWidget {
     }
     return Scaffold(
         appBar: AppBar(
-          iconTheme: const IconThemeData(color: Colors.black),
+          // iconTheme: const IconThemeData(color: Colors.black),
+          backgroundColor: Theme.of(context).backgroundColor,
           centerTitle: true,
           title: Text(user.username),
           actions: [ButtonOpenUrlHtml(uri: user.links.html)],
@@ -42,7 +43,6 @@ class UserPage extends StatelessWidget {
               children: [
                 TabBar(
                   indicatorColor: Colors.teal,
-                  labelColor: Colors.black,
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   tabs: tabs
                       .map((tab) => Tab(

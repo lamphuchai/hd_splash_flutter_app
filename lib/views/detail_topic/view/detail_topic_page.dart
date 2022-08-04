@@ -5,8 +5,6 @@ import 'package:hd_splash_flutter/views/components/components.dart';
 import 'package:hd_splash_flutter/views/detail_topic/detail_topic.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
 
-
-
 class DetailTopicPage extends StatelessWidget {
   const DetailTopicPage({Key? key, required this.topic}) : super(key: key);
   final Topic topic;
@@ -14,6 +12,7 @@ class DetailTopicPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).backgroundColor,
         title: Text(topic.title),
         actions: [ButtonOpenUrlHtml(uri: topic.links.html)],
       ),
@@ -39,7 +38,7 @@ class DetailTopicPage extends StatelessWidget {
               case StatusType.loaded:
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: CustomMasonryGirdView(
+                  child: CustomMasonryGirdPhotos(
                     onNotification: (scrollEnd) {
                       final metrics = scrollEnd.metrics;
                       if (metrics.atEdge) {
@@ -49,7 +48,7 @@ class DetailTopicPage extends StatelessWidget {
                         }
                       }
                       return true;
-                    }, 
+                    },
                     onRefresh: () async =>
                         context.read<DetailTopicCubit>().loadingPhotos(),
                     photos: state.photos,

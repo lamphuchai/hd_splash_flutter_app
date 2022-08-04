@@ -19,7 +19,7 @@ class _TabPhotosViewState extends State<TabPhotosView>
     return BlocBuilder<UserCubit, UserState>(
       buildWhen: (previous, current) => previous.photos != current.photos,
       builder: (context, state) {
-        return CustomMasonryGirdView(
+        return CustomMasonryGirdPhotos(
           onNotification: (scrollEnd) {
             final metrics = scrollEnd.metrics;
             if (metrics.atEdge) {

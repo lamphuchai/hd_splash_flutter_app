@@ -36,7 +36,10 @@ class SearchPage extends StatelessWidget {
               ),
               TextField(
                 decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Theme.of(context).primaryColor,
                   hintText: "Nhập để tìm kiếm ",
+                  hintStyle: Theme.of(context).textTheme.bodyMedium,
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                   border: OutlineInputBorder(
@@ -44,20 +47,24 @@ class SearchPage extends StatelessWidget {
                   suffixIcon: IconButton(
                     icon: const Icon(Icons.search),
                     onPressed: () {
-                      Navigator.pushNamed(context, RouteName.resultSearch,
-                          arguments: context.read<SearchCubit>().state.query);
+                      final query = context.read<SearchCubit>().state.query;
+                      if (query.isNotEmpty) {
+                        context.read<SearchCubit>().onSaveHistory();
+                        Navigator.pushNamed(context, RouteName.resultSearch,
+                            arguments: context.read<SearchCubit>().state.query);
+                      }
                     },
                   ),
                 ),
                 onChanged: (query) =>
                     context.read<SearchCubit>().onChangeQuery(query),
-                // onEditingComplete: () {
-                //   Navigator.pushNamed(context, RouteName.resultSearch,
-                //       arguments: context.read<SearchCubit>().state.query);
-                // },
-                onSubmitted: (value) => Navigator.pushNamed(
-                    context, RouteName.resultSearch,
-                    arguments: value),
+                onSubmitted: (value) {
+                  if (value.isNotEmpty) {
+                    context.read<SearchCubit>().onSaveHistory();
+                    Navigator.pushNamed(context, RouteName.resultSearch,
+                        arguments: value);
+                  }
+                },
               ),
             ],
           ),
