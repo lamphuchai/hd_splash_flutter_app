@@ -88,9 +88,7 @@ class DetailCollectionPage extends StatelessWidget {
             builder: (context, state) {
               switch (state.statusType) {
                 case StatusType.loading:
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
+                  return const LoadingWidget();
                 case StatusType.loaded:
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),

@@ -57,9 +57,7 @@ class UserPage extends StatelessWidget {
                     builder: (context, state) {
                       switch (state.status) {
                         case StatusType.loading:
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
+                           return const LoadingWidget();
                         case StatusType.error:
                           return const Icon(
                             Icons.error_outline_rounded,

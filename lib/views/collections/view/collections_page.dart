@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hd_splash_flutter/views/collections/collections.dart';
 import 'package:hd_splash_flutter/views/components/components.dart';
-import 'package:hd_splash_flutter/views/components/custom_masonry_gird_collections.dart';
 
 class CollectionsPage extends StatelessWidget {
   const CollectionsPage({Key? key}) : super(key: key);
@@ -14,13 +13,13 @@ class CollectionsPage extends StatelessWidget {
       builder: (context, state) {
         switch (state.status) {
           case CollectionsStatus.loading:
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const LoadingWidget();
           case CollectionsStatus.error:
-            return const Icon(
-              Icons.error_outline_rounded,
-              color: Colors.red,
+            return const Center(
+              child: Icon(
+                Icons.error_outline_rounded,
+                color: Colors.red,
+              ),
             );
           case CollectionsStatus.loaded:
             return const ListViewCollections();

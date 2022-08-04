@@ -12,12 +12,12 @@ class CustomMasonryGirdPhotos extends StatelessWidget {
     Key? key,
     required this.photos,
     required this.onRefresh,
-    this.shrinkWrap,
+    this.shrinkWrap = false,
     required this.loadMoreData,
   }) : super(key: key);
   final List<Photo> photos;
   final Future<void> Function() onRefresh;
-  final bool? shrinkWrap;
+  final bool shrinkWrap;
 
   final Function(bool) loadMoreData;
 
@@ -46,7 +46,7 @@ class CustomMasonryGirdPhotos extends StatelessWidget {
                 mainAxisSpacing: 8,
                 crossAxisSpacing: 8,
                 crossAxisCount: state.crossAxisCountGird,
-                shrinkWrap: shrinkWrap ?? false,
+                shrinkWrap: shrinkWrap,
                 itemBuilder: ((context, index) {
                   final photo = photos[index];
                   return GestureDetector(

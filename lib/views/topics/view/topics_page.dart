@@ -8,7 +8,6 @@ class TopicsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return CustomNestedScrollHead(
       title: "Chủ để",
       subtitle: "Những chủ để trên unspalsh",
@@ -17,9 +16,7 @@ class TopicsPage extends StatelessWidget {
         builder: (context, state) {
           switch (state.status) {
             case TopicsStatus.loading:
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const LoadingWidget();
             case TopicsStatus.error:
               return const Icon(
                 Icons.error_outline_rounded,

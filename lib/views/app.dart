@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hd_splash_flutter/app/router/app_router.dart';
 import 'package:hd_splash_flutter/app/theme/my_themes.dart';
 import 'package:hd_splash_flutter/logic/cubits/app_setting/app_setting_cubit.dart';
+import 'package:hd_splash_flutter/logic/cubits/download/download_cubit.dart';
 import 'package:hd_splash_flutter/views/home/home.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
 
@@ -14,8 +15,15 @@ class App extends StatelessWidget {
     return (RepositoryProvider(
       create: (context) =>
           Unsplash()..createApi("crxeLTDmsoekx_w74acFM5EZl43RC0FJd44naaAOIfo"),
-      child: BlocProvider(
-        create: (context) => AppSettingCubit(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => AppSettingCubit(),
+          ),
+          BlocProvider(
+            create: (context) => DownloadCubit(),
+          ),
+        ],
         child: const MyApp(),
       ),
     ));

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hd_splash_flutter/core/type/enum.dart';
+import 'package:hd_splash_flutter/views/components/components.dart';
 import 'package:hd_splash_flutter/views/result_search/components/components.dart';
 import 'package:hd_splash_flutter/views/result_search/result_search.dart';
 
@@ -32,9 +33,7 @@ class ResultSearchPage extends StatelessWidget {
           builder: (context, state) {
             switch (state.status) {
               case StatusType.loading:
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                 return const LoadingWidget();
               case StatusType.loaded:
                 return const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8),

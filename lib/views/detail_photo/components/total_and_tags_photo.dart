@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hd_splash_flutter/app/router/route_name.dart';
 import 'package:hd_splash_flutter/core/type/enum.dart';
-import 'package:hd_splash_flutter/views/components/item_total.dart';
+import 'package:hd_splash_flutter/views/components/components.dart';
 import 'package:hd_splash_flutter/views/detail_photo/detail_photo.dart';
 
 class TotalAndTagsPhoto extends StatelessWidget {
@@ -19,11 +16,7 @@ class TotalAndTagsPhoto extends StatelessWidget {
         final tags = state.dataPhoto["tags"];
         switch (state.status) {
           case StatusType.loading:
-            return const Center(
-                child: SpinKitCircle(
-              color: Colors.teal,
-              size: 50.0,
-            ));
+            return const LoadingWidget();
           case StatusType.loaded:
             return Column(
               children: [

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/views/components/components.dart';
 import 'package:hd_splash_flutter/views/photos/photos.dart';
 
 class PhotosPage extends StatelessWidget {
@@ -13,9 +14,7 @@ class PhotosPage extends StatelessWidget {
           builder: ((context, state) {
             switch (state.status) {
               case PhotosStatus.loading:
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return const LoadingWidget();
               case PhotosStatus.error:
                 return const Center(
                   child: Icon(
