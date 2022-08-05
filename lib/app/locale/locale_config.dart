@@ -7,7 +7,7 @@ class LocaleConfig {
     'en': const Locale('en', 'US'),
     'vi': const Locale('vi', 'VN'),
   };
-  static List<Locale> supportedLocales = const [
+  static const supportedLocales =  [
     Locale('en', 'US'),
     Locale('vi', 'VN')
   ];

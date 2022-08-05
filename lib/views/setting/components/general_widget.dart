@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hd_splash_flutter/logic/cubits/app_setting/app_setting_cubit.dart';
+import 'package:hd_splash_flutter/views/setting/components/language_dialog.dart';
+import 'bottom_button_dialog.dart';
 import 'item_block.dart';
 
 class GeneralWidget extends StatelessWidget {
@@ -27,12 +29,25 @@ class GeneralWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(16)),
           child: Column(
             children: [
-              ItemBlock(
-                icon: const Icon(Icons.language),
-                title: "Ngôn ngữ",
-                subtitle: "Viet nam",
-                onTap: () {
-                  print("object");
+              BlocBuilder<AppSettingCubit, AppSettingState>(
+                buildWhen: (previous, current) =>
+                    previous.locale != current.locale,
+                builder: (context, state) {
+                  return ItemBlock(
+                    icon: const Icon(Icons.language),
+                    title: "Language",
+                    subtitle: state.locale.languageCode,
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: ((context) => LanguageDialog(
+                                localeValue: ValueNotifier(state.locale),
+                                onChangeLocale: (locale) => context
+                                    .read<AppSettingCubit>()
+                                    .changeLocale(locale),
+                              )));
+                    },
+                  );
                 },
               ),
               const SizedBox(
@@ -99,79 +114,59 @@ class ThemeDialog extends StatelessWidget {
       {"themeMode": ThemeMode.dark, "title": "dark"}
     ];
     return Dialog(
-      child: Container(
-        height: 255,
+      child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Wrap(
           children: [
             const SizedBox(
-              height: 20,
+              width: double.infinity,
+              height: 25,
             ),
             Text(
               "Theme",
               style: textTheme.titleMedium,
             ),
             const SizedBox(
-              height: 8,
+              width: double.infinity,
+              height: 14,
             ),
-            Expanded(
-              child: ValueListenableBuilder(
-                valueListenable: themeMode,
-                builder: (BuildContext context, value, Widget? child) {
-                  return Column(
-                    children: items
-                        .map((item) => Row(
-                              children: [
-                                Checkbox(
-                                  value: item["themeMode"] == themeMode.value
-                                      ? true
-                                      : false,
-                                  onChanged: (value) {
-                                    if (value == true) {
-                                      themeMode.value = item["themeMode"];
-                                    }
-                                  },
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(4)),
-                                ),
-                                Text(
-                                  item["title"],
-                                  style: textTheme.bodyMedium,
-                                ),
-                              ],
-                            ))
-                        .toList(),
-                  );
-                },
-              ),
+            ValueListenableBuilder(
+              valueListenable: themeMode,
+              builder: (BuildContext context, value, Widget? child) {
+                return Column(
+                  children: items
+                      .map((item) => Row(
+                            children: [
+                              Checkbox(
+                                value: item["themeMode"] == themeMode.value
+                                    ? true
+                                    : false,
+                                onChanged: (value) {
+                                  if (value == true) {
+                                    themeMode.value = item["themeMode"];
+                                  }
+                                },
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4)),
+                              ),
+                              Text(
+                                item["title"],
+                                style: textTheme.bodyMedium,
+                              ),
+                            ],
+                          ))
+                      .toList(),
+                );
+              },
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    onChangeThemeMode(themeMode.value);
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    "OK",
-                    style: textTheme.titleSmall!.copyWith(color: Colors.blue),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text(
-                    "Cancel",
-                    style: textTheme.titleSmall!.copyWith(color: Colors.red),
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                )
-              ],
+            BottomButtonDialog(
+              onSubmit: () {
+                onChangeThemeMode(themeMode.value);
+                Navigator.pop(context);
+              },
             ),
             const SizedBox(
+              width: double.infinity,
               height: 10,
             )
           ],

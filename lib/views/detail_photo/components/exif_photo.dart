@@ -94,11 +94,11 @@ class ExifPhoto extends StatelessWidget {
                         Expanded(
                             child: Column(
                           children: [
-                            const Text("aperture"),
+                            const Text("dimensions"),
                             const SizedBox(
                               height: 5,
                             ),
-                            Text(exif.apertureValue ?? "Unknown")
+                            Text('${state.photo.height}x${state.photo.width}')
                           ],
                         )),
                       ],

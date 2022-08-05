@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/app/locale/app_localizations.dart';
 import 'package:hd_splash_flutter/app/router/app_router.dart';
 import 'package:hd_splash_flutter/app/theme/my_themes.dart';
 import 'package:hd_splash_flutter/logic/cubits/app_setting/app_setting_cubit.dart';
@@ -52,6 +53,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           themeMode: state.themeMode,
           locale: state.locale,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           theme: MyThemes.lightTheme,
           darkTheme: MyThemes.darkTheme,
           home: const HomeView(),
