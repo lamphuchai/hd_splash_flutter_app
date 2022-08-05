@@ -100,7 +100,7 @@ class SearchPage extends StatelessWidget {
                           .map(
                             (history) => Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 2),
+                                  const EdgeInsets.symmetric(horizontal: 5),
                               child: GestureDetector(
                                 onTap: () => Navigator.pushNamed(
                                     context, RouteName.resultSearch,

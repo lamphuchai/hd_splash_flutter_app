@@ -17,6 +17,8 @@ class SettingPage extends StatelessWidget {
           children: const [
             GeneralWidget(),
             QualityWidget(),
+
+            // Checkbox(value: true, onChanged: (v)
           ],
         ),
       ),

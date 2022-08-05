@@ -4,23 +4,23 @@ part of 'topics_cubit.dart';
 enum TopicsStatus { init, loading, loaded, error }
 
 class TopicsState extends Equatable {
-  const TopicsState({
-    this.topics = const [],
-    this.status = TopicsStatus.init,
-  });
+  const TopicsState(
+      {this.topics = const [],
+      this.status = TopicsStatus.init,
+      this.orderBy = OrderByTopic.position});
   final List<Topic> topics;
   final TopicsStatus status;
 
-  @override
-  List<Object> get props => [topics, status];
+  final OrderByTopic orderBy;
 
-  TopicsState copyWith({
-    List<Topic>? topics,
-    TopicsStatus? status,
-  }) {
+  @override
+  List<Object> get props => [topics, status, orderBy];
+
+  TopicsState copyWith(
+      {List<Topic>? topics, TopicsStatus? status, OrderByTopic? orderBy}) {
     return TopicsState(
-      topics: topics ?? this.topics,
-      status: status ?? this.status,
-    );
+        topics: topics ?? this.topics,
+        status: status ?? this.status,
+        orderBy: orderBy ?? this.orderBy);
   }
 }

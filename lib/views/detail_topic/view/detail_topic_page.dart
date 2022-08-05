@@ -60,6 +60,28 @@ class DetailTopicPage extends StatelessWidget {
           },
         ),
       ),
+      floatingActionButton: Container(
+        height: 55,
+        width: 55,
+        decoration: BoxDecoration(
+            color: Colors.blue, borderRadius: BorderRadius.circular(40)),
+        child: BlocBuilder<DetailTopicCubit, DetailTopicState>(
+          buildWhen: (previous, current) =>
+              previous.photosOrderBy != current.photosOrderBy,
+          builder: (context, state) {
+            return ButtonSortPhotos<TopicPhotosOrderBy>(
+              value: state.photosOrderBy,
+              listValue: const [
+                TopicPhotosOrderBy.latest,
+                TopicPhotosOrderBy.oldest,
+                TopicPhotosOrderBy.popular
+              ],
+              onSelected: (orderBy) =>
+                  context.read<DetailTopicCubit>().changeOrderBy(orderBy),
+            );
+          },
+        ),
+      ),
     );
   }
 }

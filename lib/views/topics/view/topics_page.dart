@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hd_splash_flutter/views/components/components.dart';
 import 'package:hd_splash_flutter/views/topics/topics.dart';
+import 'package:unsplash_dart/unsplash_dart.dart';
 
 class TopicsPage extends StatelessWidget {
   const TopicsPage({Key? key}) : super(key: key);
@@ -11,6 +12,22 @@ class TopicsPage extends StatelessWidget {
     return CustomNestedScrollHead(
       title: "Chủ để",
       subtitle: "Những chủ để trên unspalsh",
+      sortChild: BlocBuilder<TopicsCubit, TopicsState>(
+        buildWhen: (previous, current) => previous.orderBy != current.orderBy,
+        builder: (context, state) {
+          return ButtonSortPhotos<OrderByTopic>(
+            listValue: const [
+              OrderByTopic.featured,
+              OrderByTopic.latest,
+              OrderByTopic.oldest,
+              OrderByTopic.position,
+            ],
+            value: state.orderBy,
+            onSelected: (orderBy) =>
+                context.read<TopicsCubit>().changeOrderBy(orderBy),
+          );
+        },
+      ),
       body: BlocBuilder<TopicsCubit, TopicsState>(
         buildWhen: (previous, current) => previous.status != current.status,
         builder: (context, state) {

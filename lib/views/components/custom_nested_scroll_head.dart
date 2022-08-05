@@ -6,12 +6,12 @@ class CustomNestedScrollHead extends StatelessWidget {
       required this.body,
       required this.title,
       this.subtitle,
-      this.child})
+      this.sortChild})
       : super(key: key);
   final Widget body;
   final String title;
   final String? subtitle;
-  final Widget? child;
+  final Widget? sortChild;
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -19,28 +19,43 @@ class CustomNestedScrollHead extends StatelessWidget {
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 10, right: 10, top: 30, bottom: 30),
-                  child: Wrap(
+                  padding: EdgeInsets.only(
+                      left: 10,
+                      right: 10,
+                      top: 30,
+                      bottom: sortChild == null ? 30 : 0),
+                  child: Column(
                     children: [
-                      SizedBox(
-                        width: double.infinity,
-                        child: Text(
-                          title,
-                          style: textTheme.headlineLarge,
+                      Wrap(
+                        children: [
+                          SizedBox(
+                            width: double.infinity,
+                            child: Text(
+                              title,
+                              style: textTheme.headlineLarge,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: double.infinity,
+                            height: 10,
+                          ),
+                          if (subtitle != null) ...[
+                            Text(
+                              subtitle!,
+                              style: textTheme.labelMedium,
+                            )
+                          ],
+                        ],
+                      ),
+                      if (sortChild != null) ...[
+                        const SizedBox(
+                          height: 5,
                         ),
-                      ),
-                      const SizedBox(
-                        width: double.infinity,
-                        height: 10,
-                      ),
-                      if (subtitle != null) ...[
-                        Text(
-                          subtitle!,
-                          style: textTheme.labelMedium,
-                        )
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: sortChild,
+                        ),
                       ],
-                      if (child != null) ...[child!]
                     ],
                   ),
                 ),

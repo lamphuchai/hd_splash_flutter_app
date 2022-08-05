@@ -9,6 +9,7 @@ class MyThemes {
       backgroundColor: Colors.white,
       scaffoldBackgroundColor: Colors.white,
       splashColor: Colors.transparent,
+      primaryColorLight: Colors.black87,
       dialogTheme: DialogTheme(
           backgroundColor: Colors.white,
           shape:
@@ -18,7 +19,8 @@ class MyThemes {
       popupMenuTheme: MyStyles.popupMenuThemeDataLight,
       tabBarTheme: TabBarTheme(
           labelColor: Colors.black,
-          labelStyle: MyFonts.textThemeLight.titleSmall),
+          labelStyle: MyFonts.textThemeLight.titleSmall,
+          unselectedLabelStyle: MyFonts.textThemeLight.titleSmall),
       //app text theme
       textTheme: MyFonts.textThemeLight,
       listTileTheme: const ListTileThemeData(iconColor: Colors.black),
@@ -36,10 +38,12 @@ class MyThemes {
       primaryColor: const Color(0xff1C1C23),
       backgroundColor: const Color(0xff0E0E12),
       scaffoldBackgroundColor: const Color(0xff0E0E12),
+      primaryColorLight: Colors.white,
       brightness: Brightness.light,
       tabBarTheme: TabBarTheme(
           labelColor: Colors.white,
-          labelStyle: MyFonts.textThemeDark.titleSmall),
+          labelStyle: MyFonts.textThemeDark.titleSmall,
+          unselectedLabelStyle: MyFonts.textThemeLight.titleSmall),
       dialogTheme: DialogTheme(
           backgroundColor: const Color(0xff1C1C23),
           shape:

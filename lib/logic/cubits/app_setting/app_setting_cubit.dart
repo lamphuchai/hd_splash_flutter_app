@@ -8,12 +8,14 @@ part 'app_setting_state.dart';
 class AppSettingCubit extends Cubit<AppSettingState> with HydratedMixin {
   AppSettingCubit()
       : super(AppSettingState(
-            themeMode: ThemeMode.system,
-            locale: LocaleConfig.localeDefault,
-            crossAxisCountGird: 2));
+          themeMode: ThemeMode.system,
+          locale: LocaleConfig.localeDefault,
+          crossAxisCountGird: 2,
+        ));
 
-  void changeLayout(int crossAxisCountGird) =>
-      emit(state.copyWith(crossAxisCountGird: crossAxisCountGird));
+  void changeLayout(int crossAxisCountGird) => emit(state.copyWith(
+        crossAxisCountGird: crossAxisCountGird,
+      ));
 
   void changeThemeMode(ThemeMode themeMode) =>
       emit(state.copyWith(themeMode: themeMode));

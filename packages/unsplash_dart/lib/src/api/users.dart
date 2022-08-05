@@ -27,7 +27,7 @@ abstract class UsersAbs {
       {required String username,
       int page = 1,
       int perPage = 10,
-      OrderBy orderBy = OrderBy.latest,
+      LikesPhotosOrderBy orderBy = LikesPhotosOrderBy.latest,
       Orientation? orientation});
 
   Future<List<Collection>> getCollections({
@@ -89,7 +89,7 @@ class Users extends UsersAbs {
       {required String username,
       int page = 1,
       int perPage = 10,
-      OrderBy orderBy = OrderBy.latest,
+      LikesPhotosOrderBy orderBy = LikesPhotosOrderBy.latest,
       Orientation? orientation}) async {
     final data =
         await _dioClient.get('/users/$username/likes', queryParameters: {

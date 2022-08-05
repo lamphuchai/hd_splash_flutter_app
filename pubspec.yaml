@@ -41,6 +41,7 @@ dependencies:
   path_provider: ^2.0.11
   url_launcher: ^6.1.3
   gallery_saver: ^2.3.2
+  connectivity_plus: ^2.3.6
 
 dev_dependencies:
   flutter_test:

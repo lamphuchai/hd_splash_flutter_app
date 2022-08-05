@@ -1,11 +1,14 @@
 enum OrderBy { latest, oldest, popular, views, downloads }
-enum PhotosOrderBy { latest, oldest, popular}
+
+enum LikesPhotosOrderBy { latest, oldest, popular }
+
+enum PhotosOrderBy { latest, oldest, popular }
 
 enum OrderBySearch { latest, relevant }
 
 enum OrderByTopic { featured, latest, oldest, position }
 
-enum OrderByTopicPhotos { latest, oldest, popular }
+enum TopicPhotosOrderBy { latest, oldest, popular }
 
 enum Orientation { landscape, portrait, squarish }
 
@@ -25,5 +28,3 @@ enum ColorUnsplash {
   teal,
   blue
 }
-
-

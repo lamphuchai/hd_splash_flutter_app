@@ -5,24 +5,24 @@ class DetailTopicState extends Equatable {
       {required this.topic,
       this.statusType = StatusType.init,
       this.photos = const [],
-      this.currentIndex = 1});
+      this.photosOrderBy = TopicPhotosOrderBy.latest});
   final StatusType statusType;
   final List<Photo> photos;
   final Topic topic;
-  final int currentIndex;
+  final TopicPhotosOrderBy photosOrderBy;
 
   @override
-  List<Object> get props => [statusType, photos, currentIndex];
+  List<Object> get props => [statusType, photos, photosOrderBy];
 
   DetailTopicState copyWith(
       {StatusType? statusType,
       List<Photo>? photos,
       Topic? topic,
-      int? currentIndex}) {
+      TopicPhotosOrderBy? photosOrderBy}) {
     return DetailTopicState(
         statusType: statusType ?? this.statusType,
         photos: photos ?? this.photos,
         topic: topic ?? this.topic,
-        currentIndex: currentIndex ?? this.currentIndex);
+        photosOrderBy: photosOrderBy ?? this.photosOrderBy);
   }
 }

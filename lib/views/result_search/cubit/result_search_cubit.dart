@@ -16,14 +16,15 @@ class ResultSearchCubit extends Cubit<ResultSearchState> {
   int _pagePhotos = 1;
   int _pageUsers = 1;
   int _pageCollections = 1;
+  final int _prePage = 20;
 
   Future<void> searchAll() async {
     try {
       emit(state.copyWith(status: StatusType.loading));
       List<Future<dynamic>> listFuture = [
-        _searchApi.photos(query: _query),
-        _searchApi.collections(query: _query),
-        _searchApi.users(query: _query),
+        _searchApi.photos(query: _query, perPage: _prePage),
+        _searchApi.collections(query: _query, perPage: _prePage),
+        _searchApi.users(query: _query, perPage: _prePage),
       ];
 
       final result = await Future.wait(listFuture);
@@ -40,7 +41,8 @@ class ResultSearchCubit extends Cubit<ResultSearchState> {
   Future<void> nextPagePhotos() async {
     try {
       _pagePhotos += _pagePhotos;
-      final photos = await _searchApi.photos(query: _query, page: _pagePhotos);
+      final photos = await _searchApi.photos(
+          query: _query, page: _pagePhotos, perPage: _prePage);
       emit(state.copyWith(photos: [...state.photos, ...photos]));
     } catch (error) {
       emit(state.copyWith(status: StatusType.error));
@@ -50,8 +52,8 @@ class ResultSearchCubit extends Cubit<ResultSearchState> {
   Future<void> nextPageCollections() async {
     try {
       _pageCollections += _pageCollections;
-      final collections =
-          await _searchApi.collections(query: _query, page: _pageCollections);
+      final collections = await _searchApi.collections(
+          query: _query, page: _pageCollections, perPage: _prePage);
       emit(state.copyWith(collections: [...state.collections, ...collections]));
     } catch (error) {
       emit(state.copyWith(status: StatusType.error));
@@ -61,7 +63,8 @@ class ResultSearchCubit extends Cubit<ResultSearchState> {
   Future<void> nextPageUsers() async {
     try {
       _pageUsers += _pageUsers;
-      final users = await _searchApi.users(query: _query, page: _pageUsers);
+      final users = await _searchApi.users(
+          query: _query, page: _pageUsers, perPage: _prePage);
       emit(state.copyWith(users: [...state.users, ...users]));
     } catch (error) {
       emit(state.copyWith(status: StatusType.error));

@@ -4,6 +4,7 @@ import 'package:hd_splash_flutter/app/router/app_router.dart';
 import 'package:hd_splash_flutter/app/theme/my_themes.dart';
 import 'package:hd_splash_flutter/logic/cubits/app_setting/app_setting_cubit.dart';
 import 'package:hd_splash_flutter/logic/cubits/download/download_cubit.dart';
+import 'package:hd_splash_flutter/logic/cubits/internet/internet_cubit.dart';
 import 'package:hd_splash_flutter/views/home/home.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
 
@@ -17,6 +18,9 @@ class App extends StatelessWidget {
           Unsplash()..createApi("crxeLTDmsoekx_w74acFM5EZl43RC0FJd44naaAOIfo"),
       child: MultiBlocProvider(
         providers: [
+          BlocProvider(
+            create: (context) => InternetCubit(),
+          ),
           BlocProvider(
             create: (context) => AppSettingCubit(),
           ),

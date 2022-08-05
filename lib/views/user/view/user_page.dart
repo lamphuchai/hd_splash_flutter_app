@@ -23,7 +23,6 @@ class UserPage extends StatelessWidget {
     }
     return Scaffold(
         appBar: AppBar(
-          // iconTheme: const IconThemeData(color: Colors.black),
           backgroundColor: Theme.of(context).backgroundColor,
           centerTitle: true,
           title: Text(user.username),
@@ -57,7 +56,7 @@ class UserPage extends StatelessWidget {
                     builder: (context, state) {
                       switch (state.status) {
                         case StatusType.loading:
-                           return const LoadingWidget();
+                          return const LoadingWidget();
                         case StatusType.error:
                           return const Icon(
                             Icons.error_outline_rounded,

@@ -20,7 +20,7 @@ abstract class TopicsAbs {
       int page = 1,
       int perPage = 10,
       Orientation? orientation,
-      OrderByTopicPhotos orderBy = OrderByTopicPhotos.latest});
+      TopicPhotosOrderBy orderBy = TopicPhotosOrderBy.latest});
 }
 
 class Topics extends TopicsAbs {
@@ -60,7 +60,7 @@ class Topics extends TopicsAbs {
       int page = 1,
       int perPage = 10,
       Orientation? orientation,
-      OrderByTopicPhotos orderBy = OrderByTopicPhotos.latest}) async {
+      TopicPhotosOrderBy orderBy = TopicPhotosOrderBy.latest}) async {
     final data =
         await _dioClient.get('/topics/$idTopic/photos', queryParameters: {
       "page": page,

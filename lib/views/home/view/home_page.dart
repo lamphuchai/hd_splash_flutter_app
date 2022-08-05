@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/app/config/app_assets.dart';
+import 'package:hd_splash_flutter/logic/cubits/internet/internet_cubit.dart';
 import 'package:hd_splash_flutter/views/collections/view/collections_view.dart';
 import 'package:hd_splash_flutter/views/home/home.dart';
 import 'package:hd_splash_flutter/views/photos/photos.dart';
@@ -23,15 +25,39 @@ class HomePage extends StatelessWidget {
                 left: 8,
                 right: 8,
               ),
-              child: IndexedStack(
-                  index: homeState.currentIndex,
-                  children: const [
-                    PhotosView(),
-                    CollectionsView(),
-                    TopicsView(),
-                    SearchView(),
-                    SettingView()
-                  ]),
+              child: BlocBuilder<InternetCubit, InternetState>(
+                buildWhen: (previous, current) =>
+                    previous.isConnection != current.isConnection,
+                builder: (context, state) {
+                  if (state.isConnection) {
+                    return IndexedStack(
+                        index: homeState.currentIndex,
+                        children: const [
+                          PhotosView(),
+                          CollectionsView(),
+                          TopicsView(),
+                          SearchView(),
+                          SettingView()
+                        ]);
+                  }
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          AppAssets.noInternet,
+                          width: 60,
+                          height: 60,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Text("no internet"),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
           ),
           bottomNavigationBar: NavigationBar(

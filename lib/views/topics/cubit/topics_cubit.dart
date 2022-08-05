@@ -14,7 +14,7 @@ class TopicsCubit extends Cubit<TopicsState> {
   Future<void> loadingTopics() async {
     try {
       emit(state.copyWith(status: TopicsStatus.loading));
-      final topics = await _topics.topics(perPage: 30);
+      final topics = await _topics.topics(perPage: 30, orderBy: state.orderBy);
       emit(state.copyWith(status: TopicsStatus.loaded, topics: topics));
     } catch (error) {
       log(error.toString());
@@ -22,4 +22,8 @@ class TopicsCubit extends Cubit<TopicsState> {
     }
   }
 
+  Future<void> changeOrderBy(OrderByTopic orderBy) async {
+    emit(state.copyWith(orderBy: orderBy));
+    await loadingTopics();
+  }
 }
