@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
+import 'package:hd_splash_flutter/app/locale/lang_code.dart';
 import 'package:hd_splash_flutter/app/router/route_name.dart';
 import 'package:hd_splash_flutter/logic/cubits/download/download_cubit.dart';
 import 'package:hd_splash_flutter/views/components/components.dart';
@@ -17,16 +19,16 @@ class DetailPhotoPage extends StatelessWidget {
       listener: (context, state) {
         switch (state.status) {
           case DownloadStatus.start:
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text("Bắt đầu tải")));
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(context.lang(LangCode.downloadStarted))));
             break;
           case DownloadStatus.complete:
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text("Tải thành công")));
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(context.lang(LangCode.downloadComplete))));
             break;
           case DownloadStatus.error:
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text("Tải lỗi")));
+            ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(context.lang(LangCode.downloadErr))));
             break;
           default:
             break;

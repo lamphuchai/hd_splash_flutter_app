@@ -71,7 +71,8 @@ class CustomSliverListTopics extends StatelessWidget {
                                   height: 5,
                                 ),
                                 Text(
-                                  '${topic.totalPhotos} photos',
+                                  '${topic.totalPhotos} ${context.lang("photos")}'
+                                      .toLowerCase(),
                                   style: const TextStyle(
                                       color: Colors.white, fontSize: 11),
                                 ),

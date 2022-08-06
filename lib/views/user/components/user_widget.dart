@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hd_splash_flutter/views/components/components.dart';
@@ -109,34 +108,35 @@ class UserWidget extends StatelessWidget {
                 )
               ],
             ),
-          if (user.instagramUsername != null)
+          if (user.instagramUsername != null) ...[
             const SizedBox(
               height: 5,
             ),
-          Wrap(
-            children: [
-              const Text("Instagram : "),
-              GestureDetector(
-                onTap: () async {
-                  Uri url = Uri.parse(
-                      'https://www.instagram.com/${user.instagramUsername}/');
-                  try {
-                    if (await canLaunchUrl(url)) {}
-                    await launchUrl(
-                      url,
-                      mode: LaunchMode.externalApplication,
-                    );
-                  } catch (e) {
-                    debugPrint(e.toString());
-                  }
-                },
-                child: Text(
-                  '${user.instagramUsername}',
-                  style: const TextStyle(color: Color(0xff3498db)),
-                ),
-              )
-            ],
-          ),
+            Wrap(
+              children: [
+                const Text("Instagram : "),
+                GestureDetector(
+                  onTap: () async {
+                    Uri url = Uri.parse(
+                        'https://www.instagram.com/${user.instagramUsername}/');
+                    try {
+                      if (await canLaunchUrl(url)) {}
+                      await launchUrl(
+                        url,
+                        mode: LaunchMode.externalApplication,
+                      );
+                    } catch (e) {
+                      debugPrint(e.toString());
+                    }
+                  },
+                  child: Text(
+                    '${user.instagramUsername}',
+                    style: const TextStyle(color: Color(0xff3498db)),
+                  ),
+                )
+              ],
+            ),
+          ],
           const SizedBox(
             height: 5,
           ),

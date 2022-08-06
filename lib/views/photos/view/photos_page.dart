@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
+import 'package:hd_splash_flutter/app/locale/lang_code.dart';
 import 'package:hd_splash_flutter/core/type/enum.dart';
-import 'package:hd_splash_flutter/views/home/home.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
 
 import '../photos.dart';
@@ -9,12 +10,11 @@ import '../../components/components.dart';
 
 class PhotosPage extends StatelessWidget {
   const PhotosPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return CustomNestedScrollHead(
-        title: "Hình ảnh",
-        subtitle: "Những bức ảnh nổi bật trên unspalsh",
+        title: context.lang(LangCode.photos),
+        subtitle: context.lang(LangCode.subPhotos),
         sortChild: BlocBuilder<PhotosCubit, PhotosState>(
           buildWhen: (previous, current) => previous.orderBy != current.orderBy,
           builder: (context, state) {

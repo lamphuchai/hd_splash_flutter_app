@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
 import 'package:hd_splash_flutter/app/router/route_name.dart';
 import 'package:hd_splash_flutter/views/search/cubit/search_cubit.dart';
 
@@ -18,7 +19,7 @@ class SearchPage extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: Text(
-                  "Tìm kiếm",
+                  context.lang("search"),
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
               ),
@@ -27,7 +28,7 @@ class SearchPage extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                "Hình ảnh,bộ sưa tập,chủ đề,người dùng ..",
+                context.lang("sub-search"),
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               const SizedBox(
@@ -38,7 +39,7 @@ class SearchPage extends StatelessWidget {
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Theme.of(context).primaryColor,
-                  hintText: "Nhập để tìm kiếm ",
+                  hintText: context.lang("input-search"),
                   hintStyle: Theme.of(context).textTheme.bodyMedium,
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
@@ -70,7 +71,7 @@ class SearchPage extends StatelessWidget {
           ),
         ),
         ListTile(
-          title: const Text("Lịch sử"),
+          title: Text(context.lang("history")),
           trailing: IconButton(
             icon: const Icon(Icons.clear_all),
             onPressed: () => context.read<SearchCubit>().deleteAllHistory(),
@@ -89,7 +90,7 @@ class SearchPage extends StatelessWidget {
                       height: 200,
                       child: Center(
                         child: Text(
-                          "Hãy tìm kiếm gì đó !",
+                          context.lang("try-search"),
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ),

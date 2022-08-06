@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
 import 'package:hd_splash_flutter/app/locale/app_localizations.dart';
+import 'package:hd_splash_flutter/app/locale/lang_code.dart';
 
 import 'bottom_button_dialog.dart';
 
@@ -25,7 +27,7 @@ class LanguageDialog extends StatelessWidget {
               height: 25,
             ),
             Text(
-              "Language",
+              context.lang(LangCode.language),
               style: textTheme.titleMedium,
             ),
             const SizedBox(
@@ -51,9 +53,8 @@ class LanguageDialog extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(4)),
                               ),
                               const SizedBox(width: 10),
-
                               Text(
-                                locale.languageCode,
+                                context.lang(locale.languageCode),
                                 style: textTheme.bodyMedium,
                               ),
                             ],

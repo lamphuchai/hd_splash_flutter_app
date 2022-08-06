@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
+import 'package:hd_splash_flutter/app/locale/lang_code.dart';
 
 class BottomButtonDialog extends StatelessWidget {
   const BottomButtonDialog({Key? key, required this.onSubmit})
@@ -13,14 +15,14 @@ class BottomButtonDialog extends StatelessWidget {
         TextButton(
           onPressed: onSubmit,
           child: Text(
-            "OK",
+            context.lang(LangCode.ok),
             style: textTheme.titleSmall!.copyWith(color: Colors.blue),
           ),
         ),
         TextButton(
           onPressed: () => Navigator.pop(context),
           child: Text(
-            "Cancel",
+            context.lang(LangCode.cancel),
             style: textTheme.titleSmall!.copyWith(color: Colors.red),
           ),
         ),

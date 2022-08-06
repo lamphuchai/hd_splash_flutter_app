@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
 import 'package:hd_splash_flutter/core/type/enum.dart';
 import 'package:hd_splash_flutter/views/components/components.dart';
 import 'package:hd_splash_flutter/views/topics/topics.dart';
@@ -11,8 +12,8 @@ class TopicsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomNestedScrollHead(
-      title: "Chủ để",
-      subtitle: "Những chủ để trên unspalsh",
+      title: context.lang("topics"),
+      subtitle: context.lang("sub-topics"),
       sortChild: BlocBuilder<TopicsCubit, TopicsState>(
         buildWhen: (previous, current) => previous.orderBy != current.orderBy,
         builder: (context, state) {
@@ -29,9 +30,9 @@ class TopicsPage extends StatelessWidget {
         builder: (context, state) {
           switch (state.status) {
             case StatusType.loading:
-                  return const AppLoadingWidget();
-                case StatusType.error:
-                  return const AppErrorWidget();
+              return const AppLoadingWidget();
+            case StatusType.error:
+              return const AppErrorWidget();
             case StatusType.loaded:
               return const TopicsListView();
             default:

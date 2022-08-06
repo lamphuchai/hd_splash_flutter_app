@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
 import 'package:hd_splash_flutter/core/type/enum.dart';
 import 'package:hd_splash_flutter/views/components/components.dart';
 import 'package:hd_splash_flutter/views/user/user.dart';
@@ -16,7 +17,7 @@ class UserPage extends StatelessWidget {
       tabs.add({"tab": const TabPhotosView(), "title": "photos"});
     }
     if (user.totalLikes != 0) {
-      tabs.add({"tab": const TabLikesView(), "title": "likes"});
+      tabs.add({"tab": const TabLikesView(), "title": "like"});
     }
     if (user.totalCollections != 0) {
       tabs.add({"tab": const TabCollectionsView(), "title": "collections"});
@@ -45,7 +46,7 @@ class UserPage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   tabs: tabs
                       .map((tab) => Tab(
-                            text: tab["title"],
+                            text: context.lang(tab["title"]),
                           ))
                       .toList(),
                 ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
+import 'package:hd_splash_flutter/app/locale/lang_code.dart';
 import 'package:hd_splash_flutter/logic/cubits/cubits.dart';
 import 'package:hd_splash_flutter/views/setting/components/dialog_widget/load_quality_dialog.dart';
 
@@ -16,7 +18,7 @@ class QualityWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Quality",
+          context.lang(LangCode.quality),
           style: textTheme.titleLarge,
         ),
         const SizedBox(
@@ -35,7 +37,7 @@ class QualityWidget extends StatelessWidget {
                 builder: (context, state) {
                   return ItemBlock(
                     icon: const Icon(Icons.workspaces),
-                    title: "Load Quality",
+                    title: context.lang(LangCode.subQuality),
                     subtitle: state.loadQualityType.name,
                     onTap: () {
                       showDialog(

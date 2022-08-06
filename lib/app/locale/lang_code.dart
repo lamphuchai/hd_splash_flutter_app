@@ -1,4 +1,4 @@
-class Strings {
+class LangCode {
   static const String photo = "photo";
   static const String photos = "photos";
   static const String collection = "collection";
@@ -9,6 +9,19 @@ class Strings {
   static const String setting = "setting";
   static const String user = "user";
   static const String users = "users";
+  static const String downloaded = "downloaded";
+  static const String trySearch = "try-search";
+  static const String like = "like";
+  static const String curatedBy = "curatedBy";
+  static const String view = "view";
+
+  static const String inputSearch = "input-search";
+
+
+
+
+
+
 
   //setting
   static const String vi = "vi";
@@ -18,6 +31,18 @@ class Strings {
   static const String system = "system";
   static const String dark = "dark";
   static const String light = "light";
+  static const String general = "general";
+  static const String subGeneral = "sub-general";
+
+  static const String quality = "quality";
+  static const String subQuality = "sub-quality";
+
+  static const String ok = "ok";
+  static const String cancel = "cancel";
+
+
+
+
   //
   //photos
   static const String subPhotos = "sub-photos";
@@ -53,4 +78,11 @@ class Strings {
   static const String downloads = "downloads";
   static const String featured = "featured";
   static const String position = "position";
+
+  static const String raw = "raw";
+  static const String full = "full";
+  static const String regular = "position";
+  static const String small = "position";
+  static const String thumb = "position";
+
 }

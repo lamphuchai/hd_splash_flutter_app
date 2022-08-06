@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hd_splash_flutter/app/locale/app_localizations.dart';
 import '../../app/extensions/extensions.dart';
 
 class ButtonSortOrderBy extends StatelessWidget {
@@ -13,18 +14,19 @@ class ButtonSortOrderBy extends StatelessWidget {
   final ValueChanged onSelected;
   @override
   Widget build(BuildContext context) {
+    final lang = AppLocalizations.of(context);
+
     return PopupMenuButton<Enum>(
         position: PopupMenuPosition.under,
         icon: const Icon(Icons.sort),
         onSelected: onSelected,
-       
         itemBuilder: ((context) {
           return listValue
               .map((orderBy) => PopupMenuItem(
                   value: orderBy,
                   child: TickSelectedWidget(
                       value: orderBy == selected ? true : false,
-                      title: orderBy.nameString)))
+                      title: lang.translate(orderBy.nameString))))
               .toList();
         }));
   }

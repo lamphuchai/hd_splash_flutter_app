@@ -13,7 +13,7 @@ class DetailCollectionView extends StatelessWidget {
     return BlocProvider(
       create: (context) => DetailCollectionCubit(
           collection: collection,
-          collections: context.read<Unsplash>().collections)
+          collectionsApi: context.read<Unsplash>().collections)
         ..loadingPhotos(),
       child: DetailCollectionPage(
         collection: collection,

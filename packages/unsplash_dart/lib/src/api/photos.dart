@@ -164,7 +164,7 @@ class Photos extends PhotosAbs {
           "exif[make]": exif?.make,
           "exif[model]": exif?.model,
           "exif[exposure_time]": exif?.exposureTime,
-          "exif[aperture_value]": exif?.apertureValue,
+          "exif[aperture_value]": exif?.aperture,
           "exif[focal_length]": exif?.focalLength,
           "exif[iso_speed_ratings]": exif?.isoSpeedEatings,
         });

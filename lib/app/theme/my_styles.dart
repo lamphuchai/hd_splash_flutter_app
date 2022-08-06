@@ -25,7 +25,7 @@ class MyStyles {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(top: Radius.circular(15))));
   static BottomSheetThemeData bottomSheetThemeDark = const BottomSheetThemeData(
-      backgroundColor: DarkThemeColors.bottomSheetColor,
+      backgroundColor: Color(0xff1C1C23),
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(15))));
 

@@ -114,7 +114,8 @@ class CustomMasonryGirdCollections extends StatelessWidget {
                                         height: 5,
                                       ),
                                       Text(
-                                        '${collection.totalPhotos} photos',
+                                        '${collection.totalPhotos} ${context.lang("photos")}'
+                                            .toLowerCase(),
                                         style: const TextStyle(
                                             color: Colors.white, fontSize: 11),
                                       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
 import 'package:hd_splash_flutter/core/type/enum.dart';
 import 'package:hd_splash_flutter/views/detail_photo/detail_photo.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
@@ -30,7 +31,7 @@ class ExifPhoto extends StatelessWidget {
                         Expanded(
                             child: Column(
                           children: [
-                            const Text("camera"),
+                            Text(context.lang("camera")),
                             const SizedBox(
                               height: 5,
                             ),
@@ -40,11 +41,13 @@ class ExifPhoto extends StatelessWidget {
                         Expanded(
                             child: Column(
                           children: [
-                            const Text("aperture"),
+                            Text(context.lang("aperture")),
                             const SizedBox(
                               height: 5,
                             ),
-                            Text(exif.apertureValue ?? "Unknown")
+                            Text(exif.aperture != null
+                                ? 'f/${exif.aperture}'
+                                : "Unknown")
                           ],
                         )),
                       ],
@@ -57,7 +60,7 @@ class ExifPhoto extends StatelessWidget {
                         Expanded(
                             child: Column(
                           children: [
-                            const Text("focalLength"),
+                            Text(context.lang("focal-length")),
                             const SizedBox(
                               height: 5,
                             ),
@@ -67,7 +70,7 @@ class ExifPhoto extends StatelessWidget {
                         Expanded(
                             child: Column(
                           children: [
-                            const Text("shutterSpeed"),
+                            Text(context.lang("shutter-speed")),
                             const SizedBox(
                               height: 5,
                             ),
@@ -84,7 +87,7 @@ class ExifPhoto extends StatelessWidget {
                         Expanded(
                             child: Column(
                           children: [
-                            const Text("ios"),
+                            Text(context.lang("ios")),
                             const SizedBox(
                               height: 5,
                             ),
@@ -94,7 +97,7 @@ class ExifPhoto extends StatelessWidget {
                         Expanded(
                             child: Column(
                           children: [
-                            const Text("dimensions"),
+                            Text(context.lang("dimensions")),
                             const SizedBox(
                               height: 5,
                             ),

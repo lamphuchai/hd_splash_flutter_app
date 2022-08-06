@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hd_splash_flutter/app/locale/app_localizations.dart';
 import 'package:hd_splash_flutter/core/type/enum.dart';
 import 'package:intl/intl.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
@@ -13,6 +14,8 @@ extension AppContext on BuildContext {
       {required int height, required int width, required crossAxisCount}) {
     return (height / width) * (screenSize.width / crossAxisCount);
   }
+
+  String lang(String key) => AppLocalizations.of(this).translate(key);
 }
 
 extension StringX on String {

@@ -8,8 +8,8 @@ import 'package:unsplash_dart/unsplash_dart.dart';
 part 'collections_state.dart';
 
 class CollectionsCubit extends Cubit<CollectionsState> {
-  CollectionsCubit({required Collections collections})
-      : _collectionsApi = collections,
+  CollectionsCubit({required Collections collectionsApi})
+      : _collectionsApi = collectionsApi,
         super(const CollectionsState());
 
   final Collections _collectionsApi;
@@ -24,7 +24,6 @@ class CollectionsCubit extends Cubit<CollectionsState> {
       emit(state.copyWith(
           collections: collections, status: StatusType.loaded));
     } catch (error) {
-      log(error.toString());
       emit(state.copyWith(status: StatusType.error));
     }
   }

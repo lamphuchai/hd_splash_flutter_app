@@ -21,7 +21,6 @@ class AppLocalizations {
   static const supportedLocales = LocaleConfig.supportedLocales;
   static const supportedLocalesList = LocaleConfig.supportedLocales;
 
-
   static AppLocalizations of(BuildContext context) {
     return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
@@ -43,7 +42,7 @@ class AppLocalizations {
 
   // This method will be called from every widget which needs a localized text
   String translate(String key) {
-    return localizedStrings[key] ?? "null";
+    return localizedStrings[key] ?? 'no-key:$key';
   }
 }
 

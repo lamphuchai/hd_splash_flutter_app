@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
 import 'package:hd_splash_flutter/core/type/enum.dart';
 
 import '../../components/components.dart';
@@ -11,8 +12,8 @@ class CollectionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomNestedScrollHead(
-      title: "Bộ sưa tập",
-      subtitle: "Những Bộ sưa tập nổi bật trên unspalsh",
+      title: context.lang("collections"),
+      subtitle: context.lang("sub-collections"),
       body: BlocBuilder<CollectionsCubit, CollectionsState>(
         buildWhen: (previous, current) => previous.status != current.status,
         builder: (context, state) {

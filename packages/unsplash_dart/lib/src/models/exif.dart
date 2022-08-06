@@ -5,13 +5,13 @@ class Exif {
       {this.make,
       this.model,
       this.exposureTime,
-      this.apertureValue,
+      this.aperture,
       this.focalLength,
       this.isoSpeedEatings});
   final String? make;
   final String? model;
   final String? exposureTime;
-  final String? apertureValue;
+  final String? aperture;
   final String? focalLength;
   final String? isoSpeedEatings;
 
@@ -20,7 +20,7 @@ class Exif {
       'make': make,
       'model': model,
       'exposure_time': exposureTime,
-      'aperture_value': apertureValue,
+      'aperture_value': aperture,
       'focal_length': focalLength,
       'iso_speed_ratings': isoSpeedEatings,
     };
@@ -32,9 +32,7 @@ class Exif {
       model: map['model'] != null ? map['model'] as String : null,
       exposureTime:
           map['exposure_time'] != null ? map['exposure_time'] as String : null,
-      apertureValue: map['aperture_value'] != null
-          ? map['aperture_value'] as String
-          : null,
+      aperture: map['aperture'] != null ? map['aperture'] as String : null,
       focalLength:
           map['focal_length'] != null ? map['focal_length'] as String : null,
       isoSpeedEatings: map['iso'].toString(),
@@ -48,6 +46,6 @@ class Exif {
 
   @override
   String toString() {
-    return 'Exif(make: $make, model: $model, exposureTime: $exposureTime, apertureValue: $apertureValue, focalLength: $focalLength, isoSpeedEatings: $isoSpeedEatings)';
+    return 'Exif(make: $make, model: $model, exposureTime: $exposureTime, aperture: $aperture, focalLength: $focalLength, isoSpeedEatings: $isoSpeedEatings)';
   }
 }

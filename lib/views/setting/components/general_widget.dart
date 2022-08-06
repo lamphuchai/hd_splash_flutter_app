@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
+import 'package:hd_splash_flutter/app/locale/lang_code.dart';
 import 'package:hd_splash_flutter/logic/cubits/app_setting/app_setting_cubit.dart';
 import 'package:hd_splash_flutter/views/setting/components/dialog_widget/grid_dialog.dart';
 import 'package:hd_splash_flutter/views/setting/components/dialog_widget/language_dialog.dart';
@@ -17,7 +19,7 @@ class GeneralWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "General",
+          context.lang(LangCode.general),
           style: textTheme.titleLarge,
         ),
         const SizedBox(
@@ -36,8 +38,8 @@ class GeneralWidget extends StatelessWidget {
                 builder: (context, state) {
                   return ItemBlock(
                     icon: const Icon(Icons.language),
-                    title: "Language",
-                    subtitle: state.locale.languageCode,
+                    title: context.lang(LangCode.language),
+                    subtitle: context.lang(state.locale.languageCode),
                     onTap: () {
                       showDialog(
                           context: context,
@@ -60,8 +62,8 @@ class GeneralWidget extends StatelessWidget {
                 builder: (context, state) {
                   return ItemBlock(
                     icon: const Icon(Icons.light_mode),
-                    title: "Theme",
-                    subtitle: state.themeMode.name,
+                    title: context.lang(LangCode.theme),
+                    subtitle: context.lang(state.themeMode.name),
                     onTap: () {
                       showDialog(
                           context: context,

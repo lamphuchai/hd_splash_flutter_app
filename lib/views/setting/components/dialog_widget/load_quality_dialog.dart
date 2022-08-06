@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
+import 'package:hd_splash_flutter/app/locale/lang_code.dart';
 import 'package:hd_splash_flutter/core/type/enum.dart';
 import 'bottom_button_dialog.dart';
-
 
 class LoadQualityDialog extends StatelessWidget {
   const LoadQualityDialog(
@@ -23,7 +24,7 @@ class LoadQualityDialog extends StatelessWidget {
               height: 25,
             ),
             Text(
-              "Load Quality",
+              context.lang(LangCode.subQuality),
               style: textTheme.titleMedium,
             ),
             const SizedBox(

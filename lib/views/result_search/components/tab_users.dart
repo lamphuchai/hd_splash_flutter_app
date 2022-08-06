@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
 import 'package:hd_splash_flutter/app/router/route_name.dart';
 import 'package:hd_splash_flutter/logic/cubits/app_setting/app_setting_cubit.dart';
 import 'package:hd_splash_flutter/views/components/components.dart';
@@ -89,7 +90,7 @@ class _TabUsersState extends State<TabUsers>
                                     const SizedBox(
                                       height: 2,
                                     ),
-                                    const Text("Photos")
+                                    Text(context.lang("photos"))
                                   ],
                                 ),
                                 const SizedBox(
@@ -105,7 +106,7 @@ class _TabUsersState extends State<TabUsers>
                                     const SizedBox(
                                       height: 2,
                                     ),
-                                    const Text("Likes")
+                                    Text(context.lang("like"))
                                   ],
                                 ),
                                 const SizedBox(
@@ -121,7 +122,7 @@ class _TabUsersState extends State<TabUsers>
                                     const SizedBox(
                                       height: 2,
                                     ),
-                                    const Text("Collections")
+                                    Text(context.lang("collections"))
                                   ],
                                 )
                               ],

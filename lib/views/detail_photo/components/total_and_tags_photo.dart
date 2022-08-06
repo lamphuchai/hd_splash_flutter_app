@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
 import 'package:hd_splash_flutter/app/router/route_name.dart';
 import 'package:hd_splash_flutter/core/type/enum.dart';
 import 'package:hd_splash_flutter/views/components/components.dart';
@@ -33,15 +34,15 @@ class TotalAndTagsPhoto extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ItemTotal(
-                          title: "Views",
+                          title: context.lang("view"),
                           total: state.dataPhoto["views"].toString(),
                         ),
                         ItemTotal(
-                          title: "Likes",
+                          title: context.lang("like"),
                           total: state.photo.likes.toString(),
                         ),
                         ItemTotal(
-                          title: "Downloads",
+                          title: context.lang("downloaded"),
                           total: state.dataPhoto["downloads"].toString(),
                         ),
                       ],

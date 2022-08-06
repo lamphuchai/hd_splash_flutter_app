@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
+import 'package:hd_splash_flutter/app/locale/lang_code.dart';
 
 import 'bottom_button_dialog.dart';
 
@@ -24,7 +26,7 @@ class ThemeDialog extends StatelessWidget {
               height: 25,
             ),
             Text(
-              "Theme",
+              context.lang(LangCode.theme),
               style: textTheme.titleMedium,
             ),
             const SizedBox(
@@ -50,7 +52,7 @@ class ThemeDialog extends StatelessWidget {
                               ),
                               const SizedBox(width: 10),
                               Text(
-                                theme.name,
+                                context.lang(theme.name),
                                 style: textTheme.bodyMedium,
                               ),
                             ],
