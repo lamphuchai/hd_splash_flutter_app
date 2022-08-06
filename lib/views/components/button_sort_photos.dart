@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import '../../app/extensions/extensions.dart';
 
-class ButtonSortPhotos<T> extends StatelessWidget {
+class ButtonSortPhotos extends StatelessWidget {
   const ButtonSortPhotos(
       {Key? key,
       required this.listValue,
-      required this.value,
+      required this.selected,
       required this.onSelected})
       : super(key: key);
-  final List<T> listValue;
-  final T value;
-  final ValueChanged<T> onSelected;
+  final List<Enum> listValue;
+  final Enum selected;
+  final ValueChanged onSelected;
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton<T>(
+    return PopupMenuButton<Enum>(
         position: PopupMenuPosition.under,
         icon: const Icon(Icons.sort),
         onSelected: onSelected,
@@ -22,8 +23,8 @@ class ButtonSortPhotos<T> extends StatelessWidget {
               .map((orderBy) => PopupMenuItem(
                   value: orderBy,
                   child: TickSelectedWidget(
-                      value: orderBy == value ? true : false,
-                      title: orderBy.toString().split('.')[1])))
+                      value: orderBy == selected ? true : false,
+                      title: orderBy.nameString)))
               .toList();
         }));
   }

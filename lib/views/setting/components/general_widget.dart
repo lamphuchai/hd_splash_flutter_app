@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hd_splash_flutter/logic/cubits/app_setting/app_setting_cubit.dart';
-import 'package:hd_splash_flutter/views/setting/components/language_dialog.dart';
-import 'bottom_button_dialog.dart';
+import 'package:hd_splash_flutter/views/setting/components/dialog_widget/language_dialog.dart';
+import 'dialog_widget/bottom_button_dialog.dart';
+import 'dialog_widget/theme_dialog.dart';
 import 'item_block.dart';
 
 class GeneralWidget extends StatelessWidget {
@@ -96,82 +97,3 @@ class GeneralWidget extends StatelessWidget {
   }
 }
 
-class ThemeDialog extends StatelessWidget {
-  const ThemeDialog({
-    Key? key,
-    required this.themeMode,
-    required this.onChangeThemeMode,
-  }) : super(key: key);
-
-  final ValueNotifier<ThemeMode> themeMode;
-  final Function(ThemeMode) onChangeThemeMode;
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final List<Map<String, dynamic>> items = [
-      {"themeMode": ThemeMode.system, "title": "system"},
-      {"themeMode": ThemeMode.light, "title": "light"},
-      {"themeMode": ThemeMode.dark, "title": "dark"}
-    ];
-    return Dialog(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Wrap(
-          children: [
-            const SizedBox(
-              width: double.infinity,
-              height: 25,
-            ),
-            Text(
-              "Theme",
-              style: textTheme.titleMedium,
-            ),
-            const SizedBox(
-              width: double.infinity,
-              height: 14,
-            ),
-            ValueListenableBuilder(
-              valueListenable: themeMode,
-              builder: (BuildContext context, value, Widget? child) {
-                return Column(
-                  children: items
-                      .map((item) => Row(
-                            children: [
-                              Checkbox(
-                                value: item["themeMode"] == themeMode.value
-                                    ? true
-                                    : false,
-                                onChanged: (value) {
-                                  if (value == true) {
-                                    themeMode.value = item["themeMode"];
-                                  }
-                                },
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4)),
-                              ),
-                              Text(
-                                item["title"],
-                                style: textTheme.bodyMedium,
-                              ),
-                            ],
-                          ))
-                      .toList(),
-                );
-              },
-            ),
-            BottomButtonDialog(
-              onSubmit: () {
-                onChangeThemeMode(themeMode.value);
-                Navigator.pop(context);
-              },
-            ),
-            const SizedBox(
-              width: double.infinity,
-              height: 10,
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}

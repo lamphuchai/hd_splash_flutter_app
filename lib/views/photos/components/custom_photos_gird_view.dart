@@ -15,13 +15,9 @@ class CustomPhotosGridView extends StatelessWidget {
         sortChild: BlocBuilder<PhotosCubit, PhotosState>(
           buildWhen: (previous, current) => previous.orderBy != current.orderBy,
           builder: (context, state) {
-            return ButtonSortPhotos<PhotosOrderBy>(
-              listValue: const [
-                PhotosOrderBy.latest,
-                PhotosOrderBy.oldest,
-                PhotosOrderBy.popular
-              ],
-              value: state.orderBy,
+            return ButtonSortPhotos(
+              listValue:PhotosOrderBy.values,
+              selected: state.orderBy,
               onSelected: (orderBy) =>
                   context.read<PhotosCubit>().changeOrderBy(orderBy),
             );

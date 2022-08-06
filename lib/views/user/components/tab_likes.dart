@@ -43,13 +43,9 @@ class _TabLikesViewState extends State<TabLikesView>
           buildWhen: (previous, current) =>
               previous.photosOrderBy != current.photosOrderBy,
           builder: (context, state) {
-            return ButtonSortPhotos<LikesPhotosOrderBy>(
-              value: LikesPhotosOrderBy.latest,
-              listValue: const [
-                LikesPhotosOrderBy.latest,
-                LikesPhotosOrderBy.oldest,
-                LikesPhotosOrderBy.popular,
-              ],
+            return ButtonSortPhotos(
+              selected: LikesPhotosOrderBy.latest,
+              listValue: LikesPhotosOrderBy.values,
               onSelected: (orderBy) =>
                   context.read<UserCubit>().changeLikesOrderBy(orderBy),
             );

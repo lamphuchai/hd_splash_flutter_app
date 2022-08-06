@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hd_splash_flutter/views/components/components.dart';
 import 'package:hd_splash_flutter/views/setting/setting.dart';
+// import 'package:unsplash_dart/unsplash_dart.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({Key? key}) : super(key: key);

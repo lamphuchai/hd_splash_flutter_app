@@ -19,3 +19,9 @@ extension StringX on String {
     return DateFormat("dd-MM-yyyy").format(DateTime.parse(this));
   }
 }
+
+
+
+extension EnumX on Enum {
+  String get nameString =>name;
+}

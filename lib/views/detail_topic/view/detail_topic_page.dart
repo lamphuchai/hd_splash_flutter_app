@@ -69,13 +69,9 @@ class DetailTopicPage extends StatelessWidget {
           buildWhen: (previous, current) =>
               previous.photosOrderBy != current.photosOrderBy,
           builder: (context, state) {
-            return ButtonSortPhotos<TopicPhotosOrderBy>(
-              value: state.photosOrderBy,
-              listValue: const [
-                TopicPhotosOrderBy.latest,
-                TopicPhotosOrderBy.oldest,
-                TopicPhotosOrderBy.popular
-              ],
+            return ButtonSortPhotos(
+              selected: state.photosOrderBy,
+              listValue: TopicPhotosOrderBy.values,
               onSelected: (orderBy) =>
                   context.read<DetailTopicCubit>().changeOrderBy(orderBy),
             );

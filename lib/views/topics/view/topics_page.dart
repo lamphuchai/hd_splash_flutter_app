@@ -15,14 +15,9 @@ class TopicsPage extends StatelessWidget {
       sortChild: BlocBuilder<TopicsCubit, TopicsState>(
         buildWhen: (previous, current) => previous.orderBy != current.orderBy,
         builder: (context, state) {
-          return ButtonSortPhotos<OrderByTopic>(
-            listValue: const [
-              OrderByTopic.featured,
-              OrderByTopic.latest,
-              OrderByTopic.oldest,
-              OrderByTopic.position,
-            ],
-            value: state.orderBy,
+          return ButtonSortPhotos(
+            listValue: OrderByTopic.values,
+            selected: state.orderBy,
             onSelected: (orderBy) =>
                 context.read<TopicsCubit>().changeOrderBy(orderBy),
           );
