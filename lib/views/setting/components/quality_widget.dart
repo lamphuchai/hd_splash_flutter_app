@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/logic/cubits/cubits.dart';
+import 'package:hd_splash_flutter/views/setting/components/dialog_widget/load_quality_dialog.dart';
 
 import 'item_block.dart';
 
@@ -26,11 +29,26 @@ class QualityWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(16)),
           child: Column(
             children: [
-              ItemBlock(
-                icon: const Icon(Icons.workspaces),
-                title: "Load Quality",
-                subtitle: "Reqular",
-                onTap: () {
+              BlocBuilder<AppSettingCubit, AppSettingState>(
+                buildWhen: (previous, current) =>
+                    previous.loadQualityType != current.loadQualityType,
+                builder: (context, state) {
+                  return ItemBlock(
+                    icon: const Icon(Icons.workspaces),
+                    title: "Load Quality",
+                    subtitle: state.loadQualityType.name,
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: ((context) => LoadQualityDialog(
+                                selectedValue:
+                                    ValueNotifier(state.loadQualityType),
+                                onChange: (type) => context
+                                    .read<AppSettingCubit>()
+                                    .changeLoadQualityType(type),
+                              )));
+                    },
+                  );
                 },
               ),
               const SizedBox(
@@ -40,8 +58,7 @@ class QualityWidget extends StatelessWidget {
                 icon: const Icon(Icons.download),
                 title: "Download quality",
                 subtitle: "Reqular",
-                onTap: () {
-                },
+                onTap: () {},
               ),
             ],
           ),

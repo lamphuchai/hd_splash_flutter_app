@@ -10,9 +10,11 @@ class ItemTotal extends StatelessWidget {
     return Expanded(
       child: Column(
         children: [
-          Text(
-            total,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          FittedBox(
+            child: Text(
+              total,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
           ),
           const SizedBox(
             height: 5,

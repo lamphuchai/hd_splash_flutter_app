@@ -12,9 +12,9 @@ class InternetCubit extends Cubit<InternetState> {
         .onConnectivityChanged
         .listen((ConnectivityResult result) {
       if (result == ConnectivityResult.none) {
-        emit(const InternetState(isConnection: false));
+        emit(const InternetState(status: InternetStatus.none));
       } else {
-        emit(const InternetState(isConnection: true));
+        emit(const InternetState(status: InternetStatus.internet));
       }
     });
   }

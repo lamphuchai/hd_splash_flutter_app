@@ -4,16 +4,8 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 part 'search_state.dart';
 
-class SearchCubit extends Cubit<SearchState> with HydratedMixin {
-  SearchCubit() : super(const SearchState(query: "", listHistory: ["china"]));
-
-  @override
-  SearchState? fromJson(Map<String, dynamic> json) {
-    return state.copyWith(
-        listHistory: (json["listHistory"] as List)
-            .map((history) => history.toString())
-            .toList());
-  }
+class SearchCubit extends HydratedCubit<SearchState> {
+  SearchCubit() : super(const SearchState(query: "", listHistory: []));
 
   void onChangeQuery(String query) {
     emit(state.copyWith(query: query));
@@ -25,6 +17,14 @@ class SearchCubit extends Cubit<SearchState> with HydratedMixin {
 
   void deleteAllHistory() {
     emit(state.copyWith(listHistory: []));
+  }
+
+  @override
+  SearchState? fromJson(Map<String, dynamic> json) {
+    final listHistory = (json["listHistory"] as List)
+        .map((history) => history.toString())
+        .toList();
+    return state.copyWith(listHistory: listHistory);
   }
 
   @override

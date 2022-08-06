@@ -27,38 +27,42 @@ class HomePage extends StatelessWidget {
                 right: 8,
               ),
               child: BlocBuilder<InternetCubit, InternetState>(
-                buildWhen: (previous, current) =>
-                    previous.isConnection != current.isConnection,
-                builder: (context, state) {
-                  if (state.isConnection) {
-                    return IndexedStack(
-                        index: homeState.currentIndex,
-                        children: const [
-                          PhotosView(),
-                          CollectionsView(),
-                          TopicsView(),
-                          SearchView(),
-                          SettingView()
-                        ]);
-                  }
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          AppAssets.noInternet,
-                          width: 60,
-                          height: 60,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        const Text("no internet"),
-                      ],
-                    ),
-                  );
-                },
-              ),
+                  buildWhen: (previous, current) =>
+                      previous.status != current.status,
+                  builder: (context, state) {
+                    switch (state.status) {
+                      case InternetStatus.none:
+                        return Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                AppAssets.noInternet,
+                                width: 60,
+                                height: 60,
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              const Text("no internet"),
+                            ],
+                          ),
+                        );
+                      case InternetStatus.internet:
+                        return IndexedStack(
+                            index: homeState.currentIndex,
+                            children: const [
+                              PhotosView(),
+                              CollectionsView(),
+                              TopicsView(),
+                              SearchView(),
+                              SettingView()
+                            ]);
+
+                      default:
+                        return const SizedBox();
+                    }
+                  }),
             ),
           ),
           bottomNavigationBar: NavigationBar(

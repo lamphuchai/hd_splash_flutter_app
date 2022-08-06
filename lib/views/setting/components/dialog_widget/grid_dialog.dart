@@ -13,10 +13,9 @@ class GirdDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     List<Map<String, dynamic>> listGird = [
-      {"icon": const Icon(Icons.list), "value": 1},
-      {"icon": const Icon(Icons.grid_view), "value": 2},
-      {"icon": const Icon(Icons.grid_3x3), "value": 3},
-      {"icon": const Icon(Icons.grid_4x4), "value": 4},
+      {"icon": Icons.list, "value": 1},
+      {"icon": Icons.grid_view, "value": 2},
+      {"icon": Icons.grid_3x3, "value": 3},
     ];
     return Dialog(
       child: Padding(
@@ -40,24 +39,29 @@ class GirdDialog extends StatelessWidget {
               builder: (BuildContext context, value, Widget? child) {
                 return Column(
                   children: listGird
-                      .map((locale) => Row(
+                      .map((item) => Row(
                             children: [
                               Checkbox(
-                                value: locale['value'] == selectedValue.value
+                                value: item['value'] == selectedValue.value
                                     ? true
                                     : false,
                                 onChanged: (value) {
                                   if (value == true) {
-                                    selectedValue.value = locale['value'];
+                                    selectedValue.value = item['value'];
                                   }
                                 },
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(4)),
                               ),
+                              const SizedBox(width: 10),
                               Text(
-                                locale['value'].toString(),
+                                item['value'].toString(),
                                 style: textTheme.bodyMedium,
                               ),
+                              const SizedBox(
+                                width: 30,
+                              ),
+                              Icon(item["icon"])
                             ],
                           ))
                       .toList(),

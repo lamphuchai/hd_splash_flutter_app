@@ -48,6 +48,7 @@ class ThemeDialog extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(4)),
                               ),
+                              const SizedBox(width: 10),
                               Text(
                                 theme.name,
                                 style: textTheme.bodyMedium,

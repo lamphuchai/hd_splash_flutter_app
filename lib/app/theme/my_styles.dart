@@ -40,11 +40,15 @@ class MyStyles {
 
   static final popupMenuThemeDataLight = PopupMenuThemeData(
       color: Colors.grey[100],
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)));
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+          side: const BorderSide(color: Colors.black26)));
 
   static final popupMenuThemeDataDark = PopupMenuThemeData(
       color: const Color(0xff1C1C23),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)));
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+          side: const BorderSide(color: Colors.black26)));
 
   static const checkboxThemeDataLight =
       CheckboxThemeData(side: BorderSide(color: Colors.grey));

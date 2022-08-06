@@ -50,6 +50,8 @@ class LanguageDialog extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(4)),
                               ),
+                              const SizedBox(width: 10),
+
                               Text(
                                 locale.languageCode,
                                 style: textTheme.bodyMedium,

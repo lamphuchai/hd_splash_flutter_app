@@ -5,17 +5,20 @@ class AppSettingState extends Equatable {
     required this.themeMode,
     required this.locale,
     required this.crossAxisCountGird,
+    required this.loadQualityType
   });
 
   final ThemeMode themeMode;
   final Locale locale;
   final int crossAxisCountGird;
+  final LoadQualityType loadQualityType;
 
   Map<String, dynamic> toMap() {
     return {
       "themeMode": themeMode.index,
       "locale": locale.languageCode,
       "layout": crossAxisCountGird,
+      "loadQualityType":loadQualityType.index
     };
   }
 
@@ -25,6 +28,7 @@ class AppSettingState extends Equatable {
       locale: LocaleConfig.supportedLanguages[map["locale"]] ??
           LocaleConfig.localeDefault,
       crossAxisCountGird: map["layout"],
+      loadQualityType: LoadQualityType.values[map["loadQualityType"] as int]
     );
   }
 
@@ -35,11 +39,14 @@ class AppSettingState extends Equatable {
     ThemeMode? themeMode,
     Locale? locale,
     int? crossAxisCountGird,
+   LoadQualityType? loadQualityType
+
   }) {
     return AppSettingState(
       themeMode: themeMode ?? this.themeMode,
       locale: locale ?? this.locale,
       crossAxisCountGird: crossAxisCountGird ?? this.crossAxisCountGird,
+      loadQualityType: loadQualityType ?? this.loadQualityType
     );
   }
 }

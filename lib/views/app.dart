@@ -41,7 +41,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AppSettingCubit, AppSettingState>(
       buildWhen: (previous, current) {
-        if (previous.crossAxisCountGird != current.crossAxisCountGird) {
+        if ((previous.crossAxisCountGird != current.crossAxisCountGird) ||
+            (previous.loadQualityType != current.loadQualityType)) {
           return false;
         }
         return true;

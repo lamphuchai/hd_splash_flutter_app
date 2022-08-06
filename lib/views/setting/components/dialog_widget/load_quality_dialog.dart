@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hd_splash_flutter/core/type/enum.dart';
 import 'bottom_button_dialog.dart';
 
-enum LoadQualityType { raw, full, regular, small, thumb, smallS3 }
 
 class LoadQualityDialog extends StatelessWidget {
   const LoadQualityDialog(
@@ -23,7 +23,7 @@ class LoadQualityDialog extends StatelessWidget {
               height: 25,
             ),
             Text(
-              "Row Item Gird",
+              "Load Quality",
               style: textTheme.titleMedium,
             ),
             const SizedBox(
@@ -48,8 +48,9 @@ class LoadQualityDialog extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(4)),
                               ),
+                              const SizedBox(width: 15),
                               Text(
-                                item.toString(),
+                                item.name,
                                 style: textTheme.bodyMedium,
                               ),
                             ],

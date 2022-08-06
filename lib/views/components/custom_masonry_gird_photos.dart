@@ -37,8 +37,13 @@ class CustomMasonryGirdPhotos extends StatelessWidget {
       child: RefreshIndicator(
         onRefresh: onRefresh,
         child: BlocBuilder<AppSettingCubit, AppSettingState>(
-          buildWhen: (previous, current) =>
-              previous.crossAxisCountGird != current.crossAxisCountGird,
+          buildWhen: (previous, current) {
+            if ((previous.crossAxisCountGird != current.crossAxisCountGird) ||
+                (previous.loadQualityType != current.loadQualityType)) {
+              return true;
+            }
+            return false;
+          },
           builder: (context, state) {
             return MasonryGridView.count(
                 padding: const EdgeInsets.only(top: 10),
@@ -63,7 +68,8 @@ class CustomMasonryGirdPhotos extends StatelessWidget {
                             color: photo.color.converterColor,
                             child: CustomCacheNetworkImage(
                                 fit: BoxFit.cover,
-                                imageUrl: photo.urls.regular),
+                                imageUrl:
+                                    photo.urls.photoUrl(state.loadQualityType)),
                           )));
                 }));
           },

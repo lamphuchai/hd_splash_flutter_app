@@ -35,8 +35,13 @@ class CustomMasonryGirdCollections extends StatelessWidget {
       child: RefreshIndicator(
         onRefresh: onRefresh,
         child: BlocBuilder<AppSettingCubit, AppSettingState>(
-          buildWhen: (previous, current) =>
-              previous.crossAxisCountGird != current.crossAxisCountGird,
+          buildWhen: (previous, current) {
+            if ((previous.crossAxisCountGird != current.crossAxisCountGird) ||
+                (previous.loadQualityType != current.loadQualityType)) {
+              return true;
+            }
+            return false;
+          },
           builder: (context, state) {
             return MasonryGridView.count(
                 padding: const EdgeInsets.only(top: 10),
@@ -49,9 +54,11 @@ class CustomMasonryGirdCollections extends StatelessWidget {
                   final collection = collections[index];
                   String uri = "";
                   if (collection.coverPhoto != null) {
-                    uri = collection.coverPhoto!.urls.regular;
+                    uri = collection.coverPhoto!.urls
+                        .photoUrl(state.loadQualityType);
                   } else if (collection.previewPhotos.isNotEmpty) {
-                    uri = collection.previewPhotos[0].urls.regular;
+                    uri = collection.previewPhotos[0].urls
+                        .photoUrl(state.loadQualityType);
                   } else {
                     uri = collection.user.profileImage.large;
                   }
