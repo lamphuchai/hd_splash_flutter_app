@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hd_splash_flutter/app/config/app_assets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ButtonOpenUrlHtml extends StatelessWidget {

@@ -56,12 +56,9 @@ class UserPage extends StatelessWidget {
                     builder: (context, state) {
                       switch (state.status) {
                         case StatusType.loading:
-                          return const LoadingWidget();
+                          return const AppLoadingWidget();
                         case StatusType.error:
-                          return const Icon(
-                            Icons.error_outline_rounded,
-                            color: Colors.red,
-                          );
+                          return const AppErrorWidget();
                         case StatusType.loaded:
                           return TabBarView(
                             children: tabs

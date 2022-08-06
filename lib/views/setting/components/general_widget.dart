@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hd_splash_flutter/logic/cubits/app_setting/app_setting_cubit.dart';
 import 'package:hd_splash_flutter/views/setting/components/dialog_widget/language_dialog.dart';
-import 'dialog_widget/bottom_button_dialog.dart';
 import 'dialog_widget/theme_dialog.dart';
 import 'item_block.dart';
 
@@ -83,7 +82,6 @@ class GeneralWidget extends StatelessWidget {
                 title: "Gird",
                 subtitle: "2",
                 onTap: () {
-                  print("object");
                 },
               )
             ],

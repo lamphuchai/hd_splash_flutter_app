@@ -32,7 +32,9 @@ class DetailTopicPage extends StatelessWidget {
           builder: (context, state) {
             switch (state.statusType) {
               case StatusType.loading:
-                return const LoadingWidget();
+                return const AppLoadingWidget();
+              case StatusType.error:
+                return const AppErrorWidget();
               case StatusType.loaded:
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -47,13 +49,7 @@ class DetailTopicPage extends StatelessWidget {
                     photos: state.photos,
                   ),
                 );
-              case StatusType.error:
-                return const Center(
-                  child: Icon(
-                    Icons.error_outline,
-                    color: Colors.red,
-                  ),
-                );
+
               default:
                 return const SizedBox();
             }
@@ -69,7 +65,7 @@ class DetailTopicPage extends StatelessWidget {
           buildWhen: (previous, current) =>
               previous.photosOrderBy != current.photosOrderBy,
           builder: (context, state) {
-            return ButtonSortPhotos(
+            return ButtonSortOrderBy(
               selected: state.photosOrderBy,
               listValue: TopicPhotosOrderBy.values,
               onSelected: (orderBy) =>

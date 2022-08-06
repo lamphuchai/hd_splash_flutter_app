@@ -31,7 +31,6 @@ class QualityWidget extends StatelessWidget {
                 title: "Load Quality",
                 subtitle: "Reqular",
                 onTap: () {
-                  print("object");
                 },
               ),
               const SizedBox(
@@ -42,7 +41,6 @@ class QualityWidget extends StatelessWidget {
                 title: "Download quality",
                 subtitle: "Reqular",
                 onTap: () {
-                  print("object");
                 },
               ),
             ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/core/type/enum.dart';
 import 'package:hd_splash_flutter/views/components/components.dart';
 import 'package:hd_splash_flutter/views/topics/topics.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
@@ -15,7 +16,7 @@ class TopicsPage extends StatelessWidget {
       sortChild: BlocBuilder<TopicsCubit, TopicsState>(
         buildWhen: (previous, current) => previous.orderBy != current.orderBy,
         builder: (context, state) {
-          return ButtonSortPhotos(
+          return ButtonSortOrderBy(
             listValue: OrderByTopic.values,
             selected: state.orderBy,
             onSelected: (orderBy) =>
@@ -27,14 +28,11 @@ class TopicsPage extends StatelessWidget {
         buildWhen: (previous, current) => previous.status != current.status,
         builder: (context, state) {
           switch (state.status) {
-            case TopicsStatus.loading:
-              return const LoadingWidget();
-            case TopicsStatus.error:
-              return const Icon(
-                Icons.error_outline_rounded,
-                color: Colors.red,
-              );
-            case TopicsStatus.loaded:
+            case StatusType.loading:
+                  return const AppLoadingWidget();
+                case StatusType.error:
+                  return const AppErrorWidget();
+            case StatusType.loaded:
               return const TopicsListView();
             default:
               return const SizedBox();

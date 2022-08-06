@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                        Text("no internet"),
+                    const    Text("no internet"),
                       ],
                     ),
                   );

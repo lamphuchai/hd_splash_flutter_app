@@ -43,7 +43,7 @@ class _TabLikesViewState extends State<TabLikesView>
           buildWhen: (previous, current) =>
               previous.photosOrderBy != current.photosOrderBy,
           builder: (context, state) {
-            return ButtonSortPhotos(
+            return ButtonSortOrderBy(
               selected: LikesPhotosOrderBy.latest,
               listValue: LikesPhotosOrderBy.values,
               onSelected: (orderBy) =>

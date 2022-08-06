@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../app/extensions/extensions.dart';
 
-class ButtonSortPhotos extends StatelessWidget {
-  const ButtonSortPhotos(
+class ButtonSortOrderBy extends StatelessWidget {
+  const ButtonSortOrderBy(
       {Key? key,
       required this.listValue,
       required this.selected,

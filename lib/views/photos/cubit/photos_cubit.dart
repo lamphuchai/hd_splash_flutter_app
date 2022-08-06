@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/core/type/enum.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
 
 part 'photos_state.dart';
@@ -16,13 +17,13 @@ class PhotosCubit extends Cubit<PhotosState> {
 
   Future<void> loadingPhotos() async {
     try {
-      emit(state.copyWith(status: PhotosStatus.loading));
+      emit(state.copyWith(status: StatusType.loading));
       final photos =
           await _photosApi.getPhotos(perPage: _prePage, orderBy: state.orderBy);
-      emit(state.copyWith(photos: photos, status: PhotosStatus.loaded));
+      emit(state.copyWith(photos: photos, status: StatusType.loaded));
     } catch (error) {
       log(error.toString());
-      emit(state.copyWith(status: PhotosStatus.error));
+      emit(state.copyWith(status: StatusType.error));
     }
   }
 
@@ -37,7 +38,7 @@ class PhotosCubit extends Cubit<PhotosState> {
       ]));
     } catch (error) {
       log(error.toString());
-      emit(state.copyWith(status: PhotosStatus.error));
+      emit(state.copyWith(status: StatusType.error));
     }
   }
 

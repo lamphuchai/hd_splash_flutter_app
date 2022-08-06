@@ -16,7 +16,9 @@ class TotalAndTagsPhoto extends StatelessWidget {
         final tags = state.dataPhoto["tags"];
         switch (state.status) {
           case StatusType.loading:
-            return const LoadingWidget();
+            return const AppLoadingWidget();
+          case StatusType.error:
+            return const AppErrorWidget();
           case StatusType.loaded:
             return Column(
               children: [
@@ -68,11 +70,6 @@ class TotalAndTagsPhoto extends StatelessWidget {
                           ))),
                 ),
               ],
-            );
-          case StatusType.error:
-            return const Icon(
-              Icons.error_outline_rounded,
-              color: Colors.red,
             );
           default:
             return const SizedBox();

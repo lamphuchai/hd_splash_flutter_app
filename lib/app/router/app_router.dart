@@ -5,7 +5,6 @@ import 'package:hd_splash_flutter/views/detail_photo/detail_photo.dart';
 import 'package:hd_splash_flutter/views/detail_topic/view/detail_topic_view.dart';
 import 'package:hd_splash_flutter/views/full_photo/full_photo.dart';
 import 'package:hd_splash_flutter/views/result_search/result_search.dart';
-import 'package:hd_splash_flutter/views/search/view/search_view.dart';
 import 'package:hd_splash_flutter/views/user/user.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';

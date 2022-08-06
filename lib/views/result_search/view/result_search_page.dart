@@ -33,19 +33,14 @@ class ResultSearchPage extends StatelessWidget {
           builder: (context, state) {
             switch (state.status) {
               case StatusType.loading:
-                 return const LoadingWidget();
+                  return const AppLoadingWidget();
+                case StatusType.error:
+                  return const AppErrorWidget();
               case StatusType.loaded:
                 return const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8),
                   child: TabBarView(
                       children: [TabPhotos(), TabCollections(), TabUsers()]),
-                );
-              case StatusType.error:
-                return const Center(
-                  child: Icon(
-                    Icons.error_outline,
-                    color: Colors.red,
-                  ),
                 );
               default:
                 return const SizedBox();

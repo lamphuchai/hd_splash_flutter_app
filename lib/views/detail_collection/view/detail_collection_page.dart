@@ -88,7 +88,9 @@ class DetailCollectionPage extends StatelessWidget {
             builder: (context, state) {
               switch (state.statusType) {
                 case StatusType.loading:
-                  return const LoadingWidget();
+                  return const AppLoadingWidget();
+                case StatusType.error:
+                  return const AppErrorWidget();
                 case StatusType.loaded:
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -103,13 +105,6 @@ class DetailCollectionPage extends StatelessWidget {
                       onRefresh: () async =>
                           context.read<DetailCollectionCubit>().loadingPhotos(),
                       photos: state.photos,
-                    ),
-                  );
-                case StatusType.error:
-                  return const Center(
-                    child: Icon(
-                      Icons.error_outline,
-                      color: Colors.red,
                     ),
                   );
                 default:
