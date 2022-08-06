@@ -39,11 +39,11 @@ class MyStyles {
   static const tabBarTheme = TabBarTheme();
 
   static final popupMenuThemeDataLight = PopupMenuThemeData(
-      color: Colors.white,
+      color: Colors.grey[100],
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)));
 
   static final popupMenuThemeDataDark = PopupMenuThemeData(
-      color: DarkThemeColors.bottomSheetColor,
+      color: const Color(0xff1C1C23),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)));
 
   static const checkboxThemeDataLight =

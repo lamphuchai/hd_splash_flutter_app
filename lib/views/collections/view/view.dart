@@ -1,2 +1,2 @@
 export './collections_page.dart';
-export './view.dart';
+export './collections_view.dart';

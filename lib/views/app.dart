@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hd_splash_flutter/app/locale/app_localizations.dart';
-import 'package:hd_splash_flutter/app/router/app_router.dart';
-import 'package:hd_splash_flutter/app/theme/my_themes.dart';
-import 'package:hd_splash_flutter/logic/cubits/app_setting/app_setting_cubit.dart';
-import 'package:hd_splash_flutter/logic/cubits/download/download_cubit.dart';
-import 'package:hd_splash_flutter/logic/cubits/internet/internet_cubit.dart';
-import 'package:hd_splash_flutter/views/home/home.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../app/locale/app_localizations.dart';
+import '../app/router/app_router.dart';
+import '../app/theme/my_themes.dart';
+import '../logic/cubits/cubits.dart';
+import 'home/home.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -49,7 +48,7 @@ class MyApp extends StatelessWidget {
       },
       builder: (context, state) {
         return MaterialApp(
-          title: 'Flutter Demo',
+          title: 'Hd SPLASH FLUTTER',
           debugShowCheckedModeBanner: false,
           themeMode: state.themeMode,
           locale: state.locale,

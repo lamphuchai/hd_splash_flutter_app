@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.hd_splash_flutter">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="hd_splash_flutter"
         android:name="${applicationName}"

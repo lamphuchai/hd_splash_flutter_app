@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hd_splash_flutter/app/config/app_assets.dart';
-import 'package:hd_splash_flutter/logic/cubits/internet/internet_cubit.dart';
-import 'package:hd_splash_flutter/views/collections/view/collections_view.dart';
-import 'package:hd_splash_flutter/views/home/home.dart';
-import 'package:hd_splash_flutter/views/photos/photos.dart';
-import 'package:hd_splash_flutter/views/search/search.dart';
-import 'package:hd_splash_flutter/views/setting/setting.dart';
-import 'package:hd_splash_flutter/views/topics/topics.dart';
+
+import '../../../logic/cubits/cubits.dart';
+import '../../collections/collections.dart';
+import '../../photos/photos.dart';
+import '../../search/search.dart';
+import '../../setting/setting.dart';
+import '../../topics/topics.dart';
+import '../home.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -52,7 +53,7 @@ class HomePage extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                    const    Text("no internet"),
+                        const Text("no internet"),
                       ],
                     ),
                   );

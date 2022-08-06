@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hd_splash_flutter/logic/cubits/app_setting/app_setting_cubit.dart';
+import 'package:hd_splash_flutter/views/setting/components/dialog_widget/grid_dialog.dart';
 import 'package:hd_splash_flutter/views/setting/components/dialog_widget/language_dialog.dart';
 import 'dialog_widget/theme_dialog.dart';
 import 'item_block.dart';
@@ -77,13 +78,27 @@ class GeneralWidget extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
-              ItemBlock(
-                icon: const Icon(Icons.grid_view),
-                title: "Gird",
-                subtitle: "2",
-                onTap: () {
+              BlocBuilder<AppSettingCubit, AppSettingState>(
+                buildWhen: (previous, current) =>
+                    previous.crossAxisCountGird != current.crossAxisCountGird,
+                builder: (context, state) {
+                  return ItemBlock(
+                    icon: const Icon(Icons.grid_view),
+                    title: "Gird",
+                    subtitle: state.crossAxisCountGird.toString(),
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: ((context) => GirdDialog(
+                              selectedValue:
+                                  ValueNotifier(state.crossAxisCountGird),
+                              onChange: (value) => context
+                                  .read<AppSettingCubit>()
+                                  .changeLayout(value))));
+                    },
+                  );
                 },
-              )
+              ),
             ],
           ),
         ),
@@ -94,4 +109,3 @@ class GeneralWidget extends StatelessWidget {
     );
   }
 }
-

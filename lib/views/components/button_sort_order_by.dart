@@ -17,7 +17,6 @@ class ButtonSortOrderBy extends StatelessWidget {
         position: PopupMenuPosition.under,
         icon: const Icon(Icons.sort),
         onSelected: onSelected,
-        color: Theme.of(context).primaryColor,
         itemBuilder: ((context) {
           return listValue
               .map((orderBy) => PopupMenuItem(
