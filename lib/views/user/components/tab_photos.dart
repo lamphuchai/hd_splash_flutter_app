@@ -42,7 +42,7 @@ class _TabPhotosViewState extends State<TabPhotosView>
               previous.photosOrderBy != current.photosOrderBy,
           builder: (context, state) {
             return ButtonSortOrderBy(
-              selected: OrderBy.latest,
+              selected: state.photosOrderBy,
               listValue:OrderBy.values,
               onSelected: (orderBy) =>
                   context.read<UserCubit>().changePhotosOrderBy(orderBy),

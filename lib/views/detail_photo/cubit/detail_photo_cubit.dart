@@ -22,6 +22,7 @@ class DetailPhotoCubit extends Cubit<DetailPhotoState> {
         "downloads": photo.downloads
       }));
     } catch (error) {
+      print(error.toString());
       emit(state.copyWith(status: StatusType.error));
     }
   }

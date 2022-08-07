@@ -22,7 +22,7 @@ Map<String, String> en = {
   LangCode.noDataResultSearch: "No data search",
     LangCode.update: "Update",
   LangCode.create: "Create",
-  LangCode.relatedCollections: "related collections",
+  LangCode.relatedCollections: "Related collections",
 
 
 

@@ -35,7 +35,7 @@ class Exif {
       aperture: map['aperture'] != null ? map['aperture'] as String : null,
       focalLength:
           map['focal_length'] != null ? map['focal_length'] as String : null,
-      isoSpeedEatings: map['iso'] != null ? map['iso'] as String : null,
+      isoSpeedEatings: map['iso'] != null ? '${map['iso']}' : null,
     );
   }
 
