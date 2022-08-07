@@ -54,21 +54,22 @@ dev_dependencies:
   flutter_launcher_icons: ^0.9.3
 
 
-# flutter_icons:
-#   android: "launcher_icon"
-#   image_path: assets/icons/splash.png
-#   adaptive_icon_background: "#ffffff"
-#   ios : true
+flutter_icons:
+  android: "launcher_icon"
+  image_path: assets/icons/icon.png
+  adaptive_icon_background: "#ffffff"
+  ios : true
+  remove_alpha_ios: true
 
-# flutter_native_splash:
-#   color: "#ffffff"
-#   image: assets/icons/splash.png
-#   color_dark: "#121212"
-#   image_dark: assets/icons/splash_dark.png
-#   android : true
-#   ios : true
-#   web: false
-#   fullscreen: true
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/icons/icon.png
+  color_dark: "#121212"
+  image_dark: assets/icons/icon_dark.png
+  android : true
+  ios : true
+  web: false
+  fullscreen: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
