@@ -22,5 +22,3 @@ Future<void> main() async {
   HydratedBlocOverrides.runZoned(() => runApp(const App()),
       storage: storage, blocObserver: AppBlocObserver());
 }
-
-

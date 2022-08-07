@@ -55,7 +55,6 @@ class MyApp extends StatelessWidget {
           locale: state.locale,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
-          scrollBehavior: const ScrollBehavior().copyWith(overscroll: false),
           theme: MyThemes.lightTheme,
           darkTheme: MyThemes.darkTheme,
           home: const HomeView(),
