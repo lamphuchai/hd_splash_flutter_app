@@ -4,7 +4,6 @@ A new Flutter project.
 
 ## Getting Started
 <img width="200" src="screenshots/images/Image-2022-08-07 at 20.30.58.png"></a>
-<img width="200" src="screenshots/images/Image-2022-08-07 at 20.30.58.png"></a>
 <img width="200" src="screenshots/images/Image-2022-08-07 at 20.28.44.png"></a>
 <img width="200" src="screenshots/images/Image-2022-08-07 at 20.28.48.png"></a>
 <img width="200" src="screenshots/images/Image-2022-08-07 at 20.28.54.png"></a>
