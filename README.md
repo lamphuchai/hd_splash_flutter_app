@@ -1,8 +1,14 @@
 # hd_splash_flutter
 
-A new Flutter project.
+## Giới thiệu
 
-## Getting Started
+Ứng dụng xem và tải xuống hình ảnh từ unspalsh
+
+
+## Giao diện
+
+* [Video demo](https://youtu.be/L3jAbv2UjKs)
+
 <img width="200" src="screenshots/images/Image-2022-08-07 at 20.28.44.png"></a>
 <img width="200" src="screenshots/images/Image-2022-08-07 at 20.41.22.png"></a>
 <img width="200" src="screenshots/images/Image-2022-08-07 at 20.28.48.png"></a>
@@ -41,3 +47,12 @@ A new Flutter project.
 <img width="200" src="screenshots/images/Image-2022-08-07 at 20.41.27.png"></a>
 <img width="200" src="screenshots/images/Image-2022-08-07 at 20.41.47.png"></a>
 <img width="200" src="screenshots/images/Image-2022-08-07 at 20.41.51.png"></a>
+
+
+## **Thư viện và Công nghệ**
+
+*   [Unsplash Api](https://unsplash.com/developers)
+*	[Flutter](https://flutter.dev/)
+*	[Pub.dev](https://pub.dev/)
+*	[Bloc](https://github.com/felangel/bloc)
+
