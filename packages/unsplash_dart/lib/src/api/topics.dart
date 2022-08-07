@@ -64,7 +64,7 @@ class Topics extends TopicsAbs {
     final data =
         await _dioClient.get('/topics/$idTopic/photos', queryParameters: {
       "page": page,
-      "pre_page": perPage,
+      "per_page": perPage,
       "orientation": orientation?.name,
       "order_by": orderBy.name
     });

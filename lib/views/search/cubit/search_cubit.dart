@@ -12,7 +12,8 @@ class SearchCubit extends HydratedCubit<SearchState> {
   }
 
   void onSaveHistory() {
-    emit(state.copyWith(listHistory: [state.query, ...state.listHistory]));
+    final listHistory = [state.query, ...state.listHistory];
+    emit(state.copyWith(listHistory: listHistory.toSet().toList()));
   }
 
   void deleteAllHistory() {

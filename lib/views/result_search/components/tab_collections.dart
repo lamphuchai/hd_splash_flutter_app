@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
 import 'package:hd_splash_flutter/views/components/components.dart';
 import 'package:hd_splash_flutter/views/result_search/result_search.dart';
 
@@ -20,6 +21,11 @@ class _TabCollectionsState extends State<TabCollections>
       buildWhen: (previous, current) =>
           previous.collections != current.collections,
       builder: (context, state) {
+         if (state.collections.isEmpty) {
+                return Center(
+                  child: Text(context.lang("no-data-result-search")),
+                );
+              }
         return CustomMasonryGirdCollections(
           collections: state.collections,
           onRefresh: () async {},

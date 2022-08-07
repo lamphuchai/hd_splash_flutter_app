@@ -54,6 +54,7 @@ class SearchPage extends StatelessWidget {
                         Navigator.pushNamed(context, RouteName.resultSearch,
                             arguments: context.read<SearchCubit>().state.query);
                       }
+                      FocusScope.of(context).unfocus();
                     },
                   ),
                 ),

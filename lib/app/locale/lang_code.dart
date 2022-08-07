@@ -17,11 +17,8 @@ class LangCode {
 
   static const String inputSearch = "input-search";
 
-
-
-
-
-
+  static const String noInternet = "no-internet";
+  static const String noDataResultSearch = "no-data-result-search";
 
   //setting
   static const String vi = "vi";
@@ -39,9 +36,6 @@ class LangCode {
 
   static const String ok = "ok";
   static const String cancel = "cancel";
-
-
-
 
   //
   //photos
@@ -84,5 +78,4 @@ class LangCode {
   static const String regular = "position";
   static const String small = "position";
   static const String thumb = "position";
-
 }

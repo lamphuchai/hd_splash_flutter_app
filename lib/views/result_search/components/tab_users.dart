@@ -38,6 +38,11 @@ class _TabUsersState extends State<TabUsers>
           child: BlocBuilder<ResultSearchCubit, ResultSearchState>(
             buildWhen: (previous, current) => previous.users != current.users,
             builder: (context, state) {
+              if (state.users.isEmpty) {
+                return Center(
+                  child: Text(context.lang("no-data-result-search")),
+                );
+              }
               return MasonryGridView.count(
                   padding: const EdgeInsets.only(top: 10),
                   crossAxisCount: appSetting.crossAxisCountGird,

@@ -52,6 +52,7 @@ class CustomMasonryGirdPhotos extends StatelessWidget {
                 crossAxisSpacing: 8,
                 crossAxisCount: state.crossAxisCountGird,
                 shrinkWrap: shrinkWrap,
+                // physics: const BouncingScrollPhysics(),
                 itemBuilder: ((context, index) {
                   final photo = photos[index];
                   return GestureDetector(

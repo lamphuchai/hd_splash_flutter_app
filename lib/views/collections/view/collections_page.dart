@@ -14,20 +14,27 @@ class CollectionsPage extends StatelessWidget {
     return CustomNestedScrollHead(
       title: context.lang("collections"),
       subtitle: context.lang("sub-collections"),
-      body: BlocBuilder<CollectionsCubit, CollectionsState>(
-        buildWhen: (previous, current) => previous.status != current.status,
-        builder: (context, state) {
-          switch (state.status) {
-            case StatusType.loading:
-              return const AppLoadingWidget();
-            case StatusType.error:
-              return const AppErrorWidget();
-            case StatusType.loaded:
-              return const CollectionsGirdView();
-            default:
-              return const SizedBox();
+      body: AppInternetWidget(
+        reload: (reconnectInternet) {
+          if (reconnectInternet) {
+            context.read<CollectionsCubit>().loadingCollections();
           }
         },
+        child: BlocBuilder<CollectionsCubit, CollectionsState>(
+          buildWhen: (previous, current) => previous.status != current.status,
+          builder: (context, state) {
+            switch (state.status) {
+              case StatusType.loading:
+                return const AppLoadingWidget();
+              case StatusType.error:
+                return const AppErrorWidget();
+              case StatusType.loaded:
+                return const CollectionsGirdView();
+              default:
+                return const SizedBox();
+            }
+          },
+        ),
       ),
     );
   }

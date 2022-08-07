@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
 import 'package:hd_splash_flutter/views/components/components.dart';
 import 'package:hd_splash_flutter/views/result_search/result_search.dart';
 
@@ -19,6 +20,11 @@ class _TabPhotosState extends State<TabPhotos>
     return BlocBuilder<ResultSearchCubit, ResultSearchState>(
       buildWhen: (previous, current) => previous.photos != current.photos,
       builder: (context, state) {
+        if (state.photos.isEmpty) {
+          return Center(
+            child: Text(context.lang("no-data-result-search")),
+          );
+        }
         return CustomMasonryGirdPhotos(
           loadMoreData: (isLoadMore) {
             if (isLoadMore) {

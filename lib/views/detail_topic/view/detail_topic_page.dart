@@ -36,6 +36,7 @@ class DetailTopicPage extends StatelessWidget {
               case StatusType.error:
                 return const AppErrorWidget();
               case StatusType.loaded:
+                print(state.photos.length);
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: CustomMasonryGirdPhotos(
@@ -49,7 +50,6 @@ class DetailTopicPage extends StatelessWidget {
                     photos: state.photos,
                   ),
                 );
-
               default:
                 return const SizedBox();
             }

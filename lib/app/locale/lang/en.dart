@@ -18,6 +18,9 @@ Map<String, String> en = {
   LangCode.curatedBy: "Curated by",
   LangCode.view: "Views",
   LangCode.inputSearch:  "Import to search",
+  LangCode.noInternet:  "No interner",
+  LangCode.noDataResultSearch: "No data search",
+
 
 
 

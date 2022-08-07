@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hd_splash_flutter/app/config/app_assets.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
 
 import '../../../logic/cubits/cubits.dart';
 import '../../collections/collections.dart';
@@ -26,43 +27,15 @@ class HomePage extends StatelessWidget {
                 left: 8,
                 right: 8,
               ),
-              child: BlocBuilder<InternetCubit, InternetState>(
-                  buildWhen: (previous, current) =>
-                      previous.status != current.status,
-                  builder: (context, state) {
-                    switch (state.status) {
-                      case InternetStatus.none:
-                        return Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                AppAssets.noInternet,
-                                width: 60,
-                                height: 60,
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              const Text("no internet"),
-                            ],
-                          ),
-                        );
-                      case InternetStatus.internet:
-                        return IndexedStack(
-                            index: homeState.currentIndex,
-                            children: const [
-                              PhotosView(),
-                              CollectionsView(),
-                              TopicsView(),
-                              SearchView(),
-                              SettingView()
-                            ]);
-
-                      default:
-                        return const SizedBox();
-                    }
-                  }),
+              child: IndexedStack(
+                  index: homeState.currentIndex,
+                  children: const [
+                    PhotosView(),
+                    CollectionsView(),
+                    TopicsView(),
+                    SearchView(),
+                    SettingView()
+                  ]),
             ),
           ),
           bottomNavigationBar: NavigationBar(

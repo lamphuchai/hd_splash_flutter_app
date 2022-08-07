@@ -20,7 +20,6 @@ class CustomNestedScrollHead extends StatelessWidget {
       height: context.screenSize.height,
       child: NestedScrollView(
           physics: const NeverScrollableScrollPhysics(),
-          floatHeaderSlivers: true,
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
                 SliverToBoxAdapter(
                   child: Padding(

@@ -25,20 +25,27 @@ class TopicsPage extends StatelessWidget {
           );
         },
       ),
-      body: BlocBuilder<TopicsCubit, TopicsState>(
-        buildWhen: (previous, current) => previous.status != current.status,
-        builder: (context, state) {
-          switch (state.status) {
-            case StatusType.loading:
-              return const AppLoadingWidget();
-            case StatusType.error:
-              return const AppErrorWidget();
-            case StatusType.loaded:
-              return const TopicsListView();
-            default:
-              return const SizedBox();
+      body: AppInternetWidget(
+        reload: (reconnectInternet) {
+          if (reconnectInternet) {
+            context.read<TopicsCubit>().loadingTopics();
           }
         },
+        child: BlocBuilder<TopicsCubit, TopicsState>(
+          buildWhen: (previous, current) => previous.status != current.status,
+          builder: (context, state) {
+            switch (state.status) {
+              case StatusType.loading:
+                return const AppLoadingWidget();
+              case StatusType.error:
+                return const AppErrorWidget();
+              case StatusType.loaded:
+                return const TopicsListView();
+              default:
+                return const SizedBox();
+            }
+          },
+        ),
       ),
     );
   }

@@ -13,8 +13,8 @@ class PhotosPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomNestedScrollHead(
-        title: context.lang(LangCode.photos),
-        subtitle: context.lang(LangCode.subPhotos),
+        title: context.lang('photos'),
+        subtitle: context.lang("sub-photos"),
         sortChild: BlocBuilder<PhotosCubit, PhotosState>(
           buildWhen: (previous, current) => previous.orderBy != current.orderBy,
           builder: (context, state) {
@@ -26,19 +26,27 @@ class PhotosPage extends StatelessWidget {
             );
           },
         ),
-        body: BlocBuilder<PhotosCubit, PhotosState>(
-            buildWhen: (previous, current) => previous.status != current.status,
-            builder: ((context, state) {
-              switch (state.status) {
-                case StatusType.loading:
-                  return const AppLoadingWidget();
-                case StatusType.error:
-                  return const AppErrorWidget();
-                case StatusType.loaded:
-                  return const PhotosGridView();
-                default:
-                  return const SizedBox();
-              }
-            })));
+        body: AppInternetWidget(
+          reload: (reconnectInternet) {
+            if (reconnectInternet) {
+              context.read<PhotosCubit>().loadingPhotos();
+            }
+          },
+          child: BlocBuilder<PhotosCubit, PhotosState>(
+              buildWhen: (previous, current) =>
+                  previous.status != current.status,
+              builder: ((context, state) {
+                switch (state.status) {
+                  case StatusType.loading:
+                    return const AppLoadingWidget();
+                  case StatusType.error:
+                    return const AppErrorWidget();
+                  case StatusType.loaded:
+                    return const PhotosGridView();
+                  default:
+                    return const SizedBox();
+                }
+              })),
+        ));
   }
 }

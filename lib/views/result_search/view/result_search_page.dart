@@ -29,24 +29,31 @@ class ResultSearchPage extends StatelessWidget {
             )
           ]),
         ),
-        body: BlocBuilder<ResultSearchCubit, ResultSearchState>(
-          buildWhen: (previous, current) => previous.status != current.status,
-          builder: (context, state) {
-            switch (state.status) {
-              case StatusType.loading:
-                return const AppLoadingWidget();
-              case StatusType.error:
-                return const AppErrorWidget();
-              case StatusType.loaded:
-                return const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8),
-                  child: TabBarView(
-                      children: [TabPhotos(), TabCollections(), TabUsers()]),
-                );
-              default:
-                return const SizedBox();
+        body: AppInternetWidget(
+          reload: (reconnectInternet) {
+            if (reconnectInternet) {
+              context.read<ResultSearchCubit>().searchAll();
             }
           },
+          child: BlocBuilder<ResultSearchCubit, ResultSearchState>(
+            buildWhen: (previous, current) => previous.status != current.status,
+            builder: (context, state) {
+              switch (state.status) {
+                case StatusType.loading:
+                  return const AppLoadingWidget();
+                case StatusType.error:
+                  return const AppErrorWidget();
+                case StatusType.loaded:
+                  return const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    child: TabBarView(
+                        children: [TabPhotos(), TabCollections(), TabUsers()]),
+                  );
+                default:
+                  return const SizedBox();
+              }
+            },
+          ),
         ),
       ),
     );

@@ -19,16 +19,16 @@ class DetailPhotoPage extends StatelessWidget {
       listener: (context, state) {
         switch (state.status) {
           case DownloadStatus.start:
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(context.lang(LangCode.downloadStarted))));
+            ScaffoldMessenger.of(context).showSnackBar(
+                customSnackBar(context.lang(LangCode.downloadStarted)));
             break;
           case DownloadStatus.complete:
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(context.lang(LangCode.downloadComplete))));
+            ScaffoldMessenger.of(context).showSnackBar(
+                customSnackBar(context.lang(LangCode.downloadComplete)));
             break;
           case DownloadStatus.error:
             ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(context.lang(LangCode.downloadErr))));
+                customSnackBar(context.lang(LangCode.downloadErr)));
             break;
           default:
             break;

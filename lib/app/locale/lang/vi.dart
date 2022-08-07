@@ -50,7 +50,8 @@ Map<String, String> vi = {
   LangCode.featured: "Đặc sắc",
   LangCode.position: "Chức vụ",
   LangCode.view: "Lượt xem",
-  LangCode.inputSearch:  "Nhập để tìm kiếm",
-
+  LangCode.inputSearch: "Nhập để tìm kiếm",
+  LangCode.noInternet: "Không có interner",
+  LangCode.noDataResultSearch: "Không tìm thấy dữ liệu",
 
 };

@@ -35,7 +35,7 @@ class ExifPhoto extends StatelessWidget {
                             const SizedBox(
                               height: 5,
                             ),
-                            Text(exif.model.toString())
+                            Text(exif.model ?? "Unknown")
                           ],
                         )),
                         Expanded(
@@ -64,7 +64,7 @@ class ExifPhoto extends StatelessWidget {
                             const SizedBox(
                               height: 5,
                             ),
-                            Text(exif.focalLength.toString())
+                            Text(exif.focalLength ?? "Unknown")
                           ],
                         )),
                         Expanded(

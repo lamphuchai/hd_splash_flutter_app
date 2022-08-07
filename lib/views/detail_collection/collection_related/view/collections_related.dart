@@ -33,14 +33,14 @@ class CollectionsRelated extends StatelessWidget {
         children: [
           const SizedBox(
             width: double.infinity,
-            height: 16,
+            height: 15,
           ),
           Align(
             alignment: Alignment.center,
             child: GestureDetector(
               onTap: () => Navigator.pop(context),
               child: Container(
-                width: 50,
+                width: 40,
                 height: 8,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8), color: Colors.grey),
@@ -80,8 +80,16 @@ class CollectionsRelated extends StatelessWidget {
                         child: ListView.builder(
                             itemCount: state.collections.length,
                             scrollDirection: Axis.horizontal,
-                            itemBuilder: ((context, index) => ItemCollection(
-                                collection: state.collections[index]))),
+                            itemBuilder: ((context, index) => Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 10,
+                                      right:
+                                          state.collections.length == index + 1
+                                              ? 10
+                                              : 0),
+                                  child: ItemCollection(
+                                      collection: state.collections[index]),
+                                ))),
                       );
                     default:
                       return const SizedBox();
@@ -92,7 +100,7 @@ class CollectionsRelated extends StatelessWidget {
           ),
           const SizedBox(
             width: double.infinity,
-            height: 15,
+            height: 20,
           ),
         ],
       ),
@@ -113,74 +121,71 @@ class ItemCollection extends StatelessWidget {
     } else {
       uri = collection.user.profileImage.large;
     }
-    return Padding(
-      padding: const EdgeInsets.only(left: 10),
-      child: GestureDetector(
-          onTap: () => Navigator.pushNamed(context, RouteName.detailCollection,
-              arguments: collection),
-          child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: SizedBox(
-                width: context.screenSize.width * 1 / 2,
-                height: 200,
-                child: Stack(children: [
-                  Positioned(
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: Container(
-                      color: collection.coverPhoto?.color.converterColor,
-                      child: CustomCacheNetworkImage(
-                        imageUrl: uri,
-                        fit: BoxFit.cover,
-                      ),
+    return GestureDetector(
+        onTap: () => Navigator.pushNamed(context, RouteName.detailCollection,
+            arguments: collection),
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: SizedBox(
+              width: context.screenSize.width * 1 / 2,
+              height: 200,
+              child: Stack(children: [
+                Positioned(
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    color: collection.coverPhoto?.color.converterColor,
+                    child: CustomCacheNetworkImage(
+                      imageUrl: uri,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  Positioned(
-                    bottom: 10,
-                    left: 10,
-                    right: 10,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.3),
-                          borderRadius: BorderRadius.circular(10)),
-                      padding: const EdgeInsets.only(
-                          left: 10, right: 10, top: 10, bottom: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Wrap(
-                            children: [
-                              Text(
-                                collection.title,
-                                style: const TextStyle(
-                                    color: Colors.white, fontSize: 16),
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            '${collection.totalPhotos} photos',
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 11),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            collection.user.name,
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 13),
-                          ),
-                        ],
-                      ),
+                ),
+                Positioned(
+                  bottom: 10,
+                  left: 10,
+                  right: 10,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(10)),
+                    padding: const EdgeInsets.only(
+                        left: 10, right: 10, top: 10, bottom: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Wrap(
+                          children: [
+                            Text(
+                              collection.title,
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 16),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          '${collection.totalPhotos} photos',
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 11),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          collection.user.name,
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 13),
+                        ),
+                      ],
                     ),
-                  )
-                ]),
-              ))),
-    );
+                  ),
+                )
+              ]),
+            )));
   }
 }
