@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hd_splash_flutter/app/extensions/extensions.dart';
 import 'package:hd_splash_flutter/app/locale/lang_code.dart';
 import 'package:hd_splash_flutter/views/setting/setting.dart';
-import 'package:path_provider/path_provider.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -25,19 +24,6 @@ class SettingPage extends StatelessWidget {
           ),
           const GeneralWidget(),
           const QualityWidget(),
-          ElevatedButton(
-              onPressed: () async {
-                // await DefaultCacheManager().emptyCache();
-                final cacheDir = await getTemporaryDirectory();
-                if (cacheDir.existsSync()) {
-                  cacheDir.deleteSync(recursive: true);
-                }
-                final appDir = await getApplicationSupportDirectory();
-                if (appDir.existsSync()) {
-                  appDir.deleteSync(recursive: true);
-                }
-              },
-              child: const Text("clear cache"))
         ],
       ),
     );

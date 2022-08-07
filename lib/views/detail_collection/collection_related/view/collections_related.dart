@@ -55,7 +55,7 @@ class CollectionsRelated extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             alignment: Alignment.center,
             child: Text(
-              "Related collections",
+              context.lang("related-collections"),
               style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
@@ -169,7 +169,7 @@ class ItemCollection extends StatelessWidget {
                           height: 5,
                         ),
                         Text(
-                          '${collection.totalPhotos} photos',
+                          '${collection.totalPhotos} ${context.lang("photos")}',
                           style: const TextStyle(
                               color: Colors.white, fontSize: 11),
                         ),

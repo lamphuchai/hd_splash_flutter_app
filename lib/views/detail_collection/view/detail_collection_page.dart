@@ -51,11 +51,13 @@ class DetailCollectionPage extends StatelessWidget {
                         flex: 3,
                         child: Column(
                           children: [
-                            Text('Curated by ${collection.user.name}'),
+                            Text(
+                                '${context.lang("curated-by")} ${collection.user.name}'),
                             const SizedBox(
                               height: 10,
                             ),
-                            Text('${collection.totalPhotos} photos')
+                            Text(
+                                '${collection.totalPhotos} ${context.lang("photos")}')
                           ],
                         ))
                   ],
@@ -68,12 +70,13 @@ class DetailCollectionPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Update : ${collection.updatedAt.formatTimeString}'),
+                      Text(
+                          '${context.lang("create")} : ${collection.publishedAt.formatTimeString}'),
                       const SizedBox(
                         height: 5,
                       ),
                       Text(
-                          'Create : ${collection.publishedAt.formatTimeString}')
+                          '${context.lang("update")} : ${collection.updatedAt.formatTimeString}'),
                     ],
                   ),
                 ),

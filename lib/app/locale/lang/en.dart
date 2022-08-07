@@ -20,6 +20,11 @@ Map<String, String> en = {
   LangCode.inputSearch:  "Import to search",
   LangCode.noInternet:  "No interner",
   LangCode.noDataResultSearch: "No data search",
+    LangCode.update: "Update",
+  LangCode.create: "Create",
+  LangCode.relatedCollections: "related collections",
+
+
 
 
 

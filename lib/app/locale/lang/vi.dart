@@ -53,5 +53,10 @@ Map<String, String> vi = {
   LangCode.inputSearch: "Nhập để tìm kiếm",
   LangCode.noInternet: "Không có interner",
   LangCode.noDataResultSearch: "Không tìm thấy dữ liệu",
+  LangCode.update: "Cập nhật",
+  LangCode.create: "Tạo",
+  LangCode.relatedCollections: "Bộ sưu tập liên quan",
+
+
 
 };

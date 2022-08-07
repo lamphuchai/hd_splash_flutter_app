@@ -12,8 +12,15 @@ class LangCode {
   static const String downloaded = "downloaded";
   static const String trySearch = "try-search";
   static const String like = "like";
-  static const String curatedBy = "curatedBy";
+  static const String curatedBy = "curated-by";
   static const String view = "view";
+  static const String update = "update";
+  static const String create = "create";
+  static const String relatedCollections = "related-collections";
+
+
+  
+
 
   static const String inputSearch = "input-search";
 
