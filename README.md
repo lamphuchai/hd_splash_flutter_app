@@ -1,8 +1,8 @@
-# hd_splash_flutter
+# HD SPLASH 
 
 ## Giới thiệu
 
-Ứng dụng xem và tải xuống hình ảnh từ unspalsh
+Ứng dụng xem và tải xuống hình ảnh từ unsplash
 
 
 ## Giao diện
