@@ -4,12 +4,18 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class CustomCacheNetworkImage extends StatelessWidget {
   const CustomCacheNetworkImage(
-      {Key? key, required this.imageUrl, this.fit, this.width, this.height})
+      {Key? key,
+      required this.imageUrl,
+      this.fit,
+      this.width,
+      this.height,
+      this.placeholder = true})
       : super(key: key);
   final String imageUrl;
   final BoxFit? fit;
   final double? width;
   final double? height;
+  final bool placeholder;
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +23,13 @@ class CustomCacheNetworkImage extends StatelessWidget {
       height: height,
       width: width,
       fit: fit,
-      placeholder: (context, url) => const Center(
-          child: SpinKitRotatingCircle(
-        color: Colors.white54,
-        size: 50.0,
-      )),
+      placeholder: placeholder
+          ? (context, url) => const Center(
+                  child: SpinKitRotatingCircle(
+                color: Colors.white54,
+                size: 50.0,
+              ))
+          : null,
       errorWidget: (context, url, error) => const Center(
         child: Icon(Icons.error),
       ),

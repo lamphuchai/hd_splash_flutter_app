@@ -15,7 +15,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return (RepositoryProvider(
       create: (context) =>
-          Unsplash()..createApi("key-unsplash-api"),
+          Unsplash()..createApi(""),
       child: MultiBlocProvider(
         providers: [
           BlocProvider(

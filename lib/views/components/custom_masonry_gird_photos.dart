@@ -52,7 +52,7 @@ class CustomMasonryGirdPhotos extends StatelessWidget {
                 crossAxisSpacing: 8,
                 crossAxisCount: state.crossAxisCountGird,
                 shrinkWrap: shrinkWrap,
-                // physics: const BouncingScrollPhysics(),
+                addAutomaticKeepAlives: true,
                 itemBuilder: ((context, index) {
                   final photo = photos[index];
                   return GestureDetector(
@@ -68,6 +68,8 @@ class CustomMasonryGirdPhotos extends StatelessWidget {
                                 height: photo.height),
                             color: photo.color.converterColor,
                             child: CustomCacheNetworkImage(
+                                key: ValueKey(photo.id),
+                                placeholder: false,
                                 fit: BoxFit.cover,
                                 imageUrl:
                                     photo.urls.photoUrl(state.loadQualityType)),

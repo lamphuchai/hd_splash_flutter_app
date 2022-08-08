@@ -81,7 +81,8 @@ class CustomMasonryGirdCollections extends StatelessWidget {
                                   color: collection
                                       .coverPhoto?.color.converterColor,
                                   child: CustomCacheNetworkImage(
-                                    key: UniqueKey(),
+                                    key: ValueKey(collection.id),
+                                    placeholder: false,
                                     imageUrl: uri,
                                     fit: BoxFit.cover,
                                   ),
