@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:hd_splash_flutter/app/extensions/extensions.dart';
 import 'package:hd_splash_flutter/app/router/route_name.dart';
+import 'package:hd_splash_flutter/core/type/enum.dart';
 import 'package:hd_splash_flutter/logic/cubits/app_setting/app_setting_cubit.dart';
 import 'package:hd_splash_flutter/views/components/components.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
@@ -13,12 +14,14 @@ class CustomMasonryGirdCollections extends StatelessWidget {
       required this.collections,
       required this.onRefresh,
       this.shrinkWrap,
-      required this.loadMoreData})
+      required this.loadMoreData,
+      this.actionDeleteCollection})
       : super(key: key);
   final List<Collection> collections;
   final Function(bool) loadMoreData;
   final Future<void> Function() onRefresh;
   final bool? shrinkWrap;
+  final Function(AppAction)? actionDeleteCollection;
   @override
   Widget build(BuildContext context) {
     return NotificationListener<ScrollEndNotification>(
@@ -63,9 +66,16 @@ class CustomMasonryGirdCollections extends StatelessWidget {
                     uri = collection.user.profileImage.large;
                   }
                   return GestureDetector(
-                      onTap: () => Navigator.pushNamed(
-                          context, RouteName.detailCollection,
-                          arguments: collection),
+                      onTap: () async {
+                        final result = await Navigator.pushNamed(
+                            context, RouteName.detailCollection,
+                            arguments: collection);
+                        if (result == AppAction.deleteCollection) {
+                          actionDeleteCollection!(AppAction.deleteCollection);
+                        } else if (result == AppAction.updateCollection) {
+                          actionDeleteCollection!(AppAction.updateCollection);
+                        }
+                      },
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: SizedBox(
@@ -103,13 +113,24 @@ class CustomMasonryGirdCollections extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Wrap(
+                                        crossAxisAlignment:
+                                            WrapCrossAlignment.center,
                                         children: [
                                           Text(
                                             collection.title,
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 16),
-                                          )
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleSmall!
+                                                .copyWith(color: Colors.white),
+                                          ),
+                                          if (collection.private)
+                                            const Padding(
+                                              padding: EdgeInsets.only(left: 5),
+                                              child: Icon(
+                                                Icons.lock,
+                                                size: 10,
+                                              ),
+                                            )
                                         ],
                                       ),
                                       const SizedBox(

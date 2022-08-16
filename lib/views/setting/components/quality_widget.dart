@@ -22,7 +22,7 @@ class QualityWidget extends StatelessWidget {
           style: textTheme.titleLarge,
         ),
         const SizedBox(
-          height: 8,
+          height: 15,
         ),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
@@ -66,7 +66,7 @@ class QualityWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 24,
+          height: 15,
         ),
       ],
     );

@@ -32,8 +32,10 @@ class UserPage extends StatelessWidget {
         body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
-              const SliverToBoxAdapter(
-                child: UserWidget(),
+              SliverToBoxAdapter(
+                child: UserProfileWidget(
+                  user: context.read<UserCubit>().user,
+                ),
               ),
             ];
           },
@@ -48,7 +50,7 @@ class UserPage extends StatelessWidget {
                       .map((tab) => Tab(
                             text: context.lang(tab["title"]),
                           ))
-                      .toList(),
+                  .toList(),
                 ),
                 Expanded(
                   child: BlocBuilder<UserCubit, UserState>(
@@ -63,7 +65,7 @@ class UserPage extends StatelessWidget {
                         case StatusType.loaded:
                           return TabBarView(
                             children: tabs
-                                .map((tab) => Container(
+                                .map((tab) => Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 8),
                                       child: tab["tab"],

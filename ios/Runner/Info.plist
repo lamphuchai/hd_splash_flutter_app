@@ -5,7 +5,7 @@
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
-		<string>Hd Splash Flutter</string>
+		<string>Hd Splash</string>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
@@ -49,5 +49,20 @@
 		<string>We need access to photo library so that photos can be selected</string>
 		<key>UIStatusBarHidden</key>
 		<true/>
+		<!-- ... other tags -->
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>unsplash-callback</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>hdsplash</string>
+			</array>
+			</dict>
+		</array>
+		<!-- ... other tags -->
 	</dict>
 </plist>

@@ -11,7 +11,7 @@ class PhotosView extends StatelessWidget {
     return BlocProvider(
       create: (context) => PhotosCubit(
         photosApi: context.read<Unsplash>().photos,
-      )..loadingPhotos(),
+      ),
       child: const PhotosPage(),
     );
   }

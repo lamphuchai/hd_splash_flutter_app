@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hd_splash_flutter/app/router/route_name.dart';
+import 'package:hd_splash_flutter/views/current_user_profile/current_user_profile.dart';
 import 'package:hd_splash_flutter/views/detail_collection/detail_collection.dart';
 import 'package:hd_splash_flutter/views/detail_photo/detail_photo.dart';
 import 'package:hd_splash_flutter/views/detail_topic/view/detail_topic_view.dart';
+import 'package:hd_splash_flutter/views/edit_profile_user/edit_profile_user.dart';
 import 'package:hd_splash_flutter/views/full_photo/full_photo.dart';
 import 'package:hd_splash_flutter/views/result_search/result_search.dart';
 import 'package:hd_splash_flutter/views/user/user.dart';
@@ -66,6 +68,14 @@ class AppRouter {
               type: PageTransitionType.rightToLeft);
         }
         return _errRoute();
+      case RouteName.currentUserProfile:
+        return PageTransition(
+            child: const CurrentUserProfileView(),
+            type: PageTransitionType.rightToLeft);
+      case RouteName.editProfileUser:
+        return PageTransition(
+            child: const EditProfileUserView(),
+            type: PageTransitionType.rightToLeft);
       default:
         return _errRoute();
     }
@@ -73,8 +83,9 @@ class AppRouter {
 
   static Route<dynamic> _errRoute() {
     return MaterialPageRoute(
-        builder: (context) => const Scaffold(
-              body: Center(
+        builder: (context) => Scaffold(
+              appBar: AppBar(title: const Text("No route")),
+              body: const Center(
                 child: Text("no route"),
               ),
             ));

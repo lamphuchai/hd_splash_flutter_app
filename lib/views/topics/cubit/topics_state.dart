@@ -6,17 +6,17 @@ class TopicsState extends Equatable {
   const TopicsState(
       {this.topics = const [],
       this.status = StatusType.init,
-      this.orderBy = OrderByTopic.position});
+      this.orderBy = TopicsOrderBy.position});
   final List<Topic> topics;
   final StatusType status;
 
-  final OrderByTopic orderBy;
+  final TopicsOrderBy orderBy;
 
   @override
   List<Object> get props => [topics, status, orderBy];
 
   TopicsState copyWith(
-      {List<Topic>? topics, StatusType? status, OrderByTopic? orderBy}) {
+      {List<Topic>? topics, StatusType? status, TopicsOrderBy? orderBy}) {
     return TopicsState(
         topics: topics ?? this.topics,
         status: status ?? this.status,

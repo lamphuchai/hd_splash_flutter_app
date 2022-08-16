@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hd_splash_flutter/app/extensions/extensions.dart';
 import 'package:hd_splash_flutter/core/type/enum.dart';
 import 'package:hd_splash_flutter/views/detail_photo/detail_photo.dart';
-import 'package:unsplash_dart/unsplash_dart.dart';
 
 class ExifPhoto extends StatelessWidget {
   const ExifPhoto({Key? key}) : super(key: key);
@@ -18,7 +17,7 @@ class ExifPhoto extends StatelessWidget {
           duration: const Duration(milliseconds: 200),
           child: Builder(builder: (context) {
             if (state.status == StatusType.loaded) {
-              Exif exif = state.dataPhoto["exif"];
+              final exif = state.photo.exif!;
               return SingleChildScrollView(
                 physics: const NeverScrollableScrollPhysics(),
                 child: Column(
@@ -91,7 +90,9 @@ class ExifPhoto extends StatelessWidget {
                             const SizedBox(
                               height: 5,
                             ),
-                            Text(exif.isoSpeedEatings ?? "Unknown")
+                            Text(exif.isoSpeedEatings != null
+                                ? exif.isoSpeedEatings.toString()
+                                : "Unknown")
                           ],
                         )),
                         Expanded(

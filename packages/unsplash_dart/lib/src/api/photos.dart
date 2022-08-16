@@ -1,6 +1,3 @@
-
-import 'package:dio/dio.dart';
-
 import '../constants/enum.dart';
 import '../exceptions/unsplash_exception.dart';
 import '../models/models.dart';
@@ -13,11 +10,11 @@ abstract class PhotosAbs {
     PhotosOrderBy orderBy = PhotosOrderBy.latest,
   });
 
-  Future<Photo> photoById({
+  Future<Photo> getPhotoById({
     required String id,
   });
 
-  Future<Photo> randomPhoto(
+  Future<Photo> getRandomPhoto(
       {List<String> collections = const [],
       List<String> topics = const [],
       String? username,
@@ -25,7 +22,7 @@ abstract class PhotosAbs {
       Orientation? orientation,
       ContentFilter contentFilter = ContentFilter.low});
 
-  Future<List<Photo>> randomPhotos(
+  Future<List<Photo>> getRandomPhotos(
       {List<String> collections = const [],
       List<String> topics = const [],
       String? username,
@@ -42,7 +39,6 @@ abstract class PhotosAbs {
 
   Future<Photo> updatePhoto(
       {required String id,
-      required String accessToken,
       String? description,
       bool? showOnProfile,
       String? tags,
@@ -51,12 +47,10 @@ abstract class PhotosAbs {
 
   Future<Photo> likePhoto({
     required String id,
-    required String accessToken,
   });
 
   Future<Photo> unlikePhoto({
     required String id,
-    required String accessToken,
   });
 }
 
@@ -77,7 +71,7 @@ class Photos extends PhotosAbs {
   }
 
   @override
-  Future<Photo> photoById({required String id}) async {
+  Future<Photo> getPhotoById({required String id}) async {
     final photo = await _dioClient.get('/photos/$id', queryParameters: {
       "id": id,
     });
@@ -85,7 +79,7 @@ class Photos extends PhotosAbs {
   }
 
   @override
-  Future<Photo> randomPhoto({
+  Future<Photo> getRandomPhoto({
     List<String>? collections,
     List<String>? topics,
     String? username,
@@ -105,7 +99,7 @@ class Photos extends PhotosAbs {
   }
 
   @override
-  Future<List<Photo>> randomPhotos(
+  Future<List<Photo>> getRandomPhotos(
       {List<String>? collections,
       List<String>? topics,
       String? username,
@@ -145,29 +139,26 @@ class Photos extends PhotosAbs {
   @override
   Future<Photo> updatePhoto(
       {required String id,
-      required String accessToken,
       String? description,
       bool? showOnProfile,
       String? tags,
       Location? location,
       Exif? exif}) async {
-    final data = await _dioClient.put('/photos/$id',
-        options: Options(headers: {"Authorization": 'Bearer $accessToken'}),
-        queryParameters: {
-          "description": description,
-          "tags": tags,
-          "location[latitude]": location?.latitude,
-          "location[longitude]": location?.longitude,
-          "location[name]": location?.name,
-          "location[city]": location?.city,
-          "location[country]": location?.country,
-          "exif[make]": exif?.make,
-          "exif[model]": exif?.model,
-          "exif[exposure_time]": exif?.exposureTime,
-          "exif[aperture_value]": exif?.aperture,
-          "exif[focal_length]": exif?.focalLength,
-          "exif[iso_speed_ratings]": exif?.isoSpeedEatings,
-        });
+    final data = await _dioClient.put('/photos/$id', queryParameters: {
+      "description": description,
+      "tags": tags,
+      "location[latitude]": location?.latitude,
+      "location[longitude]": location?.longitude,
+      "location[name]": location?.name,
+      "location[city]": location?.city,
+      "location[country]": location?.country,
+      "exif[make]": exif?.make,
+      "exif[model]": exif?.model,
+      "exif[exposure_time]": exif?.exposureTime,
+      "exif[aperture_value]": exif?.aperture,
+      "exif[focal_length]": exif?.focalLength,
+      "exif[iso_speed_ratings]": exif?.isoSpeedEatings,
+    });
 
     return Photo.fromMap(data);
   }
@@ -175,24 +166,20 @@ class Photos extends PhotosAbs {
   @override
   Future<Photo> likePhoto({
     required String id,
-    required String accessToken,
   }) async {
     final data = await _dioClient.post(
       '/photos/$id/like',
-      options: Options(headers: {"Authorization": 'Bearer $accessToken'}),
     );
-    return Photo.fromMap(data);
+    return Photo.fromMap(data["photo"]);
   }
 
   @override
   Future<Photo> unlikePhoto({
     required String id,
-    required String accessToken,
   }) async {
     final data = await _dioClient.delete(
       '/photos/$id/like',
-      options: Options(headers: {"Authorization": 'Bearer $accessToken'}),
     );
-    return Photo.fromMap(data);
+    return Photo.fromMap(data["photo"]);
   }
 }

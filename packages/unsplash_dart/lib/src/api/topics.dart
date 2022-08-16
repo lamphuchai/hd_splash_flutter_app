@@ -2,20 +2,18 @@ import '../constants/enum.dart';
 import '../models/models.dart';
 import '../network/dio_client.dart';
 
-
-
 abstract class TopicsAbs {
-  Future<List<Topic>> topics(
+  Future<List<Topic>> getTopics(
       {List<String>? ids,
       int page = 1,
       int perPage = 10,
-      OrderByTopic orderBy = OrderByTopic.position});
+      TopicsOrderBy orderBy = TopicsOrderBy.position});
 
-  Future<Topic> topic({
+  Future<Topic> getTopicById({
     required String id,
   });
 
-  Future<List<Photo>> photos(
+  Future<List<Photo>> getPhotosByCollection(
       {required String idTopic,
       int page = 1,
       int perPage = 10,
@@ -27,11 +25,11 @@ class Topics extends TopicsAbs {
   Topics(this._dioClient);
   final DioClient _dioClient;
   @override
-  Future<List<Topic>> topics(
+  Future<List<Topic>> getTopics(
       {List<String>? ids,
       int page = 1,
       int perPage = 10,
-      OrderByTopic orderBy = OrderByTopic.position}) async {
+      TopicsOrderBy orderBy = TopicsOrderBy.position}) async {
     final data = await _dioClient.get('/topics', queryParameters: {
       "ids": ids?.join(","),
       "page": page,
@@ -45,7 +43,7 @@ class Topics extends TopicsAbs {
   }
 
   @override
-  Future<Topic> topic({
+  Future<Topic> getTopicById({
     required String id,
   }) async {
     final data = await _dioClient.get(
@@ -55,7 +53,7 @@ class Topics extends TopicsAbs {
   }
 
   @override
-  Future<List<Photo>> photos(
+  Future<List<Photo>> getPhotosByCollection(
       {required String idTopic,
       int page = 1,
       int perPage = 10,

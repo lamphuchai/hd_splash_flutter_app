@@ -18,7 +18,7 @@ class TopicsPage extends StatelessWidget {
         buildWhen: (previous, current) => previous.orderBy != current.orderBy,
         builder: (context, state) {
           return ButtonSortOrderBy(
-            listValue: OrderByTopic.values,
+            listValue: TopicsOrderBy.values,
             selected: state.orderBy,
             onSelected: (orderBy) =>
                 context.read<TopicsCubit>().changeOrderBy(orderBy),

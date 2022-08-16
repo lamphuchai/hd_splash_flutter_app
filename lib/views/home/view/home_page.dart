@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hd_splash_flutter/app/config/app_assets.dart';
-import 'package:hd_splash_flutter/app/extensions/extensions.dart';
 
-import '../../../logic/cubits/cubits.dart';
 import '../../collections/collections.dart';
 import '../../photos/photos.dart';
 import '../../search/search.dart';
@@ -44,7 +41,7 @@ class HomePage extends StatelessWidget {
             destinations: const [
               NavigationDestination(icon: Icon(Icons.photo), label: "Photos"),
               NavigationDestination(
-                  icon: Icon(Icons.collections), label: "Collections"),
+                  icon: Icon(Icons.layers), label: "Collections"),
               NavigationDestination(icon: Icon(Icons.topic), label: "Topics"),
               NavigationDestination(icon: Icon(Icons.search), label: "Search"),
               NavigationDestination(

@@ -46,6 +46,4 @@ class ProfileImage {
   @override
   String toString() =>
       'ProfileImage(small: $small, medium: $medium, large: $large)';
-
-
 }

@@ -43,7 +43,7 @@ class _TabPhotosViewState extends State<TabPhotosView>
           builder: (context, state) {
             return ButtonSortOrderBy(
               selected: state.photosOrderBy,
-              listValue:OrderBy.values,
+              listValue:UserOrderBy.values,
               onSelected: (orderBy) =>
                   context.read<UserCubit>().changePhotosOrderBy(orderBy),
             );

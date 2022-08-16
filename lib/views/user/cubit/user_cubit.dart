@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/app/config/app_const.dart';
 import 'package:hd_splash_flutter/core/type/enum.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
 
@@ -16,7 +17,6 @@ class UserCubit extends Cubit<UserState> {
   int _pagePhotos = 1;
   int _pageLikes = 1;
   int _pageCollections = 1;
-  final int _prePage = 20;
 
   User get user => _user;
   Future<void> loadingDataUser() async {
@@ -26,19 +26,19 @@ class UserCubit extends Cubit<UserState> {
       UserState userState = const UserState();
       if (_user.totalPhotos != 0) {
         final photos = await _usersApi.getPhotos(
-            username: _user.username, perPage: _prePage);
+            username: _user.username, perPage: AppConst.prePage);
         userState = userState.copyWith(photos: photos);
       }
       if (_user.totalLikes != 0) {
-        final photos = await _usersApi.getLikes(
-            username: _user.username, perPage: _prePage);
+        final photos = await _usersApi.getLikesPhotos(
+            username: _user.username, perPage: AppConst.prePage);
         userState = userState.copyWith(likePhotos: photos);
       }
       if (_user.totalCollections != 0) {
         listFu.add(_usersApi.getCollections(
-            username: _user.username, perPage: _prePage));
+            username: _user.username, perPage: AppConst.prePage));
         final collections = await _usersApi.getCollections(
-            username: _user.username, perPage: _prePage);
+            username: _user.username, perPage: AppConst.prePage);
         userState = userState.copyWith(collections: collections);
       }
       emit(userState.copyWith(status: StatusType.loaded));
@@ -52,7 +52,7 @@ class UserCubit extends Cubit<UserState> {
       if (_user.totalPhotos != 0) {
         final photos = await _usersApi.getPhotos(
             username: _user.username,
-            perPage: _prePage,
+            perPage: AppConst.prePage,
             orderBy: state.photosOrderBy);
         emit(state.copyWith(photos: photos));
       }
@@ -63,21 +63,32 @@ class UserCubit extends Cubit<UserState> {
 
   Future<void> nextPagePhotos() async {
     try {
-      if (state.photos.length < user.totalPhotos) {
-        _pagePhotos += 1;
-        final photos = await _usersApi.getPhotos(
-            username: _user.username,
-            page: _pagePhotos,
-            perPage: _prePage,
-            orderBy: state.photosOrderBy);
-        emit(state.copyWith(photos: [...state.photos, ...photos]));
+      final lengthRest = user.totalPhotos - state.photos.length;
+      if (lengthRest > 0) {
+        if (lengthRest < AppConst.prePage) {
+          _pagePhotos += 1;
+          final photos = await _usersApi.getPhotos(
+              username: _user.username,
+              page: _pagePhotos,
+              perPage: lengthRest,
+              orderBy: state.photosOrderBy);
+          emit(state.copyWith(photos: [...state.photos, ...photos]));
+        } else {
+          _pagePhotos += 1;
+          final photos = await _usersApi.getPhotos(
+              username: _user.username,
+              page: _pagePhotos,
+              perPage: AppConst.prePage,
+              orderBy: state.photosOrderBy);
+          emit(state.copyWith(photos: [...state.photos, ...photos]));
+        }
       }
     } catch (error) {
       emit(state.copyWith(status: StatusType.error));
     }
   }
 
-  Future<void> changePhotosOrderBy(OrderBy orderBy) async {
+  Future<void> changePhotosOrderBy(UserOrderBy orderBy) async {
     emit(state.copyWith(photosOrderBy: orderBy));
     await loadingPhotos();
   }
@@ -85,9 +96,9 @@ class UserCubit extends Cubit<UserState> {
   Future<void> loadingLikePhotos() async {
     try {
       if (user.totalLikes != 0) {
-        final photos = await _usersApi.getLikes(
+        final photos = await _usersApi.getLikesPhotos(
             username: _user.username,
-            perPage: _prePage,
+            perPage: AppConst.prePage,
             orderBy: state.likesOrderBy);
         emit(state.copyWith(likePhotos: photos));
       }
@@ -103,11 +114,23 @@ class UserCubit extends Cubit<UserState> {
 
   Future<void> nextLikePhotos() async {
     try {
-      if (state.likePhotos.length < user.totalLikes) {
-        _pageLikes += _pageLikes;
-        final likePhotos = await _usersApi.getLikes(
-            username: _user.username, page: _pageLikes, perPage: _prePage);
-        emit(state.copyWith(likePhotos: [...state.likePhotos, ...likePhotos]));
+      final lengthRest = user.totalLikes - state.likePhotos.length;
+      if (lengthRest > 0) {
+        if (lengthRest < AppConst.prePage) {
+          _pageLikes += _pageLikes;
+          final likePhotos = await _usersApi.getLikesPhotos(
+              username: _user.username, page: _pageLikes, perPage: lengthRest);
+          emit(
+              state.copyWith(likePhotos: [...state.likePhotos, ...likePhotos]));
+        } else {
+          _pageLikes += _pageLikes;
+          final likePhotos = await _usersApi.getLikesPhotos(
+              username: _user.username,
+              page: _pageLikes,
+              perPage: AppConst.prePage);
+          emit(
+              state.copyWith(likePhotos: [...state.likePhotos, ...likePhotos]));
+        }
       }
     } catch (error) {
       emit(state.copyWith(status: StatusType.error));
@@ -118,7 +141,7 @@ class UserCubit extends Cubit<UserState> {
     try {
       if (user.totalCollections != 0) {
         final collections = await _usersApi.getCollections(
-            username: _user.username, perPage: _prePage);
+            username: _user.username, perPage: AppConst.prePage);
         emit(state.copyWith(collections: collections));
       }
     } catch (error) {
@@ -128,14 +151,25 @@ class UserCubit extends Cubit<UserState> {
 
   Future<void> nextCollections() async {
     try {
-      if (state.collections.length < user.totalCollections) {
-        _pageCollections += _pageCollections;
-        final collections = await _usersApi.getCollections(
-            username: _user.username,
-            page: _pageCollections,
-            perPage: _prePage);
-        emit(state
-            .copyWith(collections: [...state.collections, ...collections]));
+      final lengthRest = user.totalCollections - state.collections.length;
+      if (lengthRest > 0) {
+        if (lengthRest < AppConst.prePage) {
+          _pageCollections += _pageCollections;
+          final collections = await _usersApi.getCollections(
+              username: _user.username,
+              page: _pageCollections,
+              perPage: lengthRest);
+          emit(state
+              .copyWith(collections: [...state.collections, ...collections]));
+        } else {
+          _pageCollections += _pageCollections;
+          final collections = await _usersApi.getCollections(
+              username: _user.username,
+              page: _pageCollections,
+              perPage: AppConst.prePage);
+          emit(state
+              .copyWith(collections: [...state.collections, ...collections]));
+        }
       }
     } catch (error) {
       emit(state.copyWith(status: StatusType.error));

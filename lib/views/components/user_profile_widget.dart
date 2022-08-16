@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hd_splash_flutter/app/extensions/extensions.dart';
+import 'package:hd_splash_flutter/app/locale/lang_code.dart';
 import 'package:hd_splash_flutter/views/components/components.dart';
-import 'package:hd_splash_flutter/views/user/user.dart';
+import 'package:unsplash_dart/unsplash_dart.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class UserWidget extends StatelessWidget {
-  const UserWidget({Key? key}) : super(key: key);
-
+class UserProfileWidget extends StatelessWidget {
+  const UserProfileWidget({Key? key, required this.user}) : super(key: key);
+  final User user;
   @override
   Widget build(BuildContext context) {
-    final user = context.read<UserCubit>().user;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(
@@ -47,21 +47,21 @@ class UserWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ItemTotal(
-                  title: "Photos",
+                  title: context.lang(LangCode.photos),
                   total: user.totalPhotos.toString(),
                 ),
                 const SizedBox(
                   width: 20,
                 ),
                 ItemTotal(
-                  title: "Likes",
+                  title: context.lang(LangCode.like),
                   total: user.totalLikes.toString(),
                 ),
                 const SizedBox(
                   width: 20,
                 ),
                 ItemTotal(
-                  title: "Collections",
+                  title: context.lang(LangCode.collections),
                   total: user.totalCollections.toString(),
                 ),
               ],

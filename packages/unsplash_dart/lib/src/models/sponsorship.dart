@@ -1,9 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
+
 import 'models.dart';
-
-
 
 class Sponsorship {
   final List<String> impressionUrls;
@@ -61,4 +62,23 @@ class Sponsorship {
     return 'Sponsorship(impressionUrls: $impressionUrls, tagline: $tagline, taglineUrl: $taglineUrl, sponsor: $sponsor)';
   }
 
+
+  @override
+  bool operator ==(covariant Sponsorship other) {
+    if (identical(this, other)) return true;
+  
+    return 
+      listEquals(other.impressionUrls, impressionUrls) &&
+      other.tagline == tagline &&
+      other.taglineUrl == taglineUrl &&
+      other.sponsor == sponsor;
+  }
+
+  @override
+  int get hashCode {
+    return impressionUrls.hashCode ^
+      tagline.hashCode ^
+      taglineUrl.hashCode ^
+      sponsor.hashCode;
+  }
 }

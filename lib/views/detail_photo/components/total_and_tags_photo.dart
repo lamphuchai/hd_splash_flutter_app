@@ -14,7 +14,6 @@ class TotalAndTagsPhoto extends StatelessWidget {
     return BlocBuilder<DetailPhotoCubit, DetailPhotoState>(
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
-        final tags = state.dataPhoto["tags"];
         switch (state.status) {
           case StatusType.loading:
             return const AppLoadingWidget();
@@ -35,7 +34,7 @@ class TotalAndTagsPhoto extends StatelessWidget {
                       children: [
                         ItemTotal(
                           title: context.lang("view"),
-                          total: state.dataPhoto["views"].toString(),
+                          total: state.photo.views.toString(),
                         ),
                         ItemTotal(
                           title: context.lang("like"),
@@ -43,7 +42,7 @@ class TotalAndTagsPhoto extends StatelessWidget {
                         ),
                         ItemTotal(
                           title: context.lang("downloaded"),
-                          total: state.dataPhoto["downloads"].toString(),
+                          total: state.photo.downloads.toString(),
                         ),
                       ],
                     ),
@@ -53,19 +52,19 @@ class TotalAndTagsPhoto extends StatelessWidget {
                   height: 50,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: tags.length,
+                      itemCount: state.photo.tags.length,
                       itemBuilder: ((context, index) => Container(
                             margin: EdgeInsets.only(
                                 left: index == 0 ? 16 : 5, right: 5),
                             child: GestureDetector(
                               onTap: () => Navigator.pushNamed(
                                   context, RouteName.resultSearch,
-                                  arguments: tags[index].title),
+                                  arguments: state.photo.tags[index].title),
                               child: Chip(
                                   label: Padding(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 5),
-                                child: Text(tags[index].title),
+                                child: Text(state.photo.tags[index].title),
                               )),
                             ),
                           ))),

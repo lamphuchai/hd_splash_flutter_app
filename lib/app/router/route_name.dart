@@ -5,4 +5,6 @@ class RouteName {
   static const String detailTopic = "detail-topic";
   static const String user = "user";
   static const String resultSearch = "result-search";
+  static const String currentUserProfile = "current-user-profile";
+  static const String editProfileUser = "edit-profile-user";
 }

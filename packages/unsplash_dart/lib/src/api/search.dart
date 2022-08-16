@@ -5,24 +5,24 @@ import '../network/dio_client.dart';
 
 
 abstract class SearchAbs {
-  Future<List<Photo>> photos(
+  Future<List<Photo>> getPhotos(
       {required String query,
       int page = 1,
       int perPage = 10,
-      OrderBySearch orderBy = OrderBySearch.relevant,
+      SearchOrderBy orderBy = SearchOrderBy.relevant,
       List<String> collections = const [],
       ContentFilter contentFilter = ContentFilter.low,
       ColorUnsplash? color,
       Orientation? orientation,
       String lang = "en"});
 
-  Future<List<Collection>> collections({
+  Future<List<Collection>> getCollections({
     required String query,
     int page = 1,
     int perPage = 10,
   });
 
-  Future<List<User>> users({
+  Future<List<User>> getUsers({
     required String query,
     int page = 1,
     int perPage = 10,
@@ -33,11 +33,11 @@ class Search extends SearchAbs {
   Search(this._dioClient);
   final DioClient _dioClient;
   @override
-  Future<List<Photo>> photos(
+  Future<List<Photo>> getPhotos(
       {required String query,
       int page = 1,
       int perPage = 10,
-      OrderBySearch orderBy = OrderBySearch.relevant,
+      SearchOrderBy orderBy = SearchOrderBy.relevant,
       List<String>? collections,
       ContentFilter contentFilter = ContentFilter.low,
       ColorUnsplash? color,
@@ -60,7 +60,7 @@ class Search extends SearchAbs {
   }
 
   @override
-  Future<List<Collection>> collections({
+  Future<List<Collection>> getCollections({
     required String query,
     int page = 1,
     int perPage = 10,
@@ -76,7 +76,7 @@ class Search extends SearchAbs {
   }
 
   @override
-  Future<List<User>> users(
+  Future<List<User>> getUsers(
       {required String query, int page = 1, int perPage = 10}) async {
     final data = await _dioClient.get('/search/users', queryParameters: {
       "query": query,

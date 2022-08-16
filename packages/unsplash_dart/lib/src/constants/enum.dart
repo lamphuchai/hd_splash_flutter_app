@@ -1,12 +1,12 @@
-enum OrderBy { latest, oldest, popular, views, downloads }
+enum UserOrderBy { latest, oldest, popular, views, downloads }
 
 enum LikesPhotosOrderBy { latest, oldest, popular }
 
 enum PhotosOrderBy { latest, oldest, popular }
 
-enum OrderBySearch { latest, relevant }
+enum SearchOrderBy { latest, relevant }
 
-enum OrderByTopic { featured, latest, oldest, position }
+enum TopicsOrderBy { featured, latest, oldest, position }
 
 enum TopicPhotosOrderBy { latest, oldest, popular }
 

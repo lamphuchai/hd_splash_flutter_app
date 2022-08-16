@@ -16,7 +16,7 @@ class DetailTopicCubit extends Cubit<DetailTopicState> {
   Future<void> loadingPhotos() async {
     try {
       emit(state.copyWith(statusType: StatusType.loading));
-      final photos = await _topicsApi.photos(
+      final photos = await _topicsApi.getPhotosByCollection(
           idTopic: state.topic.id,
           perPage: _prePage,
           page: _page,
@@ -30,7 +30,7 @@ class DetailTopicCubit extends Cubit<DetailTopicState> {
   Future<void> nextPagePhotos() async {
     try {
       _page += 1;
-      final photos = await _topicsApi.photos(
+      final photos = await _topicsApi.getPhotosByCollection(
           idTopic: state.topic.id,
           page: _page,
           perPage: _prePage,

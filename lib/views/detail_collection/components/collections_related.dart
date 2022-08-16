@@ -1,31 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hd_splash_flutter/app/extensions/extensions.dart';
 import 'package:hd_splash_flutter/app/router/route_name.dart';
-import 'package:hd_splash_flutter/core/type/enum.dart';
 import 'package:hd_splash_flutter/views/components/components.dart';
-import 'package:hd_splash_flutter/views/detail_collection/collection_related/cubit/collection_related_cubit.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
 
-class CollectionsRelatedView extends StatelessWidget {
-  const CollectionsRelatedView({Key? key, required this.idCollection})
-      : super(key: key);
-  final String idCollection;
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CollectionRelatedCubit(
-          idCollection: idCollection,
-          collectionsApi: context.read<Unsplash>().collections)
-        ..loadingCollections(),
-      child: const CollectionsRelated(),
-    );
-  }
-}
-
 class CollectionsRelated extends StatelessWidget {
-  const CollectionsRelated({Key? key}) : super(key: key);
-
+  const CollectionsRelated({Key? key, required this.relatedCollection})
+      : super(key: key);
+  final List<Collection> relatedCollection;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -64,40 +46,19 @@ class CollectionsRelated extends StatelessWidget {
             height: 20,
           ),
           SizedBox(
-            width: double.infinity,
-            height: 200,
-            child: Builder(builder: (context) {
-              return BlocBuilder<CollectionRelatedCubit,
-                  CollectionRelatedState>(
-                builder: (context, state) {
-                  switch (state.status) {
-                    case StatusType.loading:
-                      return const AppLoadingWidget();
-                    case StatusType.error:
-                      return const AppErrorWidget();
-                    case StatusType.loaded:
-                      return SizedBox(
-                        child: ListView.builder(
-                            itemCount: state.collections.length,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: ((context, index) => Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 10,
-                                      right:
-                                          state.collections.length == index + 1
-                                              ? 10
-                                              : 0),
-                                  child: ItemCollection(
-                                      collection: state.collections[index]),
-                                ))),
-                      );
-                    default:
-                      return const SizedBox();
-                  }
-                },
-              );
-            }),
-          ),
+              width: double.infinity,
+              height: 200,
+              child: ListView.builder(
+                  itemCount: relatedCollection.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: ((context, index) => Padding(
+                        padding: EdgeInsets.only(
+                            left: 10,
+                            right:
+                                relatedCollection.length == index + 1 ? 10 : 0),
+                        child: ItemCollection(
+                            collection: relatedCollection[index]),
+                      )))),
           const SizedBox(
             width: double.infinity,
             height: 20,

@@ -1,5 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
+
 import 'models.dart';
 
 class Photo {
@@ -20,7 +23,7 @@ class Photo {
   final List<String> categories;
   final int likes;
   final bool likedByUser;
-  final List<dynamic> currentUserCollections;
+  final List<String> currentUserCollections;
   final Sponsorship? sponsorship;
   final Map? topicSubmissions;
   final User user;
@@ -73,6 +76,7 @@ class Photo {
       User? user,
       int? downloads,
       int? views,
+      Exif? exif,
       List<Tag>? tags}) {
     return Photo(
         id: id ?? this.id,
@@ -97,7 +101,8 @@ class Photo {
         sponsorship: sponsorship ?? this.sponsorship,
         topicSubmissions: topicSubmissions ?? this.topicSubmissions,
         user: user ?? this.user,
-        tags: tags ?? this.tags);
+        tags: tags ?? this.tags,
+        exif: exif ?? this.exif);
   }
 
   Map<String, dynamic> toMap() {
@@ -148,8 +153,10 @@ class Photo {
         exif: map['exif'] != null ? Exif.fromMap(map['exif']) : null,
         likes: map['likes'] as int,
         likedByUser: map['liked_by_user'] as bool,
-        currentUserCollections: map['current_user_contributions'] != null
-            ? List.from(map['current_user_contributions'])
+        currentUserCollections: map["current_user_collections"] != null
+            ? (map["current_user_collections"] as List)
+                .map((collection) => collection["id"].toString())
+                .toList()
             : [],
         sponsorship: map['sponsorship'] != null
             ? Sponsorship.fromMap(map['sponsorship'])
@@ -169,5 +176,61 @@ class Photo {
   @override
   String toString() {
     return 'Photo(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, promotedAt: $promotedAt, width: $width, height: $height, color: $color, blurHash: $blurHash, description: $description, altDescription: $altDescription, urls: $urls, links: $links, categories: $categories, likes: $likes, likedByUser: $likedByUser, currentUserCollections: $currentUserCollections, sponsorship: $sponsorship, topicSubmissions: $topicSubmissions, user: $user)';
+  }
+
+  @override
+  bool operator ==(covariant Photo other) {
+    if (identical(this, other)) return true;
+
+    return other.id == id &&
+        other.createdAt == createdAt &&
+        other.updatedAt == updatedAt &&
+        other.promotedAt == promotedAt &&
+        other.width == width &&
+        other.height == height &&
+        other.color == color &&
+        other.blurHash == blurHash &&
+        other.downloads == downloads &&
+        other.description == description &&
+        other.altDescription == altDescription &&
+        other.urls == urls &&
+        other.links == links &&
+        other.views == views &&
+        listEquals(other.categories, categories) &&
+        other.likes == likes &&
+        other.likedByUser == likedByUser &&
+        listEquals(other.currentUserCollections, currentUserCollections) &&
+        other.sponsorship == sponsorship &&
+        other.topicSubmissions == topicSubmissions &&
+        other.user == user &&
+        other.exif == exif &&
+        listEquals(other.tags, tags);
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        createdAt.hashCode ^
+        updatedAt.hashCode ^
+        promotedAt.hashCode ^
+        width.hashCode ^
+        height.hashCode ^
+        color.hashCode ^
+        blurHash.hashCode ^
+        downloads.hashCode ^
+        description.hashCode ^
+        altDescription.hashCode ^
+        urls.hashCode ^
+        links.hashCode ^
+        views.hashCode ^
+        categories.hashCode ^
+        likes.hashCode ^
+        likedByUser.hashCode ^
+        currentUserCollections.hashCode ^
+        sponsorship.hashCode ^
+        topicSubmissions.hashCode ^
+        user.hashCode ^
+        exif.hashCode ^
+        tags.hashCode;
   }
 }

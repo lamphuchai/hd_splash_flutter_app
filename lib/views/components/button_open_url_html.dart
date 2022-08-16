@@ -11,7 +11,9 @@ class ButtonOpenUrlHtml extends StatelessWidget {
         onPressed: () async {
           Uri url = Uri.parse(uri);
           try {
-            if (await canLaunchUrl(url)) {}
+            if (await canLaunchUrl(url)) {
+              
+            }
             await launchUrl(
               url,
               mode: LaunchMode.externalApplication,

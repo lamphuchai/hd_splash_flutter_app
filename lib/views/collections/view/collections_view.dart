@@ -11,7 +11,7 @@ class CollectionsView extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           CollectionsCubit(collectionsApi: context.read<Unsplash>().collections)
-            ..loadingCollections(),
+          ,
       child: const CollectionsPage(),
     );
   }

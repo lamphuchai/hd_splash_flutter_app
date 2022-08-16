@@ -66,4 +66,27 @@ class Urls {
   String toString() {
     return 'Urls(raw: $raw, full: $full, regular: $regular, small: $small, thumb: $thumb, smallS3: $smallS3)';
   }
+
+  @override
+  bool operator ==(covariant Urls other) {
+    if (identical(this, other)) return true;
+  
+    return 
+      other.raw == raw &&
+      other.full == full &&
+      other.regular == regular &&
+      other.small == small &&
+      other.thumb == thumb &&
+      other.smallS3 == smallS3;
+  }
+
+  @override
+  int get hashCode {
+    return raw.hashCode ^
+      full.hashCode ^
+      regular.hashCode ^
+      small.hashCode ^
+      thumb.hashCode ^
+      smallS3.hashCode;
+  }
 }

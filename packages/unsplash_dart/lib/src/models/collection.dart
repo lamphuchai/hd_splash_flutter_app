@@ -3,14 +3,12 @@ import 'dart:convert';
 
 import 'models.dart';
 
-
-
 class Collection {
   final String id;
   final String title;
   final String? description;
   final String publishedAt;
-  final String lastCollectedAt;
+  final String? lastCollectedAt;
   final String updatedAt;
   final bool curated;
   final bool featured;
@@ -19,16 +17,18 @@ class Collection {
   final String shareKey;
   final List<Tag> tags;
   final Links links;
+  final bool? likedByUser;
   final User user;
   final Photo? coverPhoto;
   final List<PreviewPhotos> previewPhotos;
-  final Mate? mate;
+  final Meta? mate;
   Collection({
     required this.id,
     required this.title,
     this.description,
+    this.likedByUser,
     required this.publishedAt,
-    required this.lastCollectedAt,
+    this.lastCollectedAt,
     required this.updatedAt,
     required this.curated,
     required this.featured,
@@ -42,46 +42,6 @@ class Collection {
     required this.previewPhotos,
     this.mate,
   });
-
-  Collection copyWith({
-    String? id,
-    String? title,
-    String? description,
-    String? publishedAt,
-    String? lastCollectedAt,
-    String? updatedAt,
-    bool? curated,
-    bool? featured,
-    int? totalPhotos,
-    bool? private,
-    String? shareKey,
-    List<Tag>? tags,
-    Links? links,
-    User? user,
-    Photo? coverPhoto,
-    List<PreviewPhotos>? previewPhotos,
-    Mate? mate,
-  }) {
-    return Collection(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      description: description ?? this.description,
-      publishedAt: publishedAt ?? this.publishedAt,
-      lastCollectedAt: lastCollectedAt ?? this.lastCollectedAt,
-      updatedAt: updatedAt ?? this.updatedAt,
-      curated: curated ?? this.curated,
-      featured: featured ?? this.featured,
-      totalPhotos: totalPhotos ?? this.totalPhotos,
-      private: private ?? this.private,
-      shareKey: shareKey ?? this.shareKey,
-      tags: tags ?? this.tags,
-      links: links ?? this.links,
-      user: user ?? this.user,
-      coverPhoto: coverPhoto ?? this.coverPhoto,
-      previewPhotos: previewPhotos ?? this.previewPhotos,
-      mate: mate ?? this.mate,
-    );
-  }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -113,11 +73,12 @@ class Collection {
       publishedAt: map['published_at'],
       lastCollectedAt: map['last_collected_at'],
       updatedAt: map['updated_at'],
-      curated: map['curated'] as bool,
-      featured: map['featured'] as bool,
-      totalPhotos: map['total_photos'] as int,
-      private: map['private'] as bool,
-      shareKey: map['share_key'] as String,
+      curated: map['curated'],
+      featured: map['featured'],
+      totalPhotos: map['total_photos'],
+      private: map['private'],
+      shareKey: map['share_key'],
+      likedByUser: map["liked_by_user"],
       tags: List<Tag>.from(
         (map['tags'] as List).map<Tag>(
           (x) => Tag.fromMap(x as Map<String, dynamic>),
@@ -134,8 +95,8 @@ class Collection {
               (x) => PreviewPhotos.fromMap(x as Map<String, dynamic>),
             ))
           : [],
-      mate: map['mate'] != null
-          ? Mate.fromMap(map['mate'] as Map<String, dynamic>)
+      mate: map['meta'] != null
+          ? Meta.fromMap(map['meta'] as Map<String, dynamic>)
           : null,
     );
   }

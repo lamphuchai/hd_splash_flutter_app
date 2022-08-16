@@ -22,6 +22,8 @@ extension StringX on String {
   String get formatTimeString {
     return DateFormat("dd-MM-yyyy").format(DateTime.parse(this));
   }
+
+  String? get checkNullString => this == "" ? null : this;
 }
 
 extension EnumX on Enum {

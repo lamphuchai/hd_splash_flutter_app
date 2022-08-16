@@ -3,14 +3,26 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import '../exceptions/unsplash_exception.dart';
 
-
 class DioClient {
   DioClient(String clientId) {
     _dio = Dio(BaseOptions(
         baseUrl: "https://api.unsplash.com",
         headers: {"Authorization": 'Client-ID $clientId'}));
   }
+  DioClient.auth() {
+    _dio = Dio(BaseOptions(
+      baseUrl: "https://unsplash.com",
+    ));
+  }
   late Dio _dio;
+
+  void updateAuthorization({String? clientId, String? accessToken}) {
+    if (clientId != null) {
+      _dio.options.headers = {"Authorization": 'Client-ID $clientId'};
+    } else if (accessToken != null) {
+      _dio.options.headers = {"Authorization": 'Bearer $accessToken'};
+    }
+  }
 
   // Get:-----------------------------------------------------------------------
   Future<dynamic> get(
@@ -30,10 +42,10 @@ class DioClient {
       );
       if (response.statusCode != null) {
         final statusCode = response.statusCode;
-        if (200 <= statusCode! && statusCode < 300) {
+        if (statusCode! >= 200 && statusCode < 300) {
           return response.data;
         }
-        throw throw UnsplashException.fromCode(statusCode);
+        throw UnsplashException.fromCode(statusCode);
       }
       throw UnsplashException(message: response.data.toString());
     } on DioError catch (error) {
@@ -75,10 +87,10 @@ class DioClient {
       );
       if (response.statusCode != null) {
         final statusCode = response.statusCode;
-        if (200 <= statusCode! && statusCode < 300) {
+        if (statusCode! >= 200 && statusCode < 300) {
           return response.data;
         }
-        throw throw UnsplashException.fromCode(statusCode);
+        throw UnsplashException.fromCode(statusCode);
       }
       throw UnsplashException(message: response.data.toString());
     } on DioError catch (error) {
@@ -120,10 +132,10 @@ class DioClient {
       );
       if (response.statusCode != null) {
         final statusCode = response.statusCode;
-        if (200 <= statusCode! && statusCode < 300) {
+        if (statusCode! >= 200 && statusCode < 300) {
           return response.data;
         }
-        throw throw UnsplashException.fromCode(statusCode);
+        throw UnsplashException.fromCode(statusCode);
       }
       throw UnsplashException(message: response.data.toString());
     } on DioError catch (error) {
@@ -163,10 +175,10 @@ class DioClient {
       );
       if (response.statusCode != null) {
         final statusCode = response.statusCode;
-        if (200 <= statusCode! && statusCode < 300) {
+        if (statusCode! >= 200 && statusCode < 300) {
           return response.data;
         }
-        throw throw UnsplashException.fromCode(statusCode);
+        throw UnsplashException.fromCode(statusCode);
       }
       throw UnsplashException(message: response.data.toString());
     } on DioError catch (error) {

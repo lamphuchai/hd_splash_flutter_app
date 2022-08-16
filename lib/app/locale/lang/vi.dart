@@ -56,7 +56,28 @@ Map<String, String> vi = {
   LangCode.update: "Cập nhật",
   LangCode.create: "Tạo",
   LangCode.relatedCollections: "Bộ sưu tập liên quan",
-
-
-
+  LangCode.signIn: "Đăng nhập",
+  LangCode.signUp: "Đăng ký",
+  LangCode.logOut: "Đăng xuất",
+  LangCode.viewProfile: "Thông tin chi tiết",
+  LangCode.editProfile: "Chỉnh sửa thông tin",
+  LangCode.empty: "Trống",
+  LangCode.updateSuccess: "Cập nhật thành công",
+  LangCode.updateFailed: "Cập nhật thất bại",
+  LangCode.username: "Tên tài khoản",
+  LangCode.firstName: "Tên",
+  LangCode.lastName: "Họ",
+  LangCode.portfolioUrl: "Danh mục đầu tư",
+  LangCode.instagramUsername: "Tên người dùng instagram",
+  LangCode.location: "Địa điểm",
+  LangCode.bio: "Tiểu sử",
+  LangCode.account: "Tài khoản",
+  LangCode.addAccount: "Thêm Tài khoản",
+  LangCode.addSuccess: "Thêm Tài khoản thành công",
+  LangCode.notification: "Thông báo",
+  LangCode.subNotificationAddAccount:
+      "Bạn cần thêm tài khoản để thực hiện tác vụ này",
+  LangCode.delete: "Xoá",
+  LangCode.share: "Chia sẻ",
+  LangCode.edit: "Chỉnh sửa",
 };

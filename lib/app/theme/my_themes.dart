@@ -9,6 +9,7 @@ class MyThemes {
       backgroundColor: Colors.white,
       scaffoldBackgroundColor: Colors.white,
       splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       primaryColorLight: Colors.black87,
       dialogTheme: DialogTheme(
           backgroundColor: Colors.white,
@@ -18,7 +19,6 @@ class MyThemes {
       appBarTheme: MyStyles.appBarThemeLight,
       popupMenuTheme: MyStyles.popupMenuThemeDataLight,
       tabBarTheme: TabBarTheme(
-        
           labelColor: Colors.black,
           labelStyle: MyFonts.textThemeLight.titleSmall,
           unselectedLabelStyle: MyFonts.textThemeLight.titleSmall),
@@ -53,6 +53,7 @@ class MyThemes {
       appBarTheme: MyStyles.appBarThemeDark,
       popupMenuTheme: MyStyles.popupMenuThemeDataDark,
       splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
 
       //app text theme
       textTheme: MyFonts.textThemeDark,

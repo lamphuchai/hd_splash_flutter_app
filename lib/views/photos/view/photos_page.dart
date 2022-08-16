@@ -1,7 +1,8 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hd_splash_flutter/app/extensions/extensions.dart';
-import 'package:hd_splash_flutter/app/locale/lang_code.dart';
 import 'package:hd_splash_flutter/core/type/enum.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
 
@@ -12,6 +13,8 @@ class PhotosPage extends StatelessWidget {
   const PhotosPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    // final data = context.read<Unsplash>().clientRateLimit;
+    // log(data.toString());
     return CustomNestedScrollHead(
         title: context.lang('photos'),
         subtitle: context.lang("sub-photos"),

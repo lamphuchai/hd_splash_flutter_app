@@ -9,9 +9,9 @@ class DetailPhotoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DetailPhotoCubit(
-          photo: photo, photos: context.read<Unsplash>().photos)
-        ..loadingExifPhoto(),
+      create: (context) =>
+          DetailPhotoCubit(photo: photo, unsplash: context.read<Unsplash>())
+            ..loadingExifPhoto(),
       child: const DetailPhotoPage(),
     );
   }

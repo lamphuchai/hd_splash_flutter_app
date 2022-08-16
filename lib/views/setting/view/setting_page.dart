@@ -9,19 +9,20 @@ class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          Padding(
             padding: const EdgeInsets.symmetric(vertical: 30),
             child: Text(
               context.lang(LangCode.setting),
               style: textTheme.headlineLarge,
             ),
           ),
+          const CurrentUserWidget(),
           const GeneralWidget(),
           const QualityWidget(),
         ],

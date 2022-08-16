@@ -3,7 +3,6 @@ import '../exceptions/unsplash_exception.dart';
 import '../models/models.dart';
 import '../network/dio_client.dart';
 
-
 abstract class UsersAbs {
   Future<User> getUser({
     required String username,
@@ -17,13 +16,13 @@ abstract class UsersAbs {
       {required String username,
       int page = 1,
       int perPage = 10,
-      OrderBy orderBy = OrderBy.latest,
+      UserOrderBy orderBy = UserOrderBy.latest,
       bool stats = false,
       String resolution = "days",
       int quantity = 30,
       Orientation? orientation});
 
-  Future<List<Photo>> getLikes(
+  Future<List<Photo>> getLikesPhotos(
       {required String username,
       int page = 1,
       int perPage = 10,
@@ -63,7 +62,7 @@ class Users extends UsersAbs {
       {required String username,
       int page = 1,
       int perPage = 10,
-      OrderBy orderBy = OrderBy.latest,
+      UserOrderBy orderBy = UserOrderBy.latest,
       bool stats = false,
       String resolution = "days",
       int quantity = 30,
@@ -85,7 +84,7 @@ class Users extends UsersAbs {
   }
 
   @override
-  Future<List<Photo>> getLikes(
+  Future<List<Photo>> getLikesPhotos(
       {required String username,
       int page = 1,
       int perPage = 10,

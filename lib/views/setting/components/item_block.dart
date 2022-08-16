@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 
 class ItemBlock extends StatelessWidget {
   const ItemBlock(
-      {Key? key,
-      required this.title,
-      required this.subtitle,
-      this.icon,
-      this.onTap})
+      {Key? key, required this.title, this.subtitle, this.icon, this.onTap})
       : super(key: key);
   final String title;
-  final String subtitle;
+  final String? subtitle;
   final Widget? icon;
   final VoidCallback? onTap;
   @override
@@ -28,9 +24,11 @@ class ItemBlock extends StatelessWidget {
                     width: 20,
                   ),
                 ],
-                Text(
-                  title,
-                  style: Theme.of(context).textTheme.titleMedium,
+                FittedBox(
+                  child: Text(
+                    title,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
                 )
               ],
             )),
@@ -41,17 +39,19 @@ class ItemBlock extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Expanded(
-                child: Text(
-                  subtitle,
-                  style: Theme.of(context).textTheme.bodySmall,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.end,
+              if (subtitle != null) ...[
+                Expanded(
+                  child: Text(
+                    subtitle!,
+                    style: Theme.of(context).textTheme.bodySmall,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.end,
+                  ),
                 ),
-              ),
-              const SizedBox(
-                width: 8,
-              ),
+                const SizedBox(
+                  width: 8,
+                ),
+              ],
               const Icon(Icons.navigate_next),
             ],
           ),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hd_splash_flutter/app/config/app_const.dart';
+import 'package:hd_splash_flutter/logic/cubits/auth/auth_cubit.dart';
+import 'package:hd_splash_flutter/views/current_user_profile/cubit/current_user_profile_cubit.dart';
 import 'package:unsplash_dart/unsplash_dart.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,10 +17,13 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return (RepositoryProvider(
-      create: (context) =>
-          Unsplash()..createApi(""),
+      create: (context) => Unsplash()..createApi(AppConst.clientId),
       child: MultiBlocProvider(
         providers: [
+          BlocProvider(
+            create: (context) =>
+                AuthCubit(unsplash: context.read<Unsplash>())..init(),
+          ),
           BlocProvider(
             create: (context) => InternetCubit(),
           ),

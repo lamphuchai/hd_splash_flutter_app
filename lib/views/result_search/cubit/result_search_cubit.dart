@@ -22,9 +22,9 @@ class ResultSearchCubit extends Cubit<ResultSearchState> {
     try {
       emit(state.copyWith(status: StatusType.loading));
       List<Future<dynamic>> listFuture = [
-        _searchApi.photos(query: _query, perPage: _prePage),
-        _searchApi.collections(query: _query, perPage: _prePage),
-        _searchApi.users(query: _query, perPage: _prePage),
+        _searchApi.getPhotos(query: _query, perPage: _prePage),
+        _searchApi.getCollections(query: _query, perPage: _prePage),
+        _searchApi.getUsers(query: _query, perPage: _prePage),
       ];
 
       final result = await Future.wait(listFuture);
@@ -41,7 +41,7 @@ class ResultSearchCubit extends Cubit<ResultSearchState> {
   Future<void> nextPagePhotos() async {
     try {
       _pagePhotos += _pagePhotos;
-      final photos = await _searchApi.photos(
+      final photos = await _searchApi.getPhotos(
           query: _query, page: _pagePhotos, perPage: _prePage);
       emit(state.copyWith(photos: [...state.photos, ...photos]));
     } catch (error) {
@@ -52,7 +52,7 @@ class ResultSearchCubit extends Cubit<ResultSearchState> {
   Future<void> nextPageCollections() async {
     try {
       _pageCollections += _pageCollections;
-      final collections = await _searchApi.collections(
+      final collections = await _searchApi.getCollections(
           query: _query, page: _pageCollections, perPage: _prePage);
       emit(state.copyWith(collections: [...state.collections, ...collections]));
     } catch (error) {
@@ -63,7 +63,7 @@ class ResultSearchCubit extends Cubit<ResultSearchState> {
   Future<void> nextPageUsers() async {
     try {
       _pageUsers += _pageUsers;
-      final users = await _searchApi.users(
+      final users = await _searchApi.getUsers(
           query: _query, page: _pageUsers, perPage: _prePage);
       emit(state.copyWith(users: [...state.users, ...users]));
     } catch (error) {

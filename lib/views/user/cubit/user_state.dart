@@ -7,13 +7,13 @@ class UserState extends Equatable {
       this.photos = const [],
       this.likePhotos = const [],
       this.collections = const [],
-      this.photosOrderBy = OrderBy.latest,
+      this.photosOrderBy = UserOrderBy.latest,
       this.likesOrderBy = LikesPhotosOrderBy.latest});
   final StatusType status;
   final List<Photo> photos;
   final List<Photo> likePhotos;
   final List<Collection> collections;
-  final OrderBy photosOrderBy;
+  final UserOrderBy photosOrderBy;
   final LikesPhotosOrderBy likesOrderBy;
 
   @override
@@ -25,7 +25,7 @@ class UserState extends Equatable {
       List<Photo>? photos,
       List<Photo>? likePhotos,
       List<Collection>? collections,
-      OrderBy? photosOrderBy,
+      UserOrderBy? photosOrderBy,
       LikesPhotosOrderBy? likesOrderBy}) {
     return UserState(
         status: status ?? this.status,

@@ -38,17 +38,10 @@ class Social {
 
   factory Social.fromMap(Map<String, dynamic> map) {
     return Social(
-      instagramUsername: map['instagramUsername'] != null
-          ? map['instagramUsername'] as String
-          : null,
-      portfolioUrl:
-          map['portfolioUrl'] != null ? map['portfolioUrl'] as String : null,
-      twitterUsername: map['twitterUsername'] != null
-          ? map['twitterUsername'] as String
-          : null,
-      paypalEmail:
-          map['paypalEmail'] != null ? map['paypalEmail'] as String : null,
-    );
+        instagramUsername: map['instagram_username'],
+        portfolioUrl: map['portfolio_url'],
+        twitterUsername: map['twitter_username'],
+        paypalEmail: map['paypal_email']);
   }
 
   String toJson() => json.encode(toMap());
@@ -60,6 +53,4 @@ class Social {
   String toString() {
     return 'Social(instagramUsername: $instagramUsername, portfolioUrl: $portfolioUrl, twitterUsername: $twitterUsername, paypalEmail: $paypalEmail)';
   }
-
-
 }

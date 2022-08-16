@@ -10,7 +10,7 @@ class TopicsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          TopicsCubit(topics: context.read<Unsplash>().topics)..loadingTopics(),
+          TopicsCubit(topics: context.read<Unsplash>().topics),
       child: const TopicsPage(),
     );
   }

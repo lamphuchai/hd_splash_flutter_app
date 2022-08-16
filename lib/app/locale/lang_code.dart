@@ -18,9 +18,13 @@ class LangCode {
   static const String create = "create";
   static const String relatedCollections = "related-collections";
 
+  static const String signIn = "sign-in";
+  static const String signUp = "sign-un";
+  static const String logOut = "log-out";
 
-  
-
+  static const String viewProfile = "view-profile";
+  static const String editProfile = "edit-profile";
+  static const String empty = "empty";
 
   static const String inputSearch = "input-search";
 
@@ -42,7 +46,11 @@ class LangCode {
   static const String subQuality = "sub-quality";
 
   static const String ok = "ok";
+  static const String delete = "delete";
+
   static const String cancel = "cancel";
+  static const String addAccount = "add-account";
+
 
   //
   //photos
@@ -85,4 +93,32 @@ class LangCode {
   static const String regular = "position";
   static const String small = "position";
   static const String thumb = "position";
+
+  //edit profile
+
+  static const String updateSuccess = "update-success";
+  static const String updateFailed = "update-failed";
+  static const String username = "username";
+  static const String firstName = "first-name";
+  static const String email = "email";
+  static const String lastName = "last-name";
+  static const String portfolioUrl = "portfolio";
+  static const String instagramUsername = "instagram-username";
+  static const String location = "location";
+  static const String bio = "bio";
+  static const String account = "account";
+
+
+  static const String addSuccess = "login-success";
+  static const String notification = "notification";
+  static const String subNotificationAddAccount = "sub-notification-add-account";
+
+
+  static const String edit = "edit";
+  static const String share = "share";
+
+
+
+
+
 }

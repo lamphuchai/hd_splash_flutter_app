@@ -40,4 +40,14 @@ class Tag {
 
   @override
   String toString() => 'Tag(type: $type, title: $title)';
+
+  @override
+  bool operator ==(covariant Tag other) {
+    if (identical(this, other)) return true;
+
+    return other.type == type && other.title == title;
+  }
+
+  @override
+  int get hashCode => type.hashCode ^ title.hashCode;
 }

@@ -5,3 +5,5 @@ export 'search.dart';
 export 'stats.dart';
 export 'topics.dart';
 export 'users.dart';
+export 'authen.dart';
+export 'current_user.dart';

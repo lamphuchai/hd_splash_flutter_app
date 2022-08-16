@@ -1,42 +1,42 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class Mate {
+class Meta {
   final String? title;
   final String? description;
   final bool index;
-  Mate({
+  Meta({
     required this.title,
     required this.description,
     required this.index,
   });
 
-  Mate copyWith({
+  Meta copyWith({
     String? title,
     String? description,
     bool? index,
   }) {
-    return Mate(
+    return Meta(
       title: title ?? this.title,
       description: description ?? this.description,
       index: index ?? this.index,
     );
   }
 
-  factory Mate.fromMap(Map<String, dynamic> map) {
-    return Mate(
+  factory Meta.fromMap(Map<String, dynamic> map) {
+    return Meta(
       title: map['title'] != null ? map['title'] as String : null,
       description: map['description'] != null ? map['description'] as String : null,
       index: map['index'] as bool,
     );
   }
 
-  factory Mate.fromJson(String source) =>
-      Mate.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Meta.fromJson(String source) =>
+      Meta.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() =>
-      'Mate(title: $title, description: $description, index: $index)';
+      'Meta(title: $title, description: $description, index: $index)';
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -49,7 +49,7 @@ class Mate {
   String toJson() => json.encode(toMap());
 
   @override
-  bool operator ==(covariant Mate other) {
+  bool operator ==(covariant Meta other) {
     if (identical(this, other)) return true;
   
     return 

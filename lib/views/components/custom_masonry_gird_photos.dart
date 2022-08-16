@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:hd_splash_flutter/app/extensions/extensions.dart';
 import 'package:hd_splash_flutter/app/router/route_name.dart';
@@ -55,6 +57,12 @@ class CustomMasonryGirdPhotos extends StatelessWidget {
                 addAutomaticKeepAlives: true,
                 itemBuilder: ((context, index) {
                   final photo = photos[index];
+                  final heightImage = context.countHeightPhoto(
+                      crossAxisCount: state.crossAxisCountGird,
+                      width: photo.width,
+                      height: photo.height);
+                  final widthImage =
+                      context.screenSize.width / state.crossAxisCountGird;
                   return GestureDetector(
                       onTap: () => Navigator.pushNamed(
                           context, RouteName.detailPhoto,
@@ -62,17 +70,23 @@ class CustomMasonryGirdPhotos extends StatelessWidget {
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Container(
-                            height: context.countHeightPhoto(
-                                crossAxisCount: state.crossAxisCountGird,
-                                width: photo.width,
-                                height: photo.height),
+                            height: heightImage,
+                            width: widthImage,
                             color: photo.color.converterColor,
-                            child: CustomCacheNetworkImage(
-                                key: ValueKey(photo.id),
-                                placeholder: false,
-                                fit: BoxFit.cover,
-                                imageUrl:
-                                    photo.urls.photoUrl(state.loadQualityType)),
+                            child: CachedNetworkImage(
+                              imageUrl:
+                                  photo.urls.photoUrl(state.loadQualityType),
+                              fit: BoxFit.cover,
+                              placeholder: (context, url) => Container(
+                                width: widthImage,
+                                height: heightImage,
+                                color: photo.color.converterColor,
+                              ),
+                              errorWidget: (context, url, error) =>
+                                  const Center(
+                                child: Icon(Icons.error),
+                              ),
+                            ),
                           )));
                 }));
           },

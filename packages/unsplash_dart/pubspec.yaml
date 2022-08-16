@@ -1,20 +1,22 @@
 name: unsplash_dart
 description: A new Flutter package project.
 version: 0.0.1
-homepage:
+homepage: null
 
 environment:
   sdk: ">=2.17.6 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
+  build_runner: ^2.2.0
+  dio: ^4.0.6
   flutter:
     sdk: flutter
-  dio: ^4.0.6
 
 dev_dependencies:
+  flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  mockito: ^5.3.0
 
-flutter:
+flutter: null
