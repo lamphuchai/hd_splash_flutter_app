@@ -11,6 +11,8 @@ class MyStyles {
       backgroundColor: LightThemeColors.appBarColor,
       elevation: 0,
       iconTheme: const IconThemeData(color: LightThemeColors.iconColor));
+  
+
 
   static AppBarTheme appBarThemeDark = AppBarTheme(
       titleTextStyle: MyFonts.textThemeDark.titleLarge,

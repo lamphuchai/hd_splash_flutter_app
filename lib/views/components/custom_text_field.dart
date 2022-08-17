@@ -38,6 +38,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             errorText: widget.errorText,
             focusColor: Colors.black,
             labelText: widget.labelText,
+            labelStyle: Theme.of(context).textTheme.bodySmall,
             helperText: widget.helperText,
             border: _outlineInputBorder(),
             enabledBorder: _outlineInputBorder(),

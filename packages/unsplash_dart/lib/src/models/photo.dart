@@ -131,15 +131,15 @@ class Photo {
 
   factory Photo.fromMap(Map<String, dynamic> map) {
     return Photo(
-        id: map['id'] as String,
+        id: map['id'],
         views: map["views"]?.toInt() ?? 0,
-        createdAt: map['created_at'] as String,
-        updatedAt: map['updated_at'] as String,
+        createdAt: map['created_at'],
+        updatedAt: map['updated_at'],
         promotedAt:
             map['promoted_at'] != null ? map['promoted_at'] as String : null,
-        width: map['width'] as int,
-        height: map['height'] as int,
-        color: map['color'] as String,
+        width: map['width']?? 1,
+        height: map['height'] ?? 1,
+        color: map['color'],
         blurHash: map['blur_hash'],
         downloads: map['downloads']?.toInt() ?? 0,
         description:

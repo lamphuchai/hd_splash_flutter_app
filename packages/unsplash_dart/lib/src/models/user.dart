@@ -27,7 +27,6 @@ class User {
   final String? instagramUsername;
   final bool? forHire;
   final bool? followedByUser;
-  final List<Photo>? photos;
   final Map<String, dynamic>? tags;
   final int? followersCount;
   final int? followingCount;
@@ -57,7 +56,6 @@ class User {
       this.forHire,
       this.social,
       this.followedByUser,
-      this.photos,
       this.tags,
       this.followersCount,
       this.followingCount,
@@ -113,11 +111,6 @@ class User {
       instagramUsername: json['instagram_username'],
       forHire: json['for_hire'],
       followedByUser: json['followed_by_user'],
-      photos: json['photos'] != null
-          ? (json['photos'] as List)
-              .map((photo) => Photo.fromMap(photo))
-              .toList()
-          : [],
       tags: json['tags'],
       followersCount: json['followers_count'],
       followingCount: json['following_count'],

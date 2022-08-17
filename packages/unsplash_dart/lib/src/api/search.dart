@@ -71,7 +71,7 @@ class Search extends SearchAbs {
       "per_page": perPage,
     });
     return (data["results"] as List)
-        .map((photo) => Collection.fromMap(photo))
+        .map((collection) => Collection.fromMap(collection))
         .toList();
   }
 
@@ -84,7 +84,7 @@ class Search extends SearchAbs {
       "per_page": perPage,
     });
     return (data["results"] as List)
-        .map((photo) => User.fromMap(photo))
+        .map((user) => User.fromMap(user))
         .toList();
   }
 }
